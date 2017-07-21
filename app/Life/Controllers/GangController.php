@@ -32,9 +32,10 @@ class GangController extends Controller
             $membersString = "";
             $members = General::stripArray($gang->members, 3);
 
-            foreach ($members as $member) {
-                $gangMember = Player::where('pid', $member)->first();
-                $membersString = $membersString . '<a href="player/' . $gangMember->uid . '"target="_blank">' . $gangMember->name . '</a> ';
+            $players = Player::whereIn('pid', $members);
+
+            foreach ($players as $player) {
+                $membersString = $membersString . '<a href="player/' . $player->uid . '"target="_blank">' . $player->name . '</a> ';
             }
 
             return [

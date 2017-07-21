@@ -51,6 +51,13 @@
                             </a>
                         </li>
                     {% endif %}
+                    {% if auth.permissions.can_view_gangs %}
+                        <li>
+                            <a href="{{ base_url() }}/gangs">
+                                <i class="fa fa-users"></i> Gangs
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
             {% if auth.isSuperUser %}
