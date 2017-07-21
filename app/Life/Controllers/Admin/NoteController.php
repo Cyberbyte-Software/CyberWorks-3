@@ -8,7 +8,7 @@
 
 namespace CyberWorks\Life\Controllers\Admin;
 
-use CyberWorks\Core\Helper\EditLogger;
+use CyberWorks\Life\Helper\EditLogger;
 use CyberWorks\Life\Models\Note;
 use CyberWorks\Core\Controllers\Controller;
 use LiveControl\EloquentDataTable\DataTable;
