@@ -1,0 +1,123 @@
+{% extends 'templates/template.twig' %}
+
+{% block content %}
+    <div class="clearfix"></div>
+
+    <div class="row top_tiles">
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-users"></i></div>
+                <div class="count">{{ players }}</div>
+                <h3>Players</h3>
+                <p>Total Players.</p>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-user"></i></div>
+                <div class="count">{{ newestPlayer }}</div>
+                <h3>Latest Player</h3>
+                <p>Latest Player To Join The Server</p>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-user"></i></div>
+                <div class="count"><a id="newestAccount" target="_blank">
+                        <i class="fa fa-spinner fa-pulse"></i>
+                    </a></div>
+                <h3>Newest Forum Account</h3>
+                <p>The Latest User To Register</p>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-check-square-o"></i></div>
+                <div class="count">179</div>
+                <h3>New Sign ups</h3>
+                <p>Number of New Users</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <h3>Top 10 Richest Players (Bank)</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Bank</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in richPlayers %}
+                        <tr>
+                            {% if auth.permissions.can_view_player %}
+                                <th scope="row"><a href="{{ base_url() }}/player/{{ player.uid }}" target="_blank">{{ player.name }}</a></th>
+                            {% else %}
+                                <th scope="row">{{ player.name }}</th>
+                            {% endif %}
+                            <td>${{ player.bankacc }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <h3>Top 10 Richest Players (Cash)</h3>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Cash</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in highRepPlayers %}
+                    <tr>
+                        {% if auth.permissions.can_view_player %}
+                            <th scope="row"><a href="{{ base_url() }}/player/{{ player.uid }}" target="_blank">{{ player.name }}</a></th>
+                        {% else %}
+                            <th scope="row">{{ player.name }}</th>
+                        {% endif %}
+                        <td>${{ player.cash }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <h3>Faction Metrics</h3>
+            <canvas id="chartjs-4" class="chartjs" width="770" height="385" style="display: block; width: 770px; height: 385px;"></canvas>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ base_url() }}/assets/vendors/Chart.js/dist/Chart.min.js"></script>
+    <script>
+        $.get("{{ base_url() }}/api/metrics/faction", function (data) {
+            var metrics = data;
+            var factions = new Chart(document.getElementById("chartjs-4"),{
+                "type":"doughnut",
+                "data":{
+                    "labels": metrics.labels,
+                    "datasets":[
+                        {
+                            "label":"Breakdown Of Factions",
+                            "data": metrics.metricdata,
+                            "fill":false,
+                            "backgroundColor":[
+                                "rgba(54, 162, 235, 0.2)",
+                                "rgba(255, 99, 132, 0.2)",
+                                "rgba(153, 102, 255, 0.2)"
+                            ],
+                            "borderColor": "rgb(247, 247, 247)"
+                        }
+                    ]
+                }
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% if alerts.getMessage('error') %}
+    <div class="alert alert-danger alert-dismissable">
+        {{ alerts.getMessage('error') | first }}
+    </div>
+{% endif %}
+
+{% if alerts.getMessage('info') %}
+    <div class="alert alert-info alert-dismissable">
+        {{ alerts.getMessage('info') | first }}
+    </div>
+{% endif %}
+
+{% if alerts.getMessage('success') %}
+    <div class="alert alert-success alert-dismissable">
+        {{ alerts.getMessage('success') | first }}
+    </div>
+{% endif %}

@@ -1,0 +1,14 @@
+
+\.idea/
+
+vendor/
+
+config/config\.php
+
+logs/
+
+!resources/views/logs
+
+config/
+
+.sql

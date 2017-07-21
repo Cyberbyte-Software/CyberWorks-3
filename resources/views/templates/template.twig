@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>CyberWorks 3 {% block title %} {% endblock %}</title>
+
+        <!-- Bootstrap -->
+        <link href="{{ base_url() }}/assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="{{ base_url() }}/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="{{ base_url() }}/assets/vendors/nprogress/nprogress.css" rel="stylesheet">
+
+        <!-- Custom Theme Style -->
+        <link href="{{ base_url() }}/assets/css/custom.min.css" rel="stylesheet">
+
+        <link href="{{ base_url() }}/assets/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+        <link href="{{ base_url() }}/assets/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+        <link href="{{ base_url() }}/assets/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
+        {% block style %} {% endblock %}
+    </head>
+
+    <body class="nav-md">
+        <div class="container body">
+            <div class="main_container">
+
+                {% include 'templates/partials/sidebar_navigation.twig' %}
+                {% include 'templates/partials/top_navigation.twig' %}
+
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <div class="">
+                        {% include 'templates/partials/alerts.twig' %}
+                        {% block content %} {% endblock %}
+                    </div>
+                </div>
+                <!-- /page content -->
+
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-left">
+                        Version 0.1.2
+                    </div>
+                    <div class="pull-right">
+                        CyberWorks 3 &copy;2017 <a href="https://cyberbyte.org.uk">Cyberbyte Studios</a>. Theme By <a href="https://colorlib.com/">Colorlib</a>. All Rights Reserved.
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+        </div>
+
+        <!-- jQuery -->
+        <script src="{{ base_url() }}/assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+        <!-- Bootstrap -->
+        <script src="{{ base_url() }}/assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- FastClick -->
+        <script src="{{ base_url() }}/assets/vendors/fastclick/lib/fastclick.js"></script>
+        <!-- NProgress -->
+        <script src="{{ base_url() }}/assets/vendors/nprogress/nprogress.js"></script>
+
+        <!-- Custom Theme Scripts -->
+        <script src="{{ base_url() }}/assets/js/custom.js"></script>
+
+        <script src="{{ base_url() }}/assets/vendors/pnotify/dist/pnotify.js" type="text/javascript"></script>
+        <script src="{{ base_url() }}/assets/vendors/pnotify/dist/pnotify.buttons.js" type="text/javascript"></script>
+        <script src="{{ base_url() }}/assets/vendors/pnotify/dist/pnotify.nonblock.js" type="text/javascript"></script>
+
+        <script>
+            var csrfTokenName = "{{ csrf.javascript.tokenName }}";
+            var csrfTokenValue = "{{ csrf.javascript.tokenValue }}";
+        </script>
+
+        {% block script %} {% endblock %}
+    </body>
+</html>
