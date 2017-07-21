@@ -12,6 +12,7 @@ use CyberWorks\Life\Helper\EditLogger;
 use CyberWorks\Life\Models\Note;
 use CyberWorks\Core\Controllers\Controller;
 use LiveControl\EloquentDataTable\DataTable;
+use Respect\Validation\Validator as v;
 
 class NoteController extends Controller
 {
@@ -47,22 +48,22 @@ class NoteController extends Controller
 
     public function addNote($request, $response, $args)
     {
-        //USE THE FUCKING VALIDATOR
+        $req_validation = $this->validator->validate($request, [
+            'msg' => v::notEmpty(),
+            'type' => v::intVal()
+        ]);
+
+        if ($req_validation->failed()) {
+            return $response->withJson(["error" => "Message Cant Be Blank!"], 400);
+        }
+
         $type = $request->getParam('type');
         if ($type > 2) $type = 2;
-
-        $msg = $request->getParam('msg');
-
-        if ($msg == "") {
-            $body = new \Slim\Http\Body(fopen('php://temp', 'r+'));
-            $body->write('Message Cant Be Blank!');
-            return $response->withStatus(400)->withHeader('Content-type', 'text/plain')->withBody($body);
-        }
 
         $note = new Note();
         $note->user_id = $_SESSION['user_id'];
         $note->player_id = $args['id'];
-        $note->message = $msg;
+        $note->message = $request->getParam('msg');
         $note->type = $type;
         $note->save();
 
@@ -74,9 +75,7 @@ class NoteController extends Controller
         $note = Note::find($request->getParam('noteID'));
 
         if (!$note) {
-            $body = new \Slim\Http\Body(fopen('php://temp', 'r+'));
-            $body->write('Note Not Found!');
-            return $response->withStatus(404)->withHeader('Content-type', 'text/plain')->withBody($body);
+            return $response->withJson(["error" => "Note Not Found!"], 404);
         }
 
         switch ($note->type) {

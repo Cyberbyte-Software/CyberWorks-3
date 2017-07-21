@@ -197,7 +197,6 @@ class PlayerController extends Controller
     public function updateDonatorRank($request, $response, $args)
     {
         $req_validation = $this->validator->validate($request, [
-
             'value' => v::intVal()
         ]);
 
