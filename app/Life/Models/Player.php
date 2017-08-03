@@ -37,4 +37,14 @@ class Player extends Model
     {
         return $this->hasMany('CyberWorks\Life\Models\Vehicle', 'pid', 'pid')->get();
     }
+
+    public function containers()
+    {
+        return $this->hasMany('CyberWorks\Life\Models\Container', 'pid', 'pid')->get();
+    }
+
+    public function homes()
+    {
+        return $this->hasMany('CyberWorks\Life\Models\Houses', 'pid', 'pid')->get();
+    }
 }

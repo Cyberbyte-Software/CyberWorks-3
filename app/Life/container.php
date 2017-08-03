@@ -20,3 +20,6 @@ $container['LifeMetricsController'] = function ($container) {
 $container['GangController'] = function ($container) {
     return new CyberWorks\Life\Controllers\GangController($container);
 };
+$container['ContainerController'] = function ($container) {
+    return new CyberWorks\Life\Controllers\ContainerController($container);
+};

@@ -2,15 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: Cameron Chilton
- * Date: 21/07/2017
- * Time: 13:06
+ * Date: 03/08/2017
+ * Time: 15:36
  */
 
 namespace CyberWorks\Life\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Gang extends Model
+class Container extends Model
 {
     public $timestamps = false;
 
@@ -20,26 +20,27 @@ class Gang extends Model
     ];
 
     protected $fillable = [
-        'owner',
-        'name',
-        'bank',
+        'classname',
+        'pos',
+        'inventory',
+        'gear',
+        'dir',
         'active',
-        'members',
-        'maxmembers'
+        'owned'
     ];
 
     public function getOwnerNameAttribute(): string
     {
-        return $this->leader()->name;
+        return $this->owner()->name;
     }
 
     public function getOwnerIdAttribute(): int
     {
-        return $this->leader()->uid;
+        return $this->owner()->uid;
     }
 
-    public function leader()
+    public function owner()
     {
-        return $this->hasOne('CyberWorks\Life\Models\Player', 'pid', 'owner')->first();
+        return $this->hasOne('CyberWorks\Life\Models\Player', 'pid', 'pid')->first();
     }
 }

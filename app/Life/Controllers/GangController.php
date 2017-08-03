@@ -28,8 +28,6 @@ class GangController extends Controller
         $table = new DataTable($gangs->where('active', 1), ['id', 'owner', 'name', 'members', 'maxmembers', 'bank']);
 
         $table->setFormatRowFunction(function ($gang) {
-            $leader = Player::where('pid', $gang->owner)->first();
-
             $membersString = "";
             $members = General::stripArray($gang->members, 3);
 
@@ -41,7 +39,7 @@ class GangController extends Controller
 
             return [
                 $gang->name,
-                '<a href="player/' . $leader->uid . '"target="_blank">' . $leader->name . '</a>',
+                '<a href="player/' . $gang->owner_id . '"target="_blank">' . $gang->owner_name . '</a>',
                 $gang->bank,
                 $gang->maxmembers,
                 $membersString,
