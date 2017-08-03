@@ -25,8 +25,6 @@ $app->group("/api", function() {
     });
 
     $this->post('/players', 'PlayerController:table')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_view_players"))->setName('api.players');
-    $this->post('/gangs', 'GangController:table')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_view_gangs"))->setName('api.gangs');
-
     $this->group("/player", function() {
         $container = $this->getContainer();
         //DataTables
@@ -50,6 +48,9 @@ $app->group("/api", function() {
 
     $this->post('/vehicles', 'VehicleController:table')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_view_vehicles"))->setName('api.vehicles');
     $this->post('/vehicle', 'VehicleController:updateVehicle')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_edit_vehicle"))->setName('api.vehicle.edit');
+
+    $this->post('/gangs', 'GangController:table')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_view_gangs"))->setName('api.gangs');
+    $this->post('/gang', 'GangController:updateGang')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_edit_gang"))->setName('api.gang.edit');
 
     $this->group("/note", function () {
         $this->post('/delete', 'NoteController:deleteNote')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_delete_note"))->setName('api.note.delete');

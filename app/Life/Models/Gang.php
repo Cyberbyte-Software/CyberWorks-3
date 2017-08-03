@@ -19,10 +19,11 @@ class Gang extends Model
         'name',
         'bank',
         'active',
+        'members',
         'maxmembers'
     ];
 
-    public function owner()
+    public function leader()
     {
         return $this->hasOne('CyberWorks\Life\Models\Player', 'pid', 'owner')->get();
     }

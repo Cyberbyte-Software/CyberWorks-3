@@ -75,6 +75,8 @@ CREATE TABLE IF NOT EXISTS `cw_permissions` (
   `can_edit_civ_lic` tinyint(1) NOT NULL DEFAULT 0,
   `can_edit_admin_rank` tinyint(1) NOT NULL DEFAULT 0,
   `can_edit_vehicle` tinyint(1) NOT NULL DEFAULT 0,
+  `can_view_gangs` tinyint(1) NOT NULL DEFAULT 0,
+  `can_edit_gang` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `group_id` (`group_id`)

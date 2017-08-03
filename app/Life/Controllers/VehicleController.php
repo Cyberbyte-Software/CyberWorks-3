@@ -94,5 +94,7 @@ class VehicleController extends Controller
         if ($request->getParam('classname') != "") $vehicle->classname = $request->getParam('classname');
 
         $vehicle->save();
+
+        return $response->withStatus(200);
     }
 }

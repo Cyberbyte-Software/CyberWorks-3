@@ -49,4 +49,8 @@ class Validator
     public function failed() {
         return !empty($this->errors);
     }
+
+    public function errors() {
+        return $this->errors;
+    }
 }
