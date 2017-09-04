@@ -6,7 +6,7 @@
  * Time: 13:54
  */
 
-namespace CyberWorks\Core\Controllers\Admin;
+namespace CyberWorks\Life\Controllers\Admin;
 
 use CyberWorks\Core\Models\Log;
 use LiveControl\EloquentDataTable\DataTable;
