@@ -12,7 +12,7 @@ use CyberWorks\Core\Models\Log;
 use LiveControl\EloquentDataTable\DataTable;
 use CyberWorks\Core\Controllers\Controller;
 
-class LogController extends Controller
+class LifeLogController extends Controller
 {
     public function playerIndex($request, $response)
     {

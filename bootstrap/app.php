@@ -96,7 +96,6 @@ $app->add(new CyberWorks\Core\Middleware\OldInputMiddleware($container));
 $app->add(new CyberWorks\Core\Middleware\csrf\CSRFViewMiddleware($container));
 $app->add(new CyberWorks\Core\Middleware\csrf\CSRFHeaderMiddleware($container));
 $app->add($container->csrf);
-
 v::with('CyberWorks\\Core\\Validation\\Rules\\');
 
 require __DIR__ . '/../app/routes.php';

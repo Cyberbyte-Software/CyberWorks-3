@@ -9,6 +9,8 @@
 namespace CyberWorks\Core\Controllers\Auth;
 
 use CyberWorks\Core\Controllers\Controller;
+use Respect\Validation\Validator as v;
+use CyberWorks\Core\Models\User;
 
 class AuthController extends Controller
 {
@@ -24,6 +26,61 @@ class AuthController extends Controller
             return $response->withRedirect($this->router->pathFor('auth.login'));
         }
 
+        return $response->withRedirect($this->router->pathFor('dashboard'));
+    }
+
+    public function registerPage($request, $response) {
+        return $this->view->render($response, 'auth/register.twig');
+    }
+
+    /**
+     * Get either a Gravatar URL or complete image tag for a specified email address.
+     *
+     * @param string $email The email address
+     * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
+     * @param string $d Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]
+     * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
+     * @param boole $img True to return a complete IMG tag False for just the URL
+     * @param array $atts Optional, additional key/value attributes to include in the IMG tag
+     * @return String containing either just a URL or a complete image tag
+     * @source https://gravatar.com/site/implement/images/php/
+     */
+    public function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
+        $url = 'https://www.gravatar.com/avatar/';
+        $url .= md5( strtolower( trim( $email ) ) );
+        $url .= "?s=$s&d=$d&r=$r";
+        if ( $img ) {
+            $url = '<img src="' . $url . '"';
+            foreach ( $atts as $key => $val )
+                $url .= ' ' . $key . '="' . $val . '"';
+            $url .= ' />';
+        }
+        return $url;
+    }
+
+    public function register($request, $response) {
+        $validation = $this->validator->validate($request, [
+                'username' => v::noWhitespace()->notEmpty()->usernameAvailable(),
+                'email' => v::noWhitespace()->notEmpty()->email()->emailAvailable(),
+                'password' => v::noWhitespace()->notEmpty(),
+            ]
+        );
+
+        if ($validation->failed()) {
+            return $response->withRedirect($this->router->pathFor('auth.register'));
+        }
+
+        $picture = $this->get_gravatar($request->getParam('email'));
+
+        User::create([
+            'email' => $request->getParam('email'),
+            'name' => $request->getParam('username'),
+            'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT),
+            'profilePicture' => $picture,
+        ]);
+
+        $this->alerts->addMessage('success', 'Account Created');
+        $this->auth->attempt($request->getParam('username'), $request->getParam('password'));
         return $response->withRedirect($this->router->pathFor('dashboard'));
     }
 

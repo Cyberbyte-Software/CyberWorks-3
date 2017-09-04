@@ -12,6 +12,8 @@ class General
 {
     public function guid($input)
     {
+        if (PHP_INT_SIZE === 4) { return "NEEDS 64 BIT PHP"; }
+
         $id = $input;
         $temp = '';
         for ($i = 0; $i < 8; $i++) {

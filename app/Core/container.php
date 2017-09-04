@@ -17,6 +17,6 @@ $container['AuthController'] = function ($container) {
 $container['MetricsController'] = function ($container) {
     return new CyberWorks\Core\Controllers\API\MetricsController($container);
 };
-$container['LogController'] = function ($container) {
-    return new CyberWorks\Core\Controllers\Admin\LogController($container);
+$container['GroupController'] = function ($container) {
+    return new CyberWorks\Core\Controllers\Auth\GroupController($container);
 };

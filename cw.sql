@@ -77,23 +77,31 @@ CREATE TABLE IF NOT EXISTS `cw_permissions` (
   `can_edit_vehicle` tinyint(1) NOT NULL DEFAULT 0,
   `can_view_gangs` tinyint(1) NOT NULL DEFAULT 0,
   `can_edit_gang` tinyint(1) NOT NULL DEFAULT 0,
+  `can_edit_group_name` tinyint(1) NOT NULL DEFAULT 0,
+  `can_edit_group_perms_player` tinyint(1) NOT NULL DEFAULT 0,
+  `can_edit_group_perms_vehicle` tinyint(1) NOT NULL DEFAULT 0,
+  `can_edit_group_perms_settings` tinyint(1) NOT NULL DEFAULT 0,
+  `can_edit_group_perms` tinyint(1) NOT NULL DEFAULT 0,
+  `can_edit_group_ips_id` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `group_id` (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 -- Dumping structure for table life.cw_users
 CREATE TABLE IF NOT EXISTS `cw_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `connect_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `email` varchar(64) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `primaryGroup` text DEFAULT NULL,
+  `connect_id` int(11) DEFAULT NULL,
   `secondaryGroups` text DEFAULT NULL,
   `profilePicture` text DEFAULT NULL,
   `profileUrl` text DEFAULT NULL,
   `pid` varchar(64) DEFAULT NULL,
+  `password_reset_token` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),

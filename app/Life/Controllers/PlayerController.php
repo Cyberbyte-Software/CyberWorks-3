@@ -168,7 +168,7 @@ class PlayerController extends Controller
 
         EditLogger::logPlayerEdit("Edited Players Ems Rank Before: " . $player->mediclevel . " After: " . $request->getParam("value"), $args['id']);
 
-        $player->medlevel = $request->getParam("value");
+        $player->mediclevel = $request->getParam("value");
         $player->save();
 
         return $response;

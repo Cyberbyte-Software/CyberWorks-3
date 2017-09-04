@@ -49,15 +49,64 @@
                         `   </div>
 
                             <div class="separator">
+                                <h1>Email Settings</h1>
+                                <p>
+                                    In order for password resets to work you need to setup an email address for the password reset email to be sent from.<br/>
+                                    I suggest you setup an email just for this purpose.<br/>
+                                    If valid details are not provided then password resets will NOT work!
+                                </p>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="HOST : smtp.gmail.com" name="email_host" id="email_host" required="" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="PORT : 587" name="email_port" id="email_port" required="" />
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" name="email_encryption" id="email_encryption" required="" >
+                                        <option value="tls">TLS</option>
+                                        <option value="ssl">SSL</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="USERNAME" name="email_user" id="email_user" required="" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="PASSWORD" name="email_password" id="email_password" required="" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="DOMAIN : cyberbyte.org.uk" name="email_domain" id="email_domain" required="" />
+                                </div>
+                            </div>
+
+                            <div class="separator">
+                                <h1>Admin User</h1>
+                                <p>
+                                    Ensure you provide a valid email address otherwise you will not be able to reset your password should you ever lose it.
+                                </p>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="username" name="admin_user" id="admin_user" required="" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="email" name="admin_email" id="admin_email" required="" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="password" name="admin_password" id="admin_password" required="" />
+                                </div>
+                            </div>
+
+                            <div class="separator">
                                 <h1>IPB Forum Details</h1>
+                                <p>
+                                    If you wish to use IPS Connect as your login provider, please fill this section out. Please ensure to have the trailing / on the base url
+                                </p>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="IPB BASE URL" name="ipb_baseURL" id="ipb_baseURL" required="" />
+                                    <input type="text" class="form-control" placeholder="IPB BASE URL: http://mydomain.local/" name="ipb_baseURL" id="ipb_baseURL" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="IPB MASTER KEY" name="ipb_masterKEY" id="ipb_masterKEY" required="" />
+                                    <input type="text" class="form-control" placeholder="IPB MASTER KEY" name="ipb_masterKEY" id="ipb_masterKEY"/>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="IPB API KEY" name="ipb_apiKEY" id="ipb_apiKEY" required="" />
+                                    <input type="text" class="form-control" placeholder="IPB API KEY" name="ipb_apiKEY" id="ipb_apiKEY"/>
                                 </div>
                             </div>
 

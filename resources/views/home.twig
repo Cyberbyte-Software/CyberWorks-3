@@ -22,20 +22,18 @@
         </div>
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="tile-stats">
-                <div class="icon"><i class="fa fa-user"></i></div>
-                <div class="count"><a id="newestAccount" target="_blank">
-                        <i class="fa fa-spinner fa-pulse"></i>
-                    </a></div>
-                <h3>Newest Forum Account</h3>
-                <p>The Latest User To Register</p>
+                <div class="icon"><i class="fa fa-car"></i></div>
+                <div class="count">{{ veh_count }}</div>
+                <h3>Total Vehicles</h3>
+                <p>Total Count of Vehicles</p>
             </div>
         </div>
         <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="tile-stats">
-                <div class="icon"><i class="fa fa-check-square-o"></i></div>
-                <div class="count">179</div>
-                <h3>New Sign ups</h3>
-                <p>Number of New Users</p>
+                <div class="icon"><i class="fa fa-home"></i></div>
+                <div class="count">{{ house_count }}</div>
+                <h3>Total Houses</h3>
+                <p>Total Count of Houses</p>
             </div>
         </div>
     </div>
@@ -74,7 +72,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for player in highRepPlayers %}
+                {% for player in richPlayersCash %}
                     <tr>
                         {% if auth.permissions.can_view_player %}
                             <th scope="row"><a href="{{ base_url() }}/player/{{ player.uid }}" target="_blank">{{ player.name }}</a></th>

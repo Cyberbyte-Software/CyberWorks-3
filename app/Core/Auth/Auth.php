@@ -15,13 +15,33 @@ class Auth
 {
     protected $container;
 
-    public function __construct($container)
-    {
+    public function __construct($container) {
         $this->container = $container;
     }
 
-    //4 - Bender, 15 - Management, 18 - Head Admin, 24 - Senior Admin, 20 - Admin, TEMP 9
     public function attempt($username, $password) {
+        if ($this->container->config->get('useIps', false)) {
+            $this->ips_login($username, $password);
+        } else {
+            $this->normal_login($username, $password);
+        }
+    }
+
+    private function normal_login($username, $password) {
+        $user = User::where('name', $username)->orWhere('email', $username)->first();
+        if (!$user) {
+            return false;
+        }
+
+        if (password_verify($password, $user->password)) {
+            $_SESSION['user_id'] = $user->id;
+            return true;
+        }
+
+        return false;
+    }
+
+    private function ips_login($username, $password) {
         $IPSConnectResponse = $this->container->slave->attempt($username, $password);
 
         if (!$IPSConnectResponse) {
@@ -99,8 +119,7 @@ class Auth
         return false;
     }
 
-    public function permissions()
-    {
+    public function permissions() {
         if ($this->isAuthed()) {
             $group = $this->primaryGroup();
 
@@ -112,8 +131,7 @@ class Auth
         return false;
     }
 
-    public function isSuperUser()
-    {
+    public function isSuperUser() {
         $group = $this->primaryGroup();
 
         if (!$group) {

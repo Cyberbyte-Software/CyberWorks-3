@@ -76,6 +76,13 @@
                                 </ul>
                             </li>
                         {% endif %}
+                        {% if auth.permissions.can_edit_group_perms %}
+                            <li>
+                                <a href="{{ base_url() }}/groups">
+                                    <i class="fa fa-users"></i> Groups
+                                </a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             {% endif %}
