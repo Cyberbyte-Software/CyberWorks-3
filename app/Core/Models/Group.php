@@ -54,6 +54,11 @@ class Group extends Model
         'can_edit_group_perms_player',
         'can_edit_group_perms_vehicle',
         'can_edit_group_perms_settings',
-        'can_edit_group_ips_id'
+        'can_edit_group_perms_gang',
+        'can_edit_group_ips_id',
+        'can_make_groups',
+        'can_edit_users',
+        'can_add_user',
+        'can_del_user'
     ];
 }

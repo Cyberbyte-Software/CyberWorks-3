@@ -67,6 +67,11 @@
                                 <a href="#vehicle_perms" id="vehicle_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">Vehicle</a>
                             </li>
                         {% endif %}
+                        {% if auth.permissions.can_edit_group_perms_gang %}
+                            <li role="presentation">
+                                <a href="#gang_perms" id="gang_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">Gang</a>
+                            </li>
+                        {% endif %}
                         {% if auth.permissions.can_edit_group_perms_settings %}
                             <li role="presentation">
                                 <a href="#admin_perms" id="admin_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">Admin</a>
@@ -324,6 +329,38 @@
                             </div>
                         {% endif %}
 
+                        {% if auth.permissions.can_edit_group_perms_gang %}
+                            <div role="tabpanel" class="tab-pane fade" id="gang_perms" aria-labelledby="home-tab">
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h2>View:</h2>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"> View Gangs</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="checkbox" class="js-switch" name="can_view_gangs" {% if group.can_view_gangs %} checked="" {% endif %} style="display: none;" data-switchery="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h2>Edit:</h2>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"> Edit Gangs</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="checkbox" class="js-switch" name="can_edit_gang" {% if group.can_edit_gang %} checked="" {% endif %} style="display: none;" data-switchery="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
                         {% if auth.permissions.can_edit_group_perms_settings %}
                             <div role="tabpanel" class="tab-pane fade" id="admin_perms" aria-labelledby="home-tab">
                                 <h2>Edit:</h2>
@@ -346,28 +383,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Vehicle Permission Group Name</label>
+                                            <label class="col-sm-3 control-label"> Edit Gang Permission Group</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_group_name" {% if group.can_edit_group_name %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Make Permission Groups</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_group_perms" {% if group.can_edit_group_perms %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Is Super User</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="is_superUser" {% if group.is_superUser %} checked="" {% endif %} style="display: none;" data-switchery="true">
+                                                    <input type="checkbox" class="js-switch" name="can_edit_group_perms_gang" {% if group.can_edit_group_perms_gang %} checked="" {% endif %} style="display: none;" data-switchery="true">
                                                 </div>
                                             </div>
                                         </div>
@@ -384,6 +403,65 @@
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_group_perms_settings" {% if group.can_edit_group_perms_settings %} checked="" {% endif %} style="display: none;" data-switchery="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"> Edit Permission Group Name</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="checkbox" class="js-switch" name="can_edit_group_name" {% if group.can_edit_group_name %} checked="" {% endif %} style="display: none;" data-switchery="true">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"> Is Super User</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="checkbox" class="js-switch" name="is_superUser" {% if group.is_superUser %} checked="" {% endif %} style="display: none;" data-switchery="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"> View Logs</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="checkbox" class="js-switch" name="can_view_logs" {% if group.can_view_logs %} checked="" {% endif %} style="display: none;" data-switchery="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"> Make Permission Groups</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="checkbox" class="js-switch" name="can_make_groups" {% if group.can_make_groups %} checked="" {% endif %} style="display: none;" data-switchery="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"> Edit Users</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="checkbox" class="js-switch" name="can_edit_users" {% if group.can_edit_users %} checked="" {% endif %} style="display: none;" data-switchery="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"> Add User</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="checkbox" class="js-switch" name="can_add_user" {% if group.can_add_user %} checked="" {% endif %} style="display: none;" data-switchery="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"> Delete User</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="checkbox" class="js-switch" name="can_del_user" {% if group.can_del_user %} checked="" {% endif %} style="display: none;" data-switchery="true">
                                                 </div>
                                             </div>
                                         </div>

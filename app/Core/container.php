@@ -20,3 +20,6 @@ $container['MetricsController'] = function ($container) {
 $container['GroupController'] = function ($container) {
     return new CyberWorks\Core\Controllers\Auth\GroupController($container);
 };
+$container['UserController'] = function ($container) {
+    return new CyberWorks\Core\Controllers\Auth\UserController($container);
+};

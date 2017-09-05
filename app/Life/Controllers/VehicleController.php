@@ -79,7 +79,7 @@ class VehicleController extends Controller
         ]);
 
         if ($req_validation->failed()) {
-            return $response->withJson(['error' => 'Validation Failed'], 400);
+            return $response->withJson(['error' => 'Validation Failed', 'errors' => $req_validation->errors()], 400);
         }
 
         $vehicle = Vehicle::find($request->getParam('id'));

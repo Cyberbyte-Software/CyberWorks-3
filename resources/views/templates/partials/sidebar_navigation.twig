@@ -88,7 +88,26 @@
                                     {% if auth.permissions.can_make_groups %}
                                         <li>
                                             <a href="{{ base_url() }}/group/new">
-                                                <i class="fa fa-pencil"></i> new
+                                                <i class="fa fa-pencil"></i> New
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        {% endif %}
+                        {% if auth.permissions.can_edit_users %}
+                            <li>
+                                <a><i class="fa fa-users"></i> Users <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li>
+                                        <a href="{{ base_url() }}/users">
+                                            <i class="fa fa-list"></i> List
+                                        </a>
+                                    </li>
+                                    {% if auth.permissions.can_add_user %}
+                                        <li>
+                                            <a href="{{ base_url() }}/user/new">
+                                                <i class="fa fa-pencil"></i> Add
                                             </a>
                                         </li>
                                     {% endif %}
