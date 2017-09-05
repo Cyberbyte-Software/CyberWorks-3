@@ -17,7 +17,6 @@ use Respect\Validation\Validator as v;
 class UserController extends Controller
 {
     public function index($request, $response) {
-
         $groups = Group::all();
         $data = ['groups' => $groups];
         return $this->view->render($response, 'users/index.twig', $data);
@@ -30,8 +29,6 @@ class UserController extends Controller
     public function table($request, $response) {
         $users = new User();
         $table = new DataTable($users, ['id', 'name', 'email', 'primaryGroup']);
-
-
 
         $table->setFormatRowFunction(function ($user) {
             $pri_group = json_decode($user->primaryGroup);

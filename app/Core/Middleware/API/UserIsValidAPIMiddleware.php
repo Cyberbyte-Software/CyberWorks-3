@@ -6,7 +6,7 @@
  * Time: 15:59
  */
 
-namespace CyberWorks\Core\Middleware;
+namespace CyberWorks\Core\Middleware\API;
 
 use CyberWorks\Core\Models\User;
 

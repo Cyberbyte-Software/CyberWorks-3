@@ -9,7 +9,8 @@ use CyberWorks\Core\Middleware\GuestMiddleware;
 use CyberWorks\Core\Middleware\AuthenticatedMiddleware;
 use CyberWorks\Core\Middleware\Permissions\API\HasPermissionAPIMiddleware;
 use CyberWorks\Core\Middleware\Permissions\HasPermissionMiddleware;
-use CyberWorks\Core\Middleware\UserIsValidAPIMiddleware;
+use CyberWorks\Core\Middleware\API\UserIsValidAPIMiddleware;
+use CyberWorks\Core\Middleware\GroupIsValidMiddleware;
 
 $app->group("/auth", function() {
     $this->get('/login','AuthController:loginPage')->setName('auth.login');
@@ -35,11 +36,11 @@ $app->group("", function() {
 
     $this->get('/groups', 'GroupController:index')->add(new HasPermissionMiddleware($this->getContainer(), "can_edit_group_perms"))->setName('groups');
 
-    $this->get('/group/new', 'GroupController:new')->add(new HasPermissionMiddleware($this->getContainer(), "can_make_groups"));
-    $this->post('/group/new', 'GroupController:newGroup')->add(new HasPermissionMiddleware($this->getContainer(), "can_make_groups"))->setName('group.new');
+    $this->get('/group/new', 'GroupController:new')->add(new HasPermissionMiddleware($this->getContainer(), "can_make_groups"))->setName('group.new');
+    $this->post('/group/new', 'GroupController:newGroup')->add(new HasPermissionMiddleware($this->getContainer(), "can_make_groups"));
 
-    $this->get('/group/{id}', 'GroupController:group')->add(new HasPermissionMiddleware($this->getContainer(), "can_edit_group_perms"));
-    $this->post('/group/{id}', 'GroupController:updateGroup')->setName('group.update')->add(new HasPermissionMiddleware($this->getContainer(), "can_edit_group_perms"));
+    $this->get('/group/{id}', 'GroupController:group')->add(new HasPermissionMiddleware($this->getContainer(), "can_edit_group_perms"))->add(new GroupIsValidMiddleware($this->getContainer()));
+    $this->post('/group/{id}', 'GroupController:updateGroup')->setName('group.update')->add(new HasPermissionMiddleware($this->getContainer(), "can_edit_group_perms"))->add(new GroupIsValidMiddleware($this->getContainer()));
 
     $this->get('/users', 'UserController:index')->add(new HasPermissionMiddleware($this->getContainer(), "can_edit_users"))->setName('users');
 

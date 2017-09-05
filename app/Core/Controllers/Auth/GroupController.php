@@ -11,6 +11,7 @@ namespace CyberWorks\Core\Controllers\Auth;
 use CyberWorks\Core\Controllers\Controller;
 use CyberWorks\Core\Models\Group;
 use LiveControl\EloquentDataTable\DataTable;
+use Respect\Validation\Validator as v;
 
 class GroupController extends Controller
 {
@@ -40,22 +41,60 @@ class GroupController extends Controller
     public function group($request, $response, $args) {
         $group = Group::find($args['id']);
 
-        if (!$group) {
-            $this->alerts->addMessage("error", "Group Not Found");
-            return $response->withRedirect($this->router->pathFor('dashboard'));
-        }
-
         $data = ['group' => $group, 'useIps' => $this->container->config->get('useIps', false)];
         return $this->view->render($response, 'groups/group.twig', $data);
     }
 
     public function updateGroup($request, $response, $args) {
-        $group = Group::find($args['id']);
+        $req_validation = $this->validator->validate($request, [
+            'group_name' => v::notEmpty(),
+            'is_superUser' => v::optional(v::optional(v::notEmpty())),
+            'can_view_players' => v::optional(v::notEmpty()),
+            'can_view_player' => v::optional(v::notEmpty()),
+            'can_view_vehicles' => v::optional(v::notEmpty()),
+            'can_view_vehicle' => v::optional(v::notEmpty()),
+            'can_view_logs' => v::optional(v::notEmpty()),
+            'can_view_player_civ_lic' => v::optional(v::notEmpty()),
+            'can_view_player_cop_lic' => v::optional(v::notEmpty()),
+            'can_view_player_ems_lic' => v::optional(v::notEmpty()),
+            'can_view_player_notes' => v::optional(v::notEmpty()),
+            'can_view_player_edit_log' => v::optional(v::notEmpty()),
+            'can_view_player_vehicles' => v::optional(v::notEmpty()),
+            'can_compensate' => v::optional(v::notEmpty()),
+            'can_blacklist' => v::optional(v::notEmpty()),
+            'can_add_note' => v::optional(v::notEmpty()),
+            'can_delete_note' => v::optional(v::notEmpty()),
+            'can_edit_cash' => v::optional(v::notEmpty()),
+            'can_edit_bank' => v::optional(v::notEmpty()),
+            'can_edit_donator' => v::optional(v::notEmpty()),
+            'can_edit_jailed' => v::optional(v::notEmpty()),
+            'can_edit_cop_rank' => v::optional(v::notEmpty()),
+            'can_edit_cop_lic' => v::optional(v::notEmpty()),
+            'can_edit_ems_rank' => v::optional(v::notEmpty()),
+            'can_edit_ems_lic' => v::optional(v::notEmpty()),
+            'can_edit_civ_lic' => v::optional(v::notEmpty()),
+            'can_edit_admin_rank' => v::optional(v::notEmpty()),
+            'can_edit_vehicle' => v::optional(v::notEmpty()),
+            'can_view_gangs' => v::optional(v::notEmpty()),
+            'can_edit_gang' => v::optional(v::notEmpty()),
+            'can_edit_group_name' => v::optional(v::notEmpty()),
+            'can_edit_group_perms' => v::optional(v::notEmpty()),
+            'can_edit_group_perms_player' => v::optional(v::notEmpty()),
+            'can_edit_group_perms_vehicle' => v::optional(v::notEmpty()),
+            'can_edit_group_perms_settings' => v::optional(v::notEmpty()),
+            'can_edit_group_perms_gang' => v::optional(v::notEmpty()),
+            'can_edit_group_ips_id' => v::optional(v::notEmpty()),
+            'can_make_groups' => v::optional(v::notEmpty()),
+            'can_edit_users' => v::optional(v::notEmpty()),
+            'can_add_user' => v::optional(v::notEmpty()),
+            'can_del_user' => v::optional(v::notEmpty())
+        ]);
 
-        if (!$group) {
-            $this->alerts->addMessage("error", "Group Not Found");
-            return $response->withRedirect($this->router->pathFor('dashboard'));
+        if ($req_validation->failed()) {
+            return $response->withJson(['error' => 'Validation Failed', 'errors' => $req_validation->errors()], 400);
         }
+
+        $group = Group::find($args['id']);
 
         if ($group->group_name != $request->getParam('group_name')) $group->group_name = $request->getParam('group_name');
         if ($this->container->config->get('useIps', false) && ($group->group_id != $request->getParam('group_id'))) $group->group_id = $request->getParam('group_id');
@@ -113,6 +152,55 @@ class GroupController extends Controller
     }
 
     public function newGroup($request, $response) {
+        $req_validation = $this->validator->validate($request, [
+            'group_name' => v::notEmpty(),
+            'is_superUser' => v::optional(v::optional(v::notEmpty())),
+            'can_view_players' => v::optional(v::notEmpty()),
+            'can_view_player' => v::optional(v::notEmpty()),
+            'can_view_vehicles' => v::optional(v::notEmpty()),
+            'can_view_vehicle' => v::optional(v::notEmpty()),
+            'can_view_logs' => v::optional(v::notEmpty()),
+            'can_view_player_civ_lic' => v::optional(v::notEmpty()),
+            'can_view_player_cop_lic' => v::optional(v::notEmpty()),
+            'can_view_player_ems_lic' => v::optional(v::notEmpty()),
+            'can_view_player_notes' => v::optional(v::notEmpty()),
+            'can_view_player_edit_log' => v::optional(v::notEmpty()),
+            'can_view_player_vehicles' => v::optional(v::notEmpty()),
+            'can_compensate' => v::optional(v::notEmpty()),
+            'can_blacklist' => v::optional(v::notEmpty()),
+            'can_add_note' => v::optional(v::notEmpty()),
+            'can_delete_note' => v::optional(v::notEmpty()),
+            'can_edit_cash' => v::optional(v::notEmpty()),
+            'can_edit_bank' => v::optional(v::notEmpty()),
+            'can_edit_donator' => v::optional(v::notEmpty()),
+            'can_edit_jailed' => v::optional(v::notEmpty()),
+            'can_edit_cop_rank' => v::optional(v::notEmpty()),
+            'can_edit_cop_lic' => v::optional(v::notEmpty()),
+            'can_edit_ems_rank' => v::optional(v::notEmpty()),
+            'can_edit_ems_lic' => v::optional(v::notEmpty()),
+            'can_edit_civ_lic' => v::optional(v::notEmpty()),
+            'can_edit_admin_rank' => v::optional(v::notEmpty()),
+            'can_edit_vehicle' => v::optional(v::notEmpty()),
+            'can_view_gangs' => v::optional(v::notEmpty()),
+            'can_edit_gang' => v::optional(v::notEmpty()),
+            'can_edit_group_name' => v::optional(v::notEmpty()),
+            'can_edit_group_perms' => v::optional(v::notEmpty()),
+            'can_edit_group_perms_player' => v::optional(v::notEmpty()),
+            'can_edit_group_perms_vehicle' => v::optional(v::notEmpty()),
+            'can_edit_group_perms_settings' => v::optional(v::notEmpty()),
+            'can_edit_group_perms_gang' => v::optional(v::notEmpty()),
+            'can_edit_group_ips_id' => v::optional(v::notEmpty()),
+            'can_make_groups' => v::optional(v::notEmpty()),
+            'can_edit_users' => v::optional(v::notEmpty()),
+            'can_add_user' => v::optional(v::notEmpty()),
+            'can_del_user' => v::optional(v::notEmpty())
+        ]);
+
+        if ($req_validation->failed()) {
+            $this->container->alerts->addMessage("error", "Group Name Not Set");
+            return $response->withRedirect($this->container->router->pathFor('group.new'));
+        }
+
         $group = new Group();
 
         $group->group_name = $request->getParam('group_name');
