@@ -34,13 +34,13 @@ class PasswordController extends Controller
 
         $mailer = new PHPMailer;
         $mailer->isSMTP();  // Set mailer to use SMTP
-        $mailer->Host = $this->conainter->config->get('email.host');  // Specify main and backup SMTP servers
+        $mailer->Host = $this->container->config->get('email.host');  // Specify main and backup SMTP servers
         $mailer->SMTPAuth = true; // Enable SMTP authentication
-        $mailer->Username = $this->conainter->config->get('email.username'); // SMTP username
-        $mailer->Password = $this->conainter->config->get('email.password'); // SMTP password
-        $mailer->SMTPSecure = $this->conainter->config->get('email.encryption');  // Enable TLS encryption, `ssl` also accepted
-        $mailer->Port = (int)$this->conainter->config->get('email.port');
-        $domain = $this->conainter->config->get('email.domain');
+        $mailer->Username = $this->container->config->get('email.username'); // SMTP username
+        $mailer->Password = $this->container->config->get('email.password'); // SMTP password
+        $mailer->SMTPSecure = $this->container->config->get('email.encryption');  // Enable TLS encryption, `ssl` also accepted
+        $mailer->Port = (int)$this->container->config->get('email.port');
+        $domain = $this->container->config->get('email.domain');
 
         $mailer->setFrom('cyberworks@' . $domain, $domain);
         $mailer->addAddress($request->getParam('email'));

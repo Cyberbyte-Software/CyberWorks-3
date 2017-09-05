@@ -12,15 +12,15 @@ use Interop\Container\ContainerInterface;
 
 class Controller
 {
-    protected $conainter;
+    protected $container;
 
     public function __construct(ContainerInterface $container)
     {
-        $this->conainter = $container;
+        $this->container = $container;
     }
 
     public function __get($property)
     {
-        if ($this->conainter->{$property}) return $this->conainter->{$property};
+        if ($this->container->{$property}) return $this->container->{$property};
     }
 }

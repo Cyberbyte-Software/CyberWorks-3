@@ -19,7 +19,7 @@ class AuthController extends Controller
     }
 
     public function login($request, $response) {
-        $auth = $this->auth->attempt($request->getParam('username'), $request->getParam('password'), $this->conainter);
+        $auth = $this->auth->attempt($request->getParam('username'), $request->getParam('password'), $this->container);
 
         if (!$auth) {
             $this->alerts->addMessage('error', 'Login Attempt Failed');

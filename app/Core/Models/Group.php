@@ -15,6 +15,7 @@ class Group extends Model
     protected $table = 'cw_permissions';
 
     protected $primaryKey = 'id';
+    public $timestamps = false;
 
     protected $fillable = [
         'group_name',

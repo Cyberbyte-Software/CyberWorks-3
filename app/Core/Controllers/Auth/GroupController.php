@@ -41,7 +41,7 @@ class GroupController extends Controller
             return $response->withRedirect($this->router->pathFor('dashboard'));
         }
 
-        $data = ['group' => $group, 'useIps' => $this->conainter->config->get('useIps', false)];
+        $data = ['group' => $group, 'useIps' => $this->container->config->get('useIps', false)];
         return $this->view->render($response, 'groups/group.twig', $data);
     }
 
@@ -53,6 +53,14 @@ class GroupController extends Controller
             return $response->withRedirect($this->router->pathFor('dashboard'));
         }
 
+        if ($group->group_name != $request->getParam('group_name')) $group->group_name = $request->getParam('group_name');
+        if ($this->container->config->get('useIps', false)) {
+            if ($group->group_id != $request->getParam('group_id')) $group->group_id = $request->getParam('group_id');
+        }
 
+        if ($group->isDirty()) {
+            $this->container->logger->info("Group: " + $group->id + " Was updated By User:" + $_SESSION['user_id']);
+            $group->save();
+        }
     }
 }

@@ -32,7 +32,7 @@ $capsule->addConnection($container['settings']['db']);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
-$container['db'] = function ($conainter) use ($capsule) {
+$container['db'] = function ($container) use ($capsule) {
   return $capsule;
 };
 
