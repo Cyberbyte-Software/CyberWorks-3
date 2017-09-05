@@ -41,6 +41,6 @@ class Container extends Model
 
     public function owner()
     {
-        return $this->hasOne('CyberWorks\Life\Models\Player', 'pid', 'pid')->first();
+        return $this->belongsTo('CyberWorks\Life\Models\Player', 'pid', 'pid');
     }
 }
