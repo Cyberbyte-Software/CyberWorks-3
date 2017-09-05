@@ -1,7 +1,7 @@
 {% extends 'templates/template.twig' %}
 
 {% block title %}
-    | {{ group.group_name }}
+    | New Group
 {% endblock %}
 
 {% block style %}
@@ -9,12 +9,12 @@
 {% endblock %}
 
 {% block content %}
-<form class="form-horizontal form-label-left" method="post" action="{{ path_for('group.update', {'id': group.id }) }}">
+<form class="form-horizontal form-label-left" method="post" action="{{ path_for('group.new') }}">
     <div class="row">
         <div class="col-md-3 col-sm-3 col-xs-3">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Group Settings</h2>
+                    <h2>New Group</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -22,15 +22,11 @@
                         <label class="col-sm-3 control-label"> Title</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                {% if auth.permissions.can_edit_group_name %}
-                                    <input type="text" class="form-control" name="group_name" value="{{ group.group_name }}">
-                                {% else %}
-                                    <input type="text" class="form-control" name="group_name" value="{{ group.group_name }}" disabled>
-                                {% endif %}
+                                <input type="text" class="form-control" name="group_name" value="{{ group.group_name }}">
                             </div>
-
                         </div>
                     </div>
+
                     {% if useIps %}
                     <div class="form-group">
                         <label class="col-sm-3 control-label"> IPS ID</label>
