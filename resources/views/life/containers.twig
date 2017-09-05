@@ -131,8 +131,8 @@
             }
         });
 
-        {% if auth.permissions.can_edit_gang %}
-        function showEditGangBox(id, owner, members, bank, name, maxmembers) {
+        {% if auth.permissions.can_edit_container %}
+        function showEditContainerBox(id, classname, gear, inv, dir, pos) {
             $("#gangID").val(id);
             $("#owner").val(owner);
             $("#members").val(members);

@@ -87,7 +87,10 @@ class GroupController extends Controller
             'can_make_groups' => v::optional(v::notEmpty()),
             'can_edit_users' => v::optional(v::notEmpty()),
             'can_add_user' => v::optional(v::notEmpty()),
-            'can_del_user' => v::optional(v::notEmpty())
+            'can_del_user' => v::optional(v::notEmpty()),
+            'can_edit_container' => v::optional(v::notEmpty()),
+            'can_view_containers' => v::optional(v::notEmpty()),
+            'can_edit_group_perms_container' => v::optional(v::notEmpty())
         ]);
 
         if ($req_validation->failed()) {
@@ -129,10 +132,13 @@ class GroupController extends Controller
         if ($group->can_edit_admin_rank != $this->convertCheckBox($request->getParam('can_edit_admin_rank'))) $group->can_edit_admin_rank = $this->convertCheckBox($request->getParam('can_edit_admin_rank'));
         if ($group->can_edit_vehicle != $this->convertCheckBox($request->getParam('can_edit_vehicle'))) $group->can_edit_vehicle = $this->convertCheckBox($request->getParam('can_edit_vehicle'));
         if ($group->can_edit_gang != $this->convertCheckBox($request->getParam('can_edit_gang'))) $group->can_edit_gang = $this->convertCheckBox($request->getParam('can_edit_gang'));
+        if ($group->can_edit_container != $this->convertCheckBox($request->getParam('can_edit_container'))) $group->can_edit_container = $this->convertCheckBox($request->getParam('can_edit_container'));
+        if ($group->can_view_containers != $this->convertCheckBox($request->getParam('can_view_containers'))) $group->can_del_user = $this->convertCheckBox($request->getParam('can_view_containers'));
 
         if ($group->can_edit_group_name != $this->convertCheckBox($request->getParam('can_edit_group_name'))) $group->can_edit_group_name = $this->convertCheckBox($request->getParam('can_edit_group_name'));
         if ($group->can_edit_group_perms != $this->convertCheckBox($request->getParam('can_edit_group_perms'))) $group->can_edit_group_perms = $this->convertCheckBox($request->getParam('can_edit_group_perms'));
         if ($group->can_edit_group_perms_player != $this->convertCheckBox($request->getParam('can_edit_group_perms_player'))) $group->can_edit_group_perms_player = $this->convertCheckBox($request->getParam('can_edit_group_perms_player'));
+        if ($group->can_edit_group_perms_container != $this->convertCheckBox($request->getParam('can_edit_group_perms_container'))) $group->can_edit_group_perms_container = $this->convertCheckBox($request->getParam('can_edit_group_perms_container'));
         if ($group->can_edit_group_perms_vehicle != $this->convertCheckBox($request->getParam('can_edit_group_perms_vehicle'))) $group->can_edit_group_perms_vehicle = $this->convertCheckBox($request->getParam('can_edit_group_perms_vehicle'));
         if ($group->can_edit_group_perms_settings != $this->convertCheckBox($request->getParam('can_edit_group_perms_settings'))) $group->can_edit_group_perms_settings = $this->convertCheckBox($request->getParam('can_edit_group_perms_settings'));
         if ($group->can_edit_group_ips_id != $this->convertCheckBox($request->getParam('can_edit_group_ips_id'))) $group->can_edit_group_ips_id = $this->convertCheckBox($request->getParam('can_edit_group_ips_id'));
@@ -193,7 +199,9 @@ class GroupController extends Controller
             'can_make_groups' => v::optional(v::notEmpty()),
             'can_edit_users' => v::optional(v::notEmpty()),
             'can_add_user' => v::optional(v::notEmpty()),
-            'can_del_user' => v::optional(v::notEmpty())
+            'can_del_user' => v::optional(v::notEmpty()),
+            'can_edit_container' => v::optional(v::notEmpty()),
+            'can_view_containers' => v::optional(v::notEmpty())
         ]);
 
         if ($req_validation->failed()) {
@@ -249,6 +257,8 @@ class GroupController extends Controller
         $group->can_edit_group_perms_settings = $this->convertCheckBox($request->getParam('can_edit_group_perms_settings'));
         $group->can_edit_group_ips_id = $this->convertCheckBox($request->getParam('can_edit_group_ips_id'));
         $group->can_make_groups = $this->convertCheckBox($request->getParam('can_make_groups'));
+        $group->can_edit_container = $this->convertCheckBox($request->getParam('can_edit_container'));
+        $group->can_view_containers = $this->convertCheckBox($request->getParam('can_view_containers'));
 
         $this->container->logger->info("Group: " + $group->id + " Was Added By User:" + $_SESSION['user_id']);
         $group->save();

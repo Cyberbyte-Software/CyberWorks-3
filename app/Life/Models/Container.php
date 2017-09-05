@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Container extends Model
 {
+    protected $primaryKey = 'id';
     public $timestamps = false;
 
     protected $appends = [
@@ -21,6 +22,7 @@ class Container extends Model
 
     protected $fillable = [
         'classname',
+        'pid',
         'pos',
         'inventory',
         'gear',
@@ -29,17 +31,17 @@ class Container extends Model
         'owned'
     ];
 
-    public function getOwnerNameAttribute(): string
+    public function getOwnerAttribute(): string
     {
-        return $this->owner()->name;
+        return $this->containerOwner()->name;
     }
 
     public function getOwnerIdAttribute(): int
     {
-        return $this->owner()->uid;
+        return $this->containerOwner()->uid;
     }
 
-    public function owner()
+    private function containerOwner()
     {
         return $this->hasOne('CyberWorks\Life\Models\Player', 'pid', 'pid')->first();
     }
