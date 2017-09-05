@@ -8,6 +8,7 @@
 
 namespace CyberWorks\Core\Controllers\Auth;
 
+use CyberWorks\Core\Auth\Auth;
 use CyberWorks\Core\Controllers\Controller;
 use CyberWorks\Core\Models\Group;
 use CyberWorks\Core\Models\User;
@@ -23,7 +24,9 @@ class UserController extends Controller
     }
 
     public function new($request, $response) {
-        return $this->view->render($response, 'users/new.twig');
+        $groups = Group::all();
+        $data = ['groups' => $groups];
+        return $this->view->render($response, 'users/new.twig', $data);
     }
 
     public function table($request, $response) {
@@ -88,5 +91,33 @@ class UserController extends Controller
         $user->save();
 
         return $response->withStatus(200);
+    }
+
+    public function newUser($request, $response) {
+        $validation = $this->validator->validate($request, [
+                'username' => v::noWhitespace()->notEmpty()->usernameAvailable(),
+                'email' => v::noWhitespace()->notEmpty()->email()->emailAvailable(),
+                'password' => v::noWhitespace()->notEmpty(),
+                'group' => v::intVal()
+            ]
+        );
+
+        if ($validation->failed()) {
+            return $response->withRedirect($this->router->pathFor('user.new'));
+        }
+
+        $picture = AuthController::get_gravatar($request->getParam('email'));
+        $group = json_encode(['id' => $request->getParam('group')]);
+
+        User::create([
+            'email' => $request->getParam('email'),
+            'name' => $request->getParam('username'),
+            'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT),
+            'primaryGroup' => $group,
+            'profilePicture' => $picture,
+        ]);
+
+        $this->alerts->addMessage('success', 'Account Created');
+        return $response->withRedirect($this->router->pathFor('dashboard'));
     }
 }

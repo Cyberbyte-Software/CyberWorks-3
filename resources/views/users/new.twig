@@ -1,7 +1,7 @@
 {% extends 'templates/template.twig' %}
 
 {% block title %}
-    | New Group
+    | New User
 {% endblock %}
 
 {% block style %}
@@ -9,446 +9,42 @@
 {% endblock %}
 
 {% block content %}
-<form class="form-horizontal form-label-left" method="post" action="{{ path_for('group.new') }}">
-    <div class="row">
-        <div class="col-md-3 col-sm-3 col-xs-3">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>New Group</h2>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label"> Title</label>
-                        <div class="col-sm-9">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="group_name" value="{{ group.group_name }}">
-                            </div>
-                        </div>
-                    </div>
-
-                    {% if useIps %}
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label"> IPS ID</label>
-                        <div class="col-sm-9">
-                            <div class="input-group">
-                                {% if auth.permissions.can_edit_group_ips_id %}
-                                    <input type="number" class="form-control" name="group_id" value="{{ group.group_id }}">
-                                {% else %}
-                                    <input type="text" class="form-control" name="group_id" value="{{ group.group_id }}" disabled>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
-
-                    <button type="submit" class="btn btn-warning" style="display: block; width:100%;"  data-toggle="modal" data-target=".compensate">Save</button>
-
-                    <div class="clearfix"></div>
-                </div>
-            </div>
+    <form action="{{ path_for('user.new') }}" method="post" autocomplete="off">
+        <h1>Create Account</h1>
+        <div class="form-group{{ errors.username ? '  has-error' ? '' }}">
+            <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="{{ old.username }}" required=""/>
+            {%  if errors.username  %}
+                <span class="help-block">{{ errors.username | first }}</span>
+            {% endif %}
         </div>
-        <div class="col-md-9 col-sm-9 col-xs-9">
-            <div class="row">
-                <h1 class="text-center">Group Permissions</h1>
-                <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                        {% if auth.permissions.can_edit_group_perms_player %}
-                            <li role="presentation" class="active">
-                                <a href="#player_perms" id="player_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">Player</a>
-                            </li>
-                        {% endif %}
-                        {% if auth.permissions.can_edit_group_perms_vehicle %}
-                            <li role="presentation">
-                                <a href="#vehicle_perms" id="vehicle_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">Vehicle</a>
-                            </li>
-                        {% endif %}
-                        {% if auth.permissions.can_edit_group_perms_gang %}
-                            <li role="presentation">
-                                <a href="#gang_perms" id="gang_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">Gang</a>
-                            </li>
-                        {% endif %}
-                        {% if auth.permissions.can_edit_group_perms_settings %}
-                            <li role="presentation">
-                                <a href="#admin_perms" id="admin_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">Admin</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                    <div id="myTabContent" class="tab-content">
-                        {% if auth.permissions.can_edit_group_perms_player %}
-                            <div role="tabpanel" class="tab-pane fade active in" id="player_perms" aria-labelledby="home-tab">
-                                <h2>View:</h2>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Players</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_view_players" {% if group.can_view_players %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Player</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_view_player" {% if group.can_view_player %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Player Civ Lic</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_view_player_civ_lic" {% if group.can_view_player_civ_lic %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Player Cop Lic</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_view_player_cop_lic" {% if group.can_view_player_cop_lic %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Player Med Lic</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_view_player_ems_lic" {% if group.can_view_player_ems_lic %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Player Notes</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_view_player_notes" {% if group.can_view_player_notes %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Player Edit Log</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_view_player_edit_log" {% if group.can_view_player_edit_log %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Player Vehicles</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_view_player_vehicles" {% if group.can_view_player_vehicles %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <hr>
-                                <h2>Edit:</h2>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Cash</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_cash" {% if group.can_edit_cash %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Bank</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_bank" {% if group.can_edit_bank %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Donator</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_donator" {% if group.can_edit_donator %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Jailed</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_jailed" {% if group.can_edit_jailed %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Civ lic</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_civ_lic" {% if group.can_edit_civ_lic %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Cop Rank</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_cop_rank" {% if group.can_edit_cop_rank %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Cop Lic</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_cop_lic" {% if group.can_edit_cop_lic %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Medic Rank</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_ems_rank" {% if group.can_edit_ems_rank %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Medic lic</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_ems_lic" {% if group.can_edit_ems_lic %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <hr>
-                                <h2>Admin:</h2>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Admin Rank</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_admin_rank" {% if group.can_edit_admin_rank %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Blacklist</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_blacklist" {% if group.can_blacklist %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Compensate</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_compensate" {% if group.can_compensate %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Add Note</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_add_note" {% if group.can_add_note %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Delete Note</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_delete_note" {% if group.can_delete_note %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-
-                        {% if auth.permissions.can_edit_group_perms_vehicle %}
-                            <div role="tabpanel" class="tab-pane fade" id="vehicle_perms" aria-labelledby="home-tab">
-                                <div class="row">
-
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h2>View:</h2>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Vehicles</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_view_vehicles" {% if group.can_view_vehicles %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Vehicle</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_view_vehicle" {% if group.can_view_vehicle %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h2>Edit:</h2>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Vehicle</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_vehicle" {% if group.can_edit_vehicle %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-
-                        {% if auth.permissions.can_edit_group_perms_gang %}
-                            <div role="tabpanel" class="tab-pane fade" id="gang_perms" aria-labelledby="home-tab">
-                                <div class="row">
-
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h2>View:</h2>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Gangs</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_view_gangs" {% if group.can_view_gangs %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h2>Edit:</h2>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Gangs</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_gang" {% if group.can_edit_gang %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-
-                        {% if auth.permissions.can_edit_group_perms_settings %}
-                            <div role="tabpanel" class="tab-pane fade" id="admin_perms" aria-labelledby="home-tab">
-                                <h2>Edit:</h2>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Player Permission Group</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_group_perms_player" {% if group.can_edit_group_perms_player %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Vehicle Permission Group</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_group_perms_vehicle" {% if group.can_edit_group_perms_vehicle %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Vehicle Permission Group Name</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_group_name" {% if group.can_edit_group_name %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Make Permission Groups</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_make_groups" {% if group.can_make_groups %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Is Super User</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="is_superUser" {% if group.is_superUser %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Admin Group Permissions</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_group_perms" {% if group.can_edit_group_perms %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Admin Group Permissions Tab</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_edit_group_perms_settings" {% if group.can_edit_group_perms_settings %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Logs</label>
-                                            <div class="col-sm-9">
-                                                <div class="input-group">
-                                                    <input type="checkbox" class="js-switch" name="can_view_logs" {% if group.can_view_logs %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {% if useIps %}
-                                            <div class="form-group">
-                                                <label class="col-sm-3 control-label"> Edit Ips Connect ID</label>
-                                                <div class="col-sm-9">
-                                                    <div class="input-group">
-                                                        <input type="checkbox" class="js-switch" name="can_edit_group_ips_id" {% if group.can_edit_group_ips_id %} checked="" {% endif %} style="display: none;" data-switchery="true">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
+        <div class="form-group{{ errors.email ? '  has-error' ? '' }}">
+            <input type="email" class="form-control" placeholder="demo@demo.com" name="email" id="email" value="{{ old.email }}" required="" />
+            {%  if errors.email  %}
+                <span class="help-block">{{ errors.email | first }}</span>
+            {% endif %}
         </div>
-    </div>
-    {{ csrf.field | raw }}
-</form>
+        <div class="form-group{{ errors.password ? '  has-error' ? '' }}">
+            <input type="password" class="form-control" placeholder="Password" name="password" id="password" required="" />
+            {%  if errors.username  %}
+                <span class="help-block">{{ errors.password | first }}</span>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <select name="group" class="form-control">
+                {% for group in groups %}
+                    <option value="{{ group.id }}">{{ group.group_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        {{ csrf.field | raw }}
+
+        <div>
+            <button type="submit" class="btn btn-default submit">Submit</button>
+        </div>
+
+        <div class="clearfix"></div>
+    </form>
 {% endblock %}
 
 {% block script %}

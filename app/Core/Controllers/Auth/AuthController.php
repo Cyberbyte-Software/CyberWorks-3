@@ -29,10 +29,6 @@ class AuthController extends Controller
         return $response->withRedirect($this->router->pathFor('dashboard'));
     }
 
-    public function registerPage($request, $response) {
-        return $this->view->render($response, 'auth/register.twig');
-    }
-
     /**
      * Get either a Gravatar URL or complete image tag for a specified email address.
      *
@@ -56,32 +52,6 @@ class AuthController extends Controller
             $url .= ' />';
         }
         return $url;
-    }
-
-    public function register($request, $response) {
-        $validation = $this->validator->validate($request, [
-                'username' => v::noWhitespace()->notEmpty()->usernameAvailable(),
-                'email' => v::noWhitespace()->notEmpty()->email()->emailAvailable(),
-                'password' => v::noWhitespace()->notEmpty(),
-            ]
-        );
-
-        if ($validation->failed()) {
-            return $response->withRedirect($this->router->pathFor('auth.register'));
-        }
-
-        $picture = $this->get_gravatar($request->getParam('email'));
-
-        User::create([
-            'email' => $request->getParam('email'),
-            'name' => $request->getParam('username'),
-            'password' => password_hash($request->getParam('password'), PASSWORD_DEFAULT),
-            'profilePicture' => $picture,
-        ]);
-
-        $this->alerts->addMessage('success', 'Account Created');
-        $this->auth->attempt($request->getParam('username'), $request->getParam('password'));
-        return $response->withRedirect($this->router->pathFor('dashboard'));
     }
 
     public function logout($request, $response) {
