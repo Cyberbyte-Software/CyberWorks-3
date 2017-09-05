@@ -3,6 +3,4 @@
 
 vendor/
 
-!resources/views/logs
-
 .sql
