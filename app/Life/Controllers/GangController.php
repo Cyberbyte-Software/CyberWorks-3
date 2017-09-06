@@ -67,6 +67,12 @@ class GangController extends Controller
 
         $gang = Gang::find($request->getParam('id'));
 
+        if (!$gang) {
+            return $response->withJson(['error' => 'Gang Not Found'], 404);
+        }
+
+        LifeEditLogger::logEdit($request->getParam('id'), 2, "Edited Gang: Name Before: ".$gang->name." After ".$request->getParam('name')." Owner Before: ".$gang->owner." After ".$request->getParam('owner')." Funds Before: ".$gang->bank." After ".$request->getParam('funds')." Members Before: ".$gang->members." After ".$request->getParam('members')." Max Members Before: ".$gang->maxmembers." After ".$request->getParam('maxmembers'));
+
         $gang->name = $request->getParam('name');
         if (!is_null($request->getParam('owner'))) { $gang->owner = $request->getParam('owner'); }
         if (!is_null($request->getParam('funds'))) { $gang->bank = $request->getParam('funds'); }

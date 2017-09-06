@@ -3,7 +3,7 @@
 {% block content %}
     <div class="page-title">
         <div class="title_left">
-            <h3>Player Logs</h3>
+            <h3>{{ title }} Logs</h3>
         </div>
     </div>
 
@@ -14,7 +14,7 @@
             <thead>
             <tr>
                 <th>Author</th>
-                <th>Player</th>
+                <th>{{ col }}</th>
                 <th>Message</th>
                 <th>Created</th>
             </tr>
@@ -47,7 +47,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": "{{ base_url() }}/api/logs/player",
+                "url": "{{ base_url() }}/api/logs/{{ api }}",
                 "type": "POST",
                 data: function ( data ) {
                     data.{{ csrf.javascript.tokenNameKey }} = window.csrfTokenName;

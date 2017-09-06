@@ -9,7 +9,7 @@
 namespace CyberWorks\Life\Controllers;
 
 use CyberWorks\Core\Controllers\Controller;
-use CyberWorks\Life\Helper\EditLogger;
+use CyberWorks\Life\Helper\LifeEditLogger;
 use CyberWorks\Life\Helper\General;
 use CyberWorks\Life\Models\Player;
 use LiveControl\EloquentDataTable\DataTable;
@@ -73,7 +73,7 @@ class PlayerController extends Controller
 
         $player = Player::find($args['id']);
 
-        EditLogger::logPlayerEdit("Compensated Players Bank Account With $" . (int) $request->getParam("value"), $args['id']);
+        LifeEditLogger::logEdit($args['id'], 0, "Compensated Players Bank Account With $" . (int) $request->getParam("value"));
 
         $bank = $player->bankacc + (int) $request->getParam("value");
         $player->bankacc = $bank;
@@ -94,7 +94,7 @@ class PlayerController extends Controller
 
         $player = Player::find($args['id']);
 
-        EditLogger::logPlayerEdit("Edited Players Bank Account Before: $" . $player->bankacc . " After: $" . (int) $request->getParam("value"), $args['id']);
+        LifeEditLogger::logEdit($args['id'], 0,"Edited Players Bank Account Before: $" . $player->bankacc . " After: $" . (int) $request->getParam("value"));
 
         $player->bankacc = (int) $request->getParam("value");
         $player->save();
@@ -114,7 +114,7 @@ class PlayerController extends Controller
 
         $player = Player::find($args['id']);
 
-        EditLogger::logPlayerEdit("Edited Players Cash Before: $" . $player->cash . " After: $" . (int) $request->getParam("value"), $args['id']);
+        LifeEditLogger::logEdit($args['id'], 0,"Edited Players Cash Before: $" . $player->cash . " After: $" . (int) $request->getParam("value"));
 
         $player->cash = (int) $request->getParam("value");
         $player->save();
@@ -126,7 +126,7 @@ class PlayerController extends Controller
     {
         $player = Player::find($args['id']);
 
-        EditLogger::logPlayerEdit("Edited Players Arrested State Before: " . $player->arrested . " After: " . (int) $request->getParam("value"), $args['id']);
+        LifeEditLogger::logEdit($args['id'], 0,"Edited Players Arrested State Before: " . $player->arrested . " After: " . (int) $request->getParam("value"));
 
         $player->arrested = (int) $request->getParam("value");
         $player->save();
@@ -146,7 +146,7 @@ class PlayerController extends Controller
 
         $player = Player::find($args['id']);
 
-        EditLogger::logPlayerEdit("Edited Players Cop Rank Before: " . $player->coplevel . " After: " . $request->getParam("value"), $args['id']);
+        LifeEditLogger::logEdit($args['id'], 0,"Edited Players Cop Rank Before: " . $player->coplevel . " After: " . $request->getParam("value"));
 
         $player->coplevel = $request->getParam("value");
         $player->save();
@@ -166,7 +166,7 @@ class PlayerController extends Controller
 
         $player = Player::find($args['id']);
 
-        EditLogger::logPlayerEdit("Edited Players Ems Rank Before: " . $player->mediclevel . " After: " . $request->getParam("value"), $args['id']);
+        LifeEditLogger::logEdit($args['id'], 0,"Edited Players Ems Rank Before: " . $player->mediclevel . " After: " . $request->getParam("value"));
 
         $player->mediclevel = $request->getParam("value");
         $player->save();
@@ -186,7 +186,7 @@ class PlayerController extends Controller
 
         $player = Player::find($args['id']);
 
-        EditLogger::logPlayerEdit("Edited Players Admin Rank Before: " . $player->adminlevel . " After: " . $request->getParam("value"), $args['id']);
+        LifeEditLogger::logEdit($args['id'], 0,"Edited Players Admin Rank Before: " . $player->adminlevel . " After: " . $request->getParam("value"));
 
         $player->adminlevel = $request->getParam("value");
         $player->save();
@@ -206,7 +206,7 @@ class PlayerController extends Controller
 
         $player = Player::find($args['id']);
 
-        EditLogger::logPlayerEdit("Edited Players Donator Rank Before: " . $player->donatorlvl . " After: " . $request->getParam("value"), $args['id']);
+        LifeEditLogger::logEdit($args['id'], 0,"Edited Players Donator Rank Before: " . $player->donatorlvl . " After: " . $request->getParam("value"));
 
         $player->donorlevel = $request->getParam("value");
         $player->save();
@@ -234,21 +234,21 @@ class PlayerController extends Controller
                 $position = strpos($player->civ_licenses, $exploded['2']) + strlen($exploded['2']) + 2;
                 $tmp = $player->civ_licenses;
                 $tmp[$position] = General::switchValue((int) $player->civ_licenses[$position]);
-                EditLogger::logPlayerEdit("Edited Players " . $args['name'] . " Before: " . $player->civ_licenses[$position] . " After: " . $tmp[$position], $args['id']);
+                LifeEditLogger::logEdit($args['id'], 0, "Edited Players " . $args['name'] . " Before: " . $player->civ_licenses[$position] . " After: " . $tmp[$position]);
                 $player->civ_licenses = $tmp;
                 break;
             case "cop":
                 $position = strpos($player->cop_licenses, $exploded['2']) + strlen($exploded['2']) + 2;
                 $tmp = $player->cop_licenses;
                 $tmp[$position] = General::switchValue((int) $player->cop_licenses[$position]);
-                EditLogger::logPlayerEdit("Edited Players " . $args['name'] . " Before: " . $player->cop_licenses[$position] . " After: " . $tmp[$position], $args['id']);
+                LifeEditLogger::logEdit($args['id'], 0,"Edited Players " . $args['name'] . " Before: " . $player->cop_licenses[$position] . " After: " . $tmp[$position]);
                 $player->cop_licenses = $tmp;
                 break;
             case "med":
                 $position = strpos($player->med_licenses, $exploded['2']) + strlen($exploded['2']) + 2;
                 $tmp = $player->med_licenses;
                 $tmp[$position] = General::switchValue((int) $player->med_licenses[$position]);
-                EditLogger::logPlayerEdit("Edited Players " . $args['name'] . " Before: " . $player->med_licenses[$position] . " After: " . $tmp[$position], $args['id']);
+                LifeEditLogger::logEdit($args['id'], 0,"Edited Players " . $args['name'] . " Before: " . $player->med_licenses[$position] . " After: " . $tmp[$position]);
                 $player->med_licenses = $tmp;
                 break;
         }

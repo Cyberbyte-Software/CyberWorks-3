@@ -7,7 +7,7 @@ use CyberWorks\Life\Models\Vehicle;
 use CyberWorks\Life\Models\Player;
 use LiveControl\EloquentDataTable\DataTable;
 use Respect\Validation\Validator as v;
-use CyberWorks\Life\Helper\EditLogger;
+use CyberWorks\Life\Helper\LifeEditLogger;
 
 class VehicleController extends Controller
 {
@@ -84,7 +84,11 @@ class VehicleController extends Controller
 
         $vehicle = Vehicle::find($request->getParam('id'));
 
-        EditLogger::logVehicleEdit("Edited Vehicle. Garage Before: ". $vehicle->active ." After: ". $request->getParam('garage') ." Alive Before: ". $vehicle->alive ." Alive After: " . $request->getParam('dead'), $request->getParam('id'));
+        if (!$vehicle) {
+            return $response->withJson(['error' => 'Vehicle Not Found'], 404);
+        }
+
+        LifeEditLogger::logEdit($request->getParam('id'), 1,"Edited Vehicle. Garage Before: ". $vehicle->active ." After: ". $request->getParam('garage') ." Alive Before: ". $vehicle->alive ." Alive After: " . $request->getParam('dead'));
 
         $vehicle->alive = $request->getParam('dead');
         $vehicle->active = $request->getParam('garage');
@@ -93,7 +97,7 @@ class VehicleController extends Controller
         if ($request->getParam('damage') == 1) $vehicle->damage = '"[]"';
         if ($request->getParam('classname') != "") $vehicle->classname = $request->getParam('classname');
 
-        $vehicle->save();
+        if($vehicle->isDirty()) $vehicle->save();
 
         return $response->withStatus(200);
     }

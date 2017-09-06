@@ -16,7 +16,7 @@ class LifeLogController extends Controller
 {
     public function playerIndex($request, $response)
     {
-        return $this->view->render($response, 'logs/player.twig');
+        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'Player', 'col' => 'Player', 'api' => 'player']);
     }
 
     public function playerTable($request, $response)
@@ -36,6 +36,9 @@ class LifeLogController extends Controller
         return $response->withJson($table->make());
     }
 
+    /*
+     * This is the log shown on the player page
+     */
     public function playerEditLog($request, $response, $args)
     {
         $logs = new Log();
@@ -44,6 +47,95 @@ class LifeLogController extends Controller
         $table->setFormatRowFunction(function ($log) {
             return [
                 '<a href="' . $log->profileUrl . '"target="_blank">' . $log->name . '</a>',
+                $log->message,
+                (string) $log->created_at
+            ];
+        });
+
+        return $response->withJson($table->make());
+    }
+
+    public function vehicleIndex($request, $response)
+    {
+        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'Vehicle', 'col' => 'Vehicle ID', 'api' => 'vehicle']);
+    }
+
+    public function vehicleTable($request, $response)
+    {
+        $logs = new Log();
+        $table = new DataTable($logs->where('type', '1')->orderBy('created_at', 'desc'), ['id', 'message', 'user_id', 'vehicle_id', 'created_at']);
+
+        $table->setFormatRowFunction(function ($log) {
+            return [
+                '<a href="' . $log->profileUrl . '"target="_blank">' . $log->name . '</a>',
+                $log->vehicle_id,
+                $log->message,
+                (string) $log->created_at
+            ];
+        });
+
+        return $response->withJson($table->make());
+    }
+
+    public function gangIndex($request, $response)
+    {
+        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'Gang', 'col' => 'Gang', 'api' => 'gang']);
+    }
+
+    public function gangTable($request, $response)
+    {
+        $logs = new Log();
+        $table = new DataTable($logs->where('type', '2')->orderBy('created_at', 'desc'), ['id', 'message', 'user_id', 'gang_id', 'created_at']);
+
+        $table->setFormatRowFunction(function ($log) {
+            return [
+                '<a href="' . $log->profileUrl . '"target="_blank">' . $log->name . '</a>',
+                $log->gangName,
+                $log->message,
+                (string) $log->created_at
+            ];
+        });
+
+        return $response->withJson($table->make());
+    }
+
+    public function containerIndex($request, $response)
+    {
+        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'Container', 'col' => 'Container ID', 'api' => 'container']);
+    }
+
+    public function containerTable($request, $response)
+    {
+        $logs = new Log();
+        $table = new DataTable($logs->where('type', '3')->orderBy('created_at', 'desc'), ['id', 'message', 'user_id', 'container_id', 'created_at']);
+
+        $table->setFormatRowFunction(function ($log) {
+            return [
+                '<a href="' . $log->profileUrl . '"target="_blank">' . $log->name . '</a>',
+                $log->container_id,
+                $log->message,
+                (string) $log->created_at
+            ];
+        });
+
+        return $response->withJson($table->make());
+    }
+
+
+    public function houseIndex($request, $response)
+    {
+        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'House', 'col' => 'House ID', 'api' => 'house']);
+    }
+
+    public function houseTable($request, $response)
+    {
+        $logs = new Log();
+        $table = new DataTable($logs->where('type', '4')->orderBy('created_at', 'desc'), ['id', 'message', 'user_id', 'house_id', 'created_at']);
+
+        $table->setFormatRowFunction(function ($log) {
+            return [
+                '<a href="' . $log->profileUrl . '"target="_blank">' . $log->name . '</a>',
+                $log->house_id,
                 $log->message,
                 (string) $log->created_at
             ];

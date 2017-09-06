@@ -32,7 +32,6 @@ $app->group("", function() {
     $this->get('/', 'HomeController:index')->setName('dashboard');
     $this->get('/logout','AuthController:logout')->setName('auth.logout');
     $this->get('/metrics', 'HomeController:stats')->setName('dashboard.metrics');
-    $this->get('/logs/player', 'LifeLogController:playerIndex')->add(new HasPermissionMiddleware($this->getContainer(), "can_view_logs"))->setName('logs.player');
 
     $this->get('/groups', 'GroupController:index')->add(new HasPermissionMiddleware($this->getContainer(), "can_edit_group_perms"))->setName('groups');
 

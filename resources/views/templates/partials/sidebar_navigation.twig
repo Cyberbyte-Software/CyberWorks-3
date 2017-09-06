@@ -32,11 +32,7 @@
                             <i class="fa fa-home"></i> Home
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ base_url() }}/metrics">
-                            <i class="fa fa-bar-chart"></i> Metrics
-                        </a>
-                    </li>
+
                     {% if auth.permissions.can_view_players %}
                         <li>
                             <a href="{{ base_url() }}/players">
@@ -58,12 +54,24 @@
                             </a>
                         </li>
                     {% endif %}
+                    {% if auth.permissions.can_view_containers %}
+                        <li>
+                            <a href="{{ base_url() }}/containers">
+                                <i class="fa fa-briefcase"></i> Containers
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
             {% if auth.isSuperUser %}
                 <div class="menu_section">
                     <h3>Admin</h3>
                     <ul class="nav side-menu">
+                        <li>
+                            <a href="{{ base_url() }}/metrics">
+                                <i class="fa fa-bar-chart"></i> Metrics
+                            </a>
+                        </li>
                         {% if auth.permissions.can_view_logs %}
                             <li>
                                 <a><i class="fa fa-folder-open"></i> Logs <span class="fa fa-chevron-down"></span></a>
@@ -71,6 +79,26 @@
                                     <li>
                                         <a href="{{ base_url() }}/logs/player">
                                             <i class="fa fa-file-text-o"></i> Player Logs
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ base_url() }}/logs/vehicle">
+                                            <i class="fa fa-file-text-o"></i> Vehicle Logs
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ base_url() }}/logs/gang">
+                                            <i class="fa fa-file-text-o"></i> Gang Logs
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ base_url() }}/logs/house">
+                                            <i class="fa fa-file-text-o"></i> House Logs
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ base_url() }}/logs/container">
+                                            <i class="fa fa-file-text-o"></i> Container Logs
                                         </a>
                                     </li>
                                 </ul>

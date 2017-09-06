@@ -16,6 +16,17 @@ $app->group("", function() {
     $this->get('/vehicles', 'VehicleController:index')->add(new HasPermissionMiddleware($this->getContainer(), "can_view_vehicles"))->setName('vehicles');
     $this->get('/gangs', 'GangController:index')->add(new HasPermissionMiddleware($this->getContainer(), "can_view_gangs"))->setName('gangs');
     $this->get('/containers', 'ContainerController:index')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_view_containers"))->setName('api.gangs');
+
+
+    $this->group("/logs", function () {
+        $container = $this->getContainer();
+        $this->get('/player', 'LifeLogController:playerIndex')->add(new HasPermissionMiddleware($container, "can_view_logs"))->setName('logs.player');
+        $this->get('/vehicle', 'LifeLogController:vehicleIndex')->add(new HasPermissionMiddleware($container, "can_view_logs"))->setName('logs.vehicle');
+        $this->get('/gang', 'LifeLogController:gangIndex')->add(new HasPermissionMiddleware($container, "can_view_logs"))->setName('logs.gang');
+        $this->get('/container', 'LifeLogController:containerIndex')->add(new HasPermissionMiddleware($container, "can_view_logs"))->setName('logs.container');
+        $this->get('/house', 'LifeLogController:houseIndex')->add(new HasPermissionMiddleware($container, "can_view_logs"))->setName('logs.house');
+    });
+
 })->add(new AuthenticatedMiddleware($app->getContainer()));
 
 $app->group("/api", function() {
@@ -49,6 +60,7 @@ $app->group("/api", function() {
 
     $this->post('/players', 'PlayerController:table')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_view_players"))->setName('api.players');
     $this->post('/containers', 'ContainerController:table')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_view_containers"))->setName('api.containers');
+    $this->post('/container', 'ContainerController:updateContainer')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_edit_container"))->setName('api.containers.update');
     $this->post('/vehicles', 'VehicleController:table')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_view_vehicles"))->setName('api.vehicles');
     $this->post('/gangs', 'GangController:table')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_view_gangs"))->setName('api.gangs');
 
@@ -59,5 +71,12 @@ $app->group("/api", function() {
         $this->post('/{id}/logs', 'LifeLogController:playerEditLog')->add(new HasPermissionAPIMiddleware($container, "can_view_player_edit_log"))->setName('api.player.editLog');
     });
 
-    $this->post('/logs/player', 'LifeLogController:playerTable')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_view_logs"))->setName('api.logs.player');
+    $this->group("/logs", function () {
+        $container = $this->getContainer();
+        $this->post('/player', 'LifeLogController:playerTable')->add(new HasPermissionAPIMiddleware($container, "can_view_logs"))->setName('api.logs.player');
+        $this->post('/vehicle', 'LifeLogController:vehicleTable')->add(new HasPermissionAPIMiddleware($container, "can_view_logs"))->setName('api.logs.vehicle');
+        $this->post('/gang', 'LifeLogController:gangTable')->add(new HasPermissionAPIMiddleware($container, "can_view_logs"))->setName('api.logs.gang');
+        $this->post('/house', 'LifeLogController:houseTable')->add(new HasPermissionAPIMiddleware($container, "can_view_logs"))->setName('api.logs.house');
+        $this->post('/container', 'LifeLogController:containerTable')->add(new HasPermissionAPIMiddleware($container, "can_view_logs"))->setName('api.logs.container');
+    });
 })->add(new AuthenticatedMiddleware($app->getContainer()));

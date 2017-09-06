@@ -8,7 +8,7 @@
 
 namespace CyberWorks\Life\Controllers\Admin;
 
-use CyberWorks\Life\Helper\EditLogger;
+use CyberWorks\Life\Helper\LifeEditLogger;
 use CyberWorks\Life\Models\Note;
 use CyberWorks\Core\Controllers\Controller;
 use LiveControl\EloquentDataTable\DataTable;
@@ -67,6 +67,8 @@ class NoteController extends Controller
         $note->type = $type;
         $note->save();
 
+        LifeEditLogger::logEdit($note->player_id, 0, "Added A Note To The Account. Type: ". $name .". Message: " . $note->message);
+
         return $response;
     }
 
@@ -90,7 +92,7 @@ class NoteController extends Controller
                 break;
         }
 
-        EditLogger::logPlayerEdit("Removed A Note From The Account. Type: ". $name .". Message: " . $note->message, $note->player_id);
+        LifeEditLogger::logEdit($note->player_id, 0, "Removed A Note From The Account. Type: ". $name .". Message: " . $note->message);
 
         Note::destroy($request->getParam('noteID'));
 

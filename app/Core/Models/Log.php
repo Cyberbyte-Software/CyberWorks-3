@@ -9,7 +9,8 @@ class Log extends Model
     protected $appends = [
         'name',
         'profileUrl',
-        'playerName'
+        'playerName',
+        'gangName'
     ];
 
     protected $fillable = [
@@ -18,8 +19,9 @@ class Log extends Model
         'type',
         'player_id',
         'vehicle_id',
-        'forum_id',
-        'forum_name'
+        'gang_id',
+        'container_id',
+        'house_id'
     ];
 
     public function getNameAttribute()
@@ -37,6 +39,11 @@ class Log extends Model
         return $this->player()->name;
     }
 
+    public function getGangNameAttribute()
+    {
+        return $this->gang()->name;
+    }
+
     public function user()
     {
         return $this->hasOne('CyberWorks\Core\Models\User', 'id', 'user_id')->first();
@@ -45,5 +52,10 @@ class Log extends Model
     public function player()
     {
         return $this->hasOne('CyberWorks\Life\Models\Player', 'uid', 'player_id')->first();
+    }
+
+    public function gang()
+    {
+        return $this->hasOne('CyberWorks\Life\Models\Gang', 'id', 'gang_id')->first();
     }
 }

@@ -16,7 +16,7 @@ class Container extends Model
     public $timestamps = false;
 
     protected $appends = [
-        'owner_name',
+        'owner',
         'owner_id'
     ];
 
@@ -43,6 +43,6 @@ class Container extends Model
 
     private function containerOwner()
     {
-        return $this->belongsTo('CyberWorks\Life\Models\Player', 'pid', 'pid');
+        return $this->hasOne('CyberWorks\Life\Models\Player', 'pid', 'pid')->first();
     }
 }

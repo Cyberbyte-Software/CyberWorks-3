@@ -23,23 +23,23 @@
         </table>
     </div>
 
-    {% if auth.permissions.can_edit_gang %}
-        <div class="modal fade editGangModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    {% if auth.permissions.can_edit_container %}
+        <div class="modal fade editContainer" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel2">Update Gang</h4>
+                        <h4 class="modal-title" id="myModalLabel2">Update Container</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal form-label-left">
-                            <input type="hidden" class="form-control" id="gangID">
+                            <input type="hidden" class="form-control" id="container_id">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Name</label>
+                                <label class="col-sm-3 control-label">Class</label>
                                 <div class="col-sm-9">
                                     <div class="input-group" style="width: 100%">
-                                        <input type="text" class="form-control" id="gangName">
+                                        <input type="text" class="form-control" id="container_class">
                                     </div>
                                 </div>
                             </div>
@@ -47,31 +47,39 @@
                                 <label class="col-sm-3 control-label">Owner</label>
                                 <div class="col-sm-9">
                                     <div class="input-group" style="width: 100%">
-                                        <input type="text" class="form-control" id="owner" {% if not auth.isSuperUser %} disabled {% endif %}>
+                                        <input type="text" class="form-control" id="container_owner">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Max Members</label>
+                                <label class="col-sm-3 control-label">Virtual Items</label>
                                 <div class="col-sm-9">
                                     <div class="input-group" style="width: 100%">
-                                        <input type="number" class="form-control" id="maxmembers" {% if not auth.isSuperUser %} disabled {% endif %}>
+                                        <textarea type="text" class="form-control" id="container_inv"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Members</label>
+                                <label class="col-sm-3 control-label">Inventory</label>
                                 <div class="col-sm-9">
                                     <div class="input-group" style="width: 100%">
-                                        <textarea type="text" class="form-control" id="members" {% if not auth.isSuperUser %} disabled {% endif %}></textarea>
+                                        <textarea type="text" class="form-control" id="container_gear"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Funds</label>
+                                <label class="col-sm-3 control-label">Pos</label>
                                 <div class="col-sm-9">
                                     <div class="input-group" style="width: 100%">
-                                        <input type="number" class="form-control" id="funds" {% if not auth.isSuperUser %} disabled {% endif %}>
+                                        <input type="text" class="form-control" id="container_pos">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Dir</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group" style="width: 100%">
+                                        <input type="text" class="form-control" id="container_dir">
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +87,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="updateGangSave">Save changes</button>
+                        <button type="button" class="btn btn-primary" id="updateContainer">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -132,31 +140,33 @@
         });
 
         {% if auth.permissions.can_edit_container %}
-        function showEditContainerBox(id, classname, gear, inv, dir, pos) {
-            $("#gangID").val(id);
-            $("#owner").val(owner);
-            $("#members").val(members);
-            $("#funds").val(bank);
-            $("#gangName").val(name);
-            $("#maxmembers").val(maxmembers);
-            $(".editGangModal").modal({
+        function showEditContainerBox(id, classname, owner,  gear, inv, dir, pos) {
+            $("#container_id").val(id);
+            $("#container_class").val(classname);
+            $("#container_inv").val(inv);
+            $("#container_gear").val(gear);
+            $("#container_dir").val(dir);
+            $("#container_pos").val(pos);
+            $("#container_owner").val(owner);
+            $(".editContainer").modal({
                 show: 'true'
             });
         }
 
-        $("#updateGangSave").click(function() {
+        $("#updateContainer").click(function() {
             $.ajax({
                 type: "POST",
-                url: "{{ base_url() }}/api/gang",
+                url: "{{ base_url() }}/api/container",
                 data: {
                     "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                     "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
-                    "id":document.getElementById("gangID").value,
-                    {% if auth.isSuperUser %} "owner":document.getElementById("owner").value, {% endif %}
-                    {% if auth.isSuperUser %} "members":document.getElementById("members").value, {% endif %}
-                    {% if auth.isSuperUser %} "funds":document.getElementById("funds").value, {% endif %}
-                    {% if auth.isSuperUser %} "maxmembers":document.getElementById("maxmembers").value, {% endif %}
-                    "name":document.getElementById("gangName").value
+                    "id":document.getElementById("container_id").value,
+                    "class":document.getElementById("container_class").value,
+                    "gear":document.getElementById("container_gear").value,
+                    "inv":document.getElementById("container_inv").value,
+                    "dir":document.getElementById("container_dir").value,
+                    "pos":document.getElementById("container_pos").value,
+                    "owner":document.getElementById("container_owner").value
                 },
                 complete: function (jqXHR, xhr) {
                     var csrfToken = jqXHR.getResponseHeader('X-CSRF-Token');
@@ -171,14 +181,15 @@
                     if (jqXHR.status == 200) {
                         new PNotify({
                             title: 'Success',
-                            text: 'Edited Gang!',
+                            text: 'Edited Container!',
                             type: 'success',
                             styling: 'bootstrap3'
                         });
+                        location.reload();
                     } else {
                         new PNotify({
                             title: 'Oh No!',
-                            text: 'Unable To Edit Gang!',
+                            text: 'Unable To Edit Container!',
                             type: 'error',
                             styling: 'bootstrap3'
                         });
