@@ -90,7 +90,10 @@ class GroupController extends Controller
             'can_del_user' => v::optional(v::notEmpty()),
             'can_edit_container' => v::optional(v::notEmpty()),
             'can_view_containers' => v::optional(v::notEmpty()),
-            'can_edit_group_perms_container' => v::optional(v::notEmpty())
+            'can_edit_group_perms_container' => v::optional(v::notEmpty()),
+            'can_edit_house' => v::optional(v::notEmpty()),
+            'can_view_houses' => v::optional(v::notEmpty()),
+            'can_edit_group_perms_house' => v::optional(v::notEmpty())
         ]);
 
         if ($req_validation->failed()) {
@@ -134,6 +137,8 @@ class GroupController extends Controller
         if ($group->can_edit_gang != $this->convertCheckBox($request->getParam('can_edit_gang'))) $group->can_edit_gang = $this->convertCheckBox($request->getParam('can_edit_gang'));
         if ($group->can_edit_container != $this->convertCheckBox($request->getParam('can_edit_container'))) $group->can_edit_container = $this->convertCheckBox($request->getParam('can_edit_container'));
         if ($group->can_view_containers != $this->convertCheckBox($request->getParam('can_view_containers'))) $group->can_del_user = $this->convertCheckBox($request->getParam('can_view_containers'));
+        if ($group->can_edit_house != $this->convertCheckBox($request->getParam('can_edit_house'))) $group->can_edit_house = $this->convertCheckBox($request->getParam('can_edit_house'));
+        if ($group->can_view_houses != $this->convertCheckBox($request->getParam('can_view_houses'))) $group->can_view_houses = $this->convertCheckBox($request->getParam('can_view_houses'));
 
         if ($group->can_edit_group_name != $this->convertCheckBox($request->getParam('can_edit_group_name'))) $group->can_edit_group_name = $this->convertCheckBox($request->getParam('can_edit_group_name'));
         if ($group->can_edit_group_perms != $this->convertCheckBox($request->getParam('can_edit_group_perms'))) $group->can_edit_group_perms = $this->convertCheckBox($request->getParam('can_edit_group_perms'));
@@ -144,6 +149,8 @@ class GroupController extends Controller
         if ($group->can_edit_group_ips_id != $this->convertCheckBox($request->getParam('can_edit_group_ips_id'))) $group->can_edit_group_ips_id = $this->convertCheckBox($request->getParam('can_edit_group_ips_id'));
         if ($group->can_make_groups != $this->convertCheckBox($request->getParam('can_make_groups'))) $group->can_make_groups = $this->convertCheckBox($request->getParam('can_make_groups'));
         if ($group->can_edit_group_perms_gang != $this->convertCheckBox($request->getParam('can_edit_group_perms_gang'))) $group->can_edit_group_perms_gang = $this->convertCheckBox($request->getParam('can_edit_group_perms_gang'));
+        if ($group->can_edit_group_perms_house != $this->convertCheckBox($request->getParam('can_edit_group_perms_house'))) $group->can_edit_group_perms_house = $this->convertCheckBox($request->getParam('can_edit_group_perms_house'));
+
 
         if ($group->can_edit_users != $this->convertCheckBox($request->getParam('can_edit_users'))) $group->can_edit_users = $this->convertCheckBox($request->getParam('can_edit_users'));
         if ($group->can_add_user != $this->convertCheckBox($request->getParam('can_add_user'))) $group->can_add_user = $this->convertCheckBox($request->getParam('can_add_user'));
@@ -201,7 +208,11 @@ class GroupController extends Controller
             'can_add_user' => v::optional(v::notEmpty()),
             'can_del_user' => v::optional(v::notEmpty()),
             'can_edit_container' => v::optional(v::notEmpty()),
-            'can_view_containers' => v::optional(v::notEmpty())
+            'can_view_containers' => v::optional(v::notEmpty()),
+            'can_edit_group_perms_container' => v::optional(v::notEmpty()),
+            'can_edit_house' => v::optional(v::notEmpty()),
+            'can_view_houses' => v::optional(v::notEmpty()),
+            'can_edit_group_perms_house' => v::optional(v::notEmpty())
         ]);
 
         if ($req_validation->failed()) {
@@ -220,8 +231,8 @@ class GroupController extends Controller
         } else {
             $group->group_id = $group->id;
         }
-
         $group->is_superUser = $this->convertCheckBox($request->getParam('is_superUser'));
+
         $group->can_view_players = $this->convertCheckBox($request->getParam('can_view_players'));
         $group->can_view_player = $this->convertCheckBox($request->getParam('can_view_player'));
         $group->can_view_vehicles = $this->convertCheckBox($request->getParam('can_view_vehicles'));
@@ -233,6 +244,8 @@ class GroupController extends Controller
         $group->can_view_player_notes = $this->convertCheckBox($request->getParam('can_view_player_notes'));
         $group->can_view_player_edit_log = $this->convertCheckBox($request->getParam('can_view_player_edit_log'));
         $group->can_view_player_vehicles = $this->convertCheckBox($request->getParam('can_view_player_vehicles'));
+        $group->can_view_gangs = $this->convertCheckBox($request->getParam('can_view_gangs'));
+
         $group->can_compensate = $this->convertCheckBox($request->getParam('can_compensate'));
         $group->can_blacklist = $this->convertCheckBox($request->getParam('can_blacklist'));
         $group->can_add_note = $this->convertCheckBox($request->getParam('can_add_note'));
@@ -248,17 +261,26 @@ class GroupController extends Controller
         $group->can_edit_civ_lic = $this->convertCheckBox($request->getParam('can_edit_civ_lic'));
         $group->can_edit_admin_rank = $this->convertCheckBox($request->getParam('can_edit_admin_rank'));
         $group->can_edit_vehicle = $this->convertCheckBox($request->getParam('can_edit_vehicle'));
-        $group->can_view_gangs = $this->convertCheckBox($request->getParam('can_view_gangs'));
         $group->can_edit_gang = $this->convertCheckBox($request->getParam('can_edit_gang'));
+        $group->can_edit_container = $this->convertCheckBox($request->getParam('can_edit_container'));
+        $group->can_del_user = $this->convertCheckBox($request->getParam('can_view_containers'));
+        $group->can_edit_house = $this->convertCheckBox($request->getParam('can_edit_house'));
+        $group->can_view_houses = $this->convertCheckBox($request->getParam('can_view_houses'));
+
         $group->can_edit_group_name = $this->convertCheckBox($request->getParam('can_edit_group_name'));
         $group->can_edit_group_perms = $this->convertCheckBox($request->getParam('can_edit_group_perms'));
         $group->can_edit_group_perms_player = $this->convertCheckBox($request->getParam('can_edit_group_perms_player'));
+        $group->can_edit_group_perms_container = $this->convertCheckBox($request->getParam('can_edit_group_perms_container'));
         $group->can_edit_group_perms_vehicle = $this->convertCheckBox($request->getParam('can_edit_group_perms_vehicle'));
         $group->can_edit_group_perms_settings = $this->convertCheckBox($request->getParam('can_edit_group_perms_settings'));
         $group->can_edit_group_ips_id = $this->convertCheckBox($request->getParam('can_edit_group_ips_id'));
         $group->can_make_groups = $this->convertCheckBox($request->getParam('can_make_groups'));
-        $group->can_edit_container = $this->convertCheckBox($request->getParam('can_edit_container'));
-        $group->can_view_containers = $this->convertCheckBox($request->getParam('can_view_containers'));
+        $group->can_edit_group_perms_gang = $this->convertCheckBox($request->getParam('can_edit_group_perms_gang'));
+        $group->can_edit_group_perms_house = $this->convertCheckBox($request->getParam('can_edit_group_perms_house'));
+
+        $group->can_edit_users = $this->convertCheckBox($request->getParam('can_edit_users'));
+        $group->can_add_user = $this->convertCheckBox($request->getParam('can_add_user'));
+        $group->can_del_user = $this->convertCheckBox($request->getParam('can_del_user'));
 
         $this->container->logger->info("Group: " + $group->id + " Was Added By User:" + $_SESSION['user_id']);
         $group->save();

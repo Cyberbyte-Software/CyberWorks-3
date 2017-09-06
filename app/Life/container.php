@@ -23,6 +23,9 @@ $container['GangController'] = function ($container) {
 $container['ContainerController'] = function ($container) {
     return new CyberWorks\Life\Controllers\ContainerController($container);
 };
+$container['HouseController'] = function ($container) {
+    return new CyberWorks\Life\Controllers\HouseController($container);
+};
 $container['LifeLogController'] = function ($container) {
     return new CyberWorks\Life\Controllers\Admin\LifeLogController($container);
 };

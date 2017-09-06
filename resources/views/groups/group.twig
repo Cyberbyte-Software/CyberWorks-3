@@ -72,6 +72,11 @@
                                 <a href="#gang_perms" id="gang_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">Gang</a>
                             </li>
                         {% endif %}
+                        {% if auth.permissions.can_edit_group_perms_house %}
+                            <li role="presentation">
+                                <a href="#house_perms" id="house_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">House</a>
+                            </li>
+                        {% endif %}
                         {% if auth.permissions.can_edit_group_perms_container %}
                             <li role="presentation">
                                 <a href="#container_perms" id="container_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">Container</a>
@@ -366,6 +371,36 @@
                             </div>
                         {% endif %}
 
+                        {% if auth.permissions.can_edit_group_perms_house %}
+                            <div role="tabpanel" class="tab-pane fade" id="house_perms" aria-labelledby="home-tab">
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h2>View:</h2>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"> View Houses</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="checkbox" class="js-switch" name="can_view_houses" {% if group.can_view_houses %} checked="" {% endif %} style="display: none;" data-switchery="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h2>Edit:</h2>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"> Edit House</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="checkbox" class="js-switch" name="can_edit_house" {% if group.can_edit_house %} checked="" {% endif %} style="display: none;" data-switchery="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
                         {% if auth.permissions.can_edit_group_perms_container %}
                             <div role="tabpanel" class="tab-pane fade" id="container_perms" aria-labelledby="home-tab">
                                 <div class="row">
@@ -430,6 +465,14 @@
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_group_perms" {% if group.can_edit_group_perms %} checked="" {% endif %} style="display: none;" data-switchery="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"> Edit House Permissions</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="checkbox" class="js-switch" name="can_edit_group_perms_house" {% if group.can_edit_group_perms_house %} checked="" {% endif %} style="display: none;" data-switchery="true">
                                                 </div>
                                             </div>
                                         </div>

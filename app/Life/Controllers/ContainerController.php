@@ -10,6 +10,7 @@ namespace CyberWorks\Life\Controllers;
 
 use CyberWorks\Core\Controllers\Controller;
 use CyberWorks\Life\Models\Container;
+use CyberWorks\Life\Helper\LifeEditLogger;
 use LiveControl\EloquentDataTable\DataTable;
 use Respect\Validation\Validator as v;
 

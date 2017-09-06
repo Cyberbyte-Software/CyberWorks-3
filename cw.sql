@@ -15,18 +15,18 @@
 CREATE TABLE IF NOT EXISTS `cw_logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `type` enum('0','1','2','3') NOT NULL DEFAULT '0',
+  `type` enum('0','1','2','3','4') NOT NULL DEFAULT '0',
   `message` text NOT NULL,
   `player_id` int(11) DEFAULT NULL,
   `vehicle_id` int(11) DEFAULT NULL,
-  `forum_id` int(11) DEFAULT NULL,
-  `old_id` int(11) DEFAULT NULL,
-  `forum_name` varchar(50) DEFAULT NULL,
+  `container_id` int(11) DEFAULT NULL,
+  `gang_id` int(11) DEFAULT NULL,
+  `house_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2836 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 -- Dumping structure for table life.cw_notes
@@ -60,6 +60,11 @@ CREATE TABLE IF NOT EXISTS `cw_permissions` (
   `can_view_player_notes` tinyint(1) NOT NULL DEFAULT 0,
   `can_view_player_edit_log` tinyint(1) NOT NULL DEFAULT 0,
   `can_view_player_vehicles` tinyint(1) NOT NULL DEFAULT 0,
+  `can_view_gangs` tinyint(1) NOT NULL DEFAULT 0,
+  `can_view_containers` tinyint(1) NOT NULL DEFAULT 0,
+  `can_view_houses` tinyint(1) NOT NULL DEFAULT 0,
+  `can_edit_container` tinyint(1) DEFAULT 0,
+  `can_edit_house` tinyint(1) DEFAULT 0,
   `can_compensate` tinyint(1) NOT NULL DEFAULT 0,
   `can_blacklist` tinyint(1) NOT NULL DEFAULT 0,
   `can_add_note` tinyint(1) NOT NULL DEFAULT 0,
@@ -75,14 +80,20 @@ CREATE TABLE IF NOT EXISTS `cw_permissions` (
   `can_edit_civ_lic` tinyint(1) NOT NULL DEFAULT 0,
   `can_edit_admin_rank` tinyint(1) NOT NULL DEFAULT 0,
   `can_edit_vehicle` tinyint(1) NOT NULL DEFAULT 0,
-  `can_view_gangs` tinyint(1) NOT NULL DEFAULT 0,
   `can_edit_gang` tinyint(1) NOT NULL DEFAULT 0,
   `can_edit_group_name` tinyint(1) NOT NULL DEFAULT 0,
   `can_edit_group_perms_player` tinyint(1) NOT NULL DEFAULT 0,
   `can_edit_group_perms_vehicle` tinyint(1) NOT NULL DEFAULT 0,
   `can_edit_group_perms_settings` tinyint(1) NOT NULL DEFAULT 0,
+  `can_edit_group_perms_gang` tinyint(1) NOT NULL DEFAULT 0,
   `can_edit_group_perms` tinyint(1) NOT NULL DEFAULT 0,
   `can_edit_group_ips_id` tinyint(1) NOT NULL DEFAULT 0,
+  `can_make_groups` tinyint(1) NOT NULL DEFAULT 0,
+  `can_edit_users` tinyint(1) NOT NULL DEFAULT 0,
+  `can_add_user` tinyint(1) NOT NULL DEFAULT 0,
+  `can_del_user` tinyint(1) NOT NULL DEFAULT 0,
+  `can_edit_group_perms_container` tinyint(1) NOT NULL DEFAULT 0,
+  `can_edit_group_perms_house` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `group_id` (`group_id`)
@@ -108,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `cw_users` (
   UNIQUE KEY `username` (`name`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `connect_id` (`connect_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

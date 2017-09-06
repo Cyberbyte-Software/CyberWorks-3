@@ -12,6 +12,7 @@ use CyberWorks\Core\Controllers\Controller;
 use CyberWorks\Life\Helper\General;
 use CyberWorks\Life\Models\Player;
 use CyberWorks\Life\Models\Gang;
+use CyberWorks\Life\Helper\LifeEditLogger;
 use LiveControl\EloquentDataTable\DataTable;
 use Respect\Validation\Validator as v;
 

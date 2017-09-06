@@ -32,7 +32,11 @@
                             <i class="fa fa-home"></i> Home
                         </a>
                     </li>
-
+                </ul>
+            </div>
+            <div class="menu_section">
+                <h3>Life</h3>
+                <ul class="nav side-menu">
                     {% if auth.permissions.can_view_players %}
                         <li>
                             <a href="{{ base_url() }}/players">
@@ -51,6 +55,13 @@
                         <li>
                             <a href="{{ base_url() }}/gangs">
                                 <i class="fa fa-users"></i> Gangs
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if auth.permissions.can_view_houses %}
+                        <li>
+                            <a href="{{ base_url() }}/houses">
+                                <i class="fa fa-home"></i> Houses
                             </a>
                         </li>
                     {% endif %}
