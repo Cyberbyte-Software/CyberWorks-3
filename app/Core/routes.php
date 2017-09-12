@@ -48,7 +48,7 @@ $app->group("", function() {
 
 })->add(new AuthenticatedMiddleware($app->getContainer()));
 
-$app->group("/api", function() {
+$app->group("/api/internal", function() {
     $this->group("/metrics", function() {
         $this->get('/all', 'MetricsController:allMetrics')->setName('api.metrics.all');
     });

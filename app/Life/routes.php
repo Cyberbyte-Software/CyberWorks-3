@@ -29,7 +29,7 @@ $app->group("", function() {
     });
 })->add(new AuthenticatedMiddleware($app->getContainer()));
 
-$app->group("/api", function() {
+$app->group("/api/internal", function() {
     $this->post('/vehicles', 'VehicleController:table')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_view_vehicles"))->setName('api.vehicles');
     $this->post('/vehicle', 'VehicleController:updateVehicle')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_edit_vehicle"))->setName('api.vehicle.edit');
 

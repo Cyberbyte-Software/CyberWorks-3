@@ -18,7 +18,7 @@
 {% block script %}
     <script src="{{ base_url() }}/assets/vendors/Chart.js/dist/Chart.min.js"></script>
     <script>
-        $.get("{{ base_url() }}/api/metrics/players", function (data) {
+        $.get("{{ base_url() }}/api/internal/metrics/players", function (data) {
             var metrics = data;
             new Chart(document.getElementById("chartjs-2"),{
                 "type":"bar",
@@ -218,7 +218,7 @@
         });
     </script>
     <script>
-        $.get("{{ base_url() }}/api/metrics/all", function (data) {
+        $.get("{{ base_url() }}/api/internal/metrics/all", function (data) {
             var metrics = data;
             new Chart(document.getElementById("chartjs-3"),{
                 "type":"bar",

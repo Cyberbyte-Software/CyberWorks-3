@@ -493,7 +493,7 @@
                     "processing": true,
                     "serverSide": true,
                     "ajax": {
-                        "url": "{{ base_url() }}/api/player/{{ player.uid }}/logs",
+                        "url": "{{ base_url() }}/api/internal/player/{{ player.uid }}/logs",
                         "type": "POST",
                         data: function ( data ) {
                             data.{{ csrf.javascript.tokenNameKey }} = window.csrfTokenName;
@@ -525,7 +525,7 @@
                     "processing": true,
                     "serverSide": true,
                     "ajax": {
-                        "url": "{{ base_url() }}/api/player/{{ player.uid }}/notes",
+                        "url": "{{ base_url() }}/api/internal/player/{{ player.uid }}/notes",
                         "type": "POST",
                         data: function ( data ) {
                             data.{{ csrf.javascript.tokenNameKey }} = window.csrfTokenName;
@@ -564,7 +564,7 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    "url": "{{ base_url() }}/api/player/{{ player.uid }}/vehicles",
+                    "url": "{{ base_url() }}/api/internal/player/{{ player.uid }}/vehicles",
                     "type": "POST",
                     data: function ( data ) {
                         data.{{ csrf.javascript.tokenNameKey }} = window.csrfTokenName;
@@ -603,7 +603,7 @@
             $("#compensateSave").click(function (e) {
                 $.ajax({
                     type: "POST",
-                    url: "{{ base_url() }}/api/player/{{ player.uid }}/compensate",
+                    url: "{{ base_url() }}/api/internal/player/{{ player.uid }}/compensate",
                     data: {
                         "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                         "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
@@ -633,7 +633,7 @@
                 var noteType = document.getElementById("types");
                 $.ajax({
                     type: "POST",
-                    url: "{{ base_url() }}/api/player/{{ player.uid }}/addnote",
+                    url: "{{ base_url() }}/api/internal/player/{{ player.uid }}/addnote",
                     data: {
                         "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                         "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
@@ -663,7 +663,7 @@
             $(".license").click(function () {
                 $(this).toggleClass('btn-success btn-danger');
 
-                var url = "{{ base_url() }}/api/player/{{ player.uid }}/license/".concat($(this).attr("id"));
+                var url = "{{ base_url() }}/api/internal/player/{{ player.uid }}/license/".concat($(this).attr("id"));
 
                 $.ajax({
                     type: "POST",
@@ -694,7 +694,7 @@
                 var copRanks = document.getElementById("copRanks");
                 $.ajax({
                     type: "POST",
-                    url: "{{ base_url() }}/api/player/{{ player.uid }}/cop",
+                    url: "{{ base_url() }}/api/internal/player/{{ player.uid }}/cop",
                     data: {
                         "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                         "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
@@ -720,7 +720,7 @@
             $(".copLicense").click(function () {
                 $(this).toggleClass('btn-success btn-danger');
 
-                var url = "{{ base_url() }}/api/player/{{ player.uid }}/cop-license/".concat($(this).attr("id"));
+                var url = "{{ base_url() }}/api/internal/player/{{ player.uid }}/cop-license/".concat($(this).attr("id"));
 
                 $.ajax({
                     type: "POST",
@@ -751,7 +751,7 @@
                 var emsRanks = document.getElementById("emsRanks");
                 $.ajax({
                     type: "POST",
-                    url: "{{ base_url() }}/api/player/{{ player.uid }}/medic",
+                    url: "{{ base_url() }}/api/internal/player/{{ player.uid }}/medic",
                     data: {
                         "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                         "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
@@ -777,7 +777,7 @@
             $(".emsLicense").click(function () {
                 $(this).toggleClass('btn-success btn-danger');
 
-                var url = "{{ base_url() }}/api/player/{{ player.uid }}/ems-license/".concat($(this).attr("id"));
+                var url = "{{ base_url() }}/api/internal/player/{{ player.uid }}/ems-license/".concat($(this).attr("id"));
 
                 $.ajax({
                     type: "POST",
@@ -807,7 +807,7 @@
                 e.preventDefault();
                 $.ajax({
                     type: "POST",
-                    url: "{{ base_url() }}/api/player/{{ player.uid }}/cash",
+                    url: "{{ base_url() }}/api/internal/player/{{ player.uid }}/cash",
                     data: {
                         "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                         "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
@@ -834,7 +834,7 @@
                 e.preventDefault();
                 $.ajax({
                     type: "POST",
-                    url: "{{ base_url() }}/api/player/{{ player.uid }}/bank",
+                    url: "{{ base_url() }}/api/internal/player/{{ player.uid }}/bank",
                     data: {
                         "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                         "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
@@ -867,7 +867,7 @@
             $("#delteNoteSave").click(function (e) {
                 $.ajax({
                     type: "POST",
-                    url: "{{ base_url() }}/api/note/delete",
+                    url: "{{ base_url() }}/api/internal/note/delete",
                     data: {
                         "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                         "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
@@ -898,7 +898,7 @@
                 var arrestedSelect = document.getElementById("arrestedValue");
                 $.ajax({
                     type: "POST",
-                    url: "{{ base_url() }}/api/player/{{ player.uid }}/arrested",
+                    url: "{{ base_url() }}/api/internal/player/{{ player.uid }}/arrested",
                     data: {
                         "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                         "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
@@ -926,7 +926,7 @@
                 var adminRanks = document.getElementById("adminRanks");
                 $.ajax({
                     type: "POST",
-                    url: "{{ base_url() }}/api/player/{{ player.uid }}/admin",
+                    url: "{{ base_url() }}/api/internal/player/{{ player.uid }}/admin",
                     data: {
                         "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                         "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
@@ -954,7 +954,7 @@
                 var donorRanks = document.getElementById("donatorRanks");
                 $.ajax({
                     type: "POST",
-                    url: "{{ base_url() }}/api/player/{{ player.uid }}/donator",
+                    url: "{{ base_url() }}/api/internal/player/{{ player.uid }}/donator",
                     data: {
                         "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                         "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,

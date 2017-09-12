@@ -135,7 +135,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": "{{ base_url() }}/api/users",
+                "url": "{{ base_url() }}/api/internal/users",
                 "type": "POST",
                 data: function ( data ) {
                     data.{{ csrf.javascript.tokenNameKey }} = window.csrfTokenName;
@@ -174,7 +174,7 @@
         $("#updateUser").click(function() {
                 $.ajax({
                     type: "POST",
-                    url: "{{ base_url() }}/api/user/update",
+                    url: "{{ base_url() }}/api/internal/user/update",
                     data: {
                         "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                         "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
@@ -227,7 +227,7 @@
                 $("#updateUserPassword").click(function() {
                     $.ajax({
                         type: "POST",
-                        url: "{{ base_url() }}/api/user/update/password",
+                        url: "{{ base_url() }}/api/internal/user/update/password",
                         data: {
                             "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                             "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,

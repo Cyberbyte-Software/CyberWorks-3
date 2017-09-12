@@ -95,7 +95,7 @@
 {% block script %}
     <script src="{{ base_url() }}/assets/vendors/Chart.js/dist/Chart.min.js"></script>
     <script>
-        $.get("{{ base_url() }}/api/metrics/faction", function (data) {
+        $.get("{{ base_url() }}/api/internal/metrics/faction", function (data) {
             var metrics = data;
             var factions = new Chart(document.getElementById("chartjs-4"),{
                 "type":"doughnut",

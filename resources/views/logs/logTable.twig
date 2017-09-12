@@ -47,7 +47,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": "{{ base_url() }}/api/logs/{{ api }}",
+                "url": "{{ base_url() }}/api/internal/logs/{{ api }}",
                 "type": "POST",
                 data: function ( data ) {
                     data.{{ csrf.javascript.tokenNameKey }} = window.csrfTokenName;

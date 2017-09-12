@@ -117,7 +117,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": "{{ base_url() }}/api/containers",
+                "url": "{{ base_url() }}/api/internal/containers",
                 "type": "POST",
                 data: function ( data ) {
                     data.{{ csrf.javascript.tokenNameKey }} = window.csrfTokenName;
@@ -156,7 +156,7 @@
         $("#updateContainer").click(function() {
             $.ajax({
                 type: "POST",
-                url: "{{ base_url() }}/api/container",
+                url: "{{ base_url() }}/api/internal/container",
                 data: {
                     "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                     "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,

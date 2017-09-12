@@ -138,7 +138,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": "{{ base_url() }}/api/vehicles",
+                "url": "{{ base_url() }}/api/internal/vehicles",
                 "type": "POST",
                 data: function ( data ) {
                     data.{{ csrf.javascript.tokenNameKey }} = window.csrfTokenName;
@@ -181,7 +181,7 @@
         $("#updateVehicleSave").click(function() {
             $.ajax({
                 type: "POST",
-                url: "{{ base_url() }}/api/vehicle",
+                url: "{{ base_url() }}/api/internal/vehicle",
                 data: {
                     "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                     "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,

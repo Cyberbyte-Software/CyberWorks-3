@@ -83,7 +83,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": "{{ base_url() }}/api/houses",
+                "url": "{{ base_url() }}/api/internal/houses",
                 "type": "POST",
                 data: function ( data ) {
                     data.{{ csrf.javascript.tokenNameKey }} = window.csrfTokenName;
@@ -118,7 +118,7 @@
         $("#updateHouse").click(function() {
             $.ajax({
                 type: "POST",
-                url: "{{ base_url() }}/api/house",
+                url: "{{ base_url() }}/api/internal/house",
                 data: {
                     "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                     "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,

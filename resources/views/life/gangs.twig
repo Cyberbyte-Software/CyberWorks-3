@@ -110,7 +110,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": "{{ base_url() }}/api/gangs",
+                "url": "{{ base_url() }}/api/internal/gangs",
                 "type": "POST",
                 data: function ( data ) {
                     data.{{ csrf.javascript.tokenNameKey }} = window.csrfTokenName;
@@ -148,7 +148,7 @@
         $("#updateGangSave").click(function() {
             $.ajax({
                 type: "POST",
-                url: "{{ base_url() }}/api/gang",
+                url: "{{ base_url() }}/api/internal/gang",
                 data: {
                     "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
                     "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
