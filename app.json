@@ -1,8 +1,0 @@
-{
-  "name": "CyberWorks 3",
-  "description": "Database Administration Tool For ArmA 3 Altis Life",
-  "repository": "https://github.com/Cyberbyte-Studios/CyberWorks-3",
-  "logo": "https://cyberbyte.org.uk/img/logo.png",
-  "keywords": ["php"],
-  "image": "heroku/php"
-}

@@ -9,6 +9,10 @@ use Respect\Validation\Validator as v;
 
 session_start();
 
+if (!file_exists(__DIR__. '/../vendor/autoload.php')) {
+    die('You need to run composer install first. Or use a bundled release');
+}
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use Noodlehaus\Config;
