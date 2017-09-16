@@ -55,6 +55,8 @@ class HouseController extends Controller
             return $response->withJson(['error' => 'House Not Found'], 404);
         }
 
+        LifeEditLogger::logEdit($request->getParam('id'), 4, "Updated House: Owner Before: ". $house->pid ." After: ". $request->getParam('owner') ." Position Before: ". $house->pos ." After: ". $request->getParam('pos'));
+
         if ($house->pid != $request->getParam('owner')) $house->pid = $request->getParam('owner');
         if ($house->pos != $request->getParam('pos')) $house->pos = $request->getParam('pos');
 
