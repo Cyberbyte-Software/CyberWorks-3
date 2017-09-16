@@ -216,14 +216,6 @@ class PlayerController extends Controller
 
     public function updateLicense($request, $response, $args)
     {
-        $req_validation = $this->validator->validate($request, [
-            'name' => v::notEmpty()
-        ]);
-
-        if ($req_validation->failed()) {
-            return $response->withJson(['error' => 'Validation Failed', 'errors' => $req_validation->errors()], 400);
-        }
-
         $exploded = explode("_", $args['name']);
         $side = $exploded[1];
         $player = Player::find($args['id']);
