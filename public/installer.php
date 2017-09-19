@@ -40,7 +40,7 @@ if (isset($_POST['db_host']) && isset($_POST['db_port']) && isset($_POST['db_use
     $config['slim'] = [
         'settings' => [
             'determineRouteBeforeAppMiddleware' => true,
-            'displayErrorDetails' => true,
+            'displayErrorDetails' => false,
             'addContentLengthHeader' => false,
             'db' => [
                 'driver' => 'mysql',
@@ -112,8 +112,8 @@ if (isset($_POST['db_host']) && isset($_POST['db_port']) && isset($_POST['db_use
   `can_view_gangs` tinyint(1) NOT NULL DEFAULT 0,
   `can_view_containers` tinyint(1) NOT NULL DEFAULT 0,
   `can_view_houses` tinyint(1) NOT NULL DEFAULT 0,
-  `can_edit_container` tinyint(1) DEFAULT 0,
-  `can_edit_house` tinyint(1) DEFAULT 0,
+  `can_edit_container` tinyint(1) NOT NULL DEFAULT 0,
+  `can_edit_house` tinyint(1) NOT NULL DEFAULT 0,
   `can_compensate` tinyint(1) NOT NULL DEFAULT 0,
   `can_blacklist` tinyint(1) NOT NULL DEFAULT 0,
   `can_add_note` tinyint(1) NOT NULL DEFAULT 0,
@@ -158,7 +158,7 @@ if (isset($_POST['db_host']) && isset($_POST['db_port']) && isset($_POST['db_use
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;');
 
         $connection->query('CREATE TABLE IF NOT EXISTS `cw_logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

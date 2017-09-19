@@ -56,25 +56,25 @@
                                     If valid details are not provided then password resets will NOT work!
                                 </p>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="HOST : smtp.gmail.com" name="email_host" id="email_host" required="" />
+                                    <input type="text" class="form-control" placeholder="HOST : smtp.gmail.com" name="email_host" id="email_host" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="PORT : 587" name="email_port" id="email_port" required="" />
+                                    <input type="text" class="form-control" placeholder="PORT : 587" name="email_port" id="email_port" />
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-control" name="email_encryption" id="email_encryption" required="" >
+                                    <select class="form-control" name="email_encryption" id="email_encryption">
                                         <option value="tls">TLS</option>
                                         <option value="ssl">SSL</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="USERNAME" name="email_user" id="email_user" required="" />
+                                    <input type="text" class="form-control" placeholder="USERNAME" name="email_user" id="email_user" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="PASSWORD" name="email_password" id="email_password" required="" />
+                                    <input type="password" class="form-control" placeholder="PASSWORD" name="email_password" id="email_password" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="DOMAIN : cyberbyte.org.uk" name="email_domain" id="email_domain" required="" />
+                                    <input type="text" class="form-control" placeholder="DOMAIN : cyberbyte.org.uk" name="email_domain" id="email_domain" />
                                 </div>
                             </div>
 
