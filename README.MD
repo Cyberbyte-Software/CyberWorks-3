@@ -50,20 +50,20 @@ IF there is enough interest we might setup preconfigured Cyberworks hosting. Con
 
 #### Manually
 A guide will be written shortly. Basicly you want to install PHP 7 and Nginx in a standard setup.
-    Windows (Please note GUID conversion does not work on windows due to 32bit PHP): 
-        1. Download [XAMPP](https://www.apachefriends.org/xampp-files/7.1.9/xampp-win32-7.1.9-0-VC14-installer.exe)
-        2. Download the latest release from [HERE](https://github.com/Cyberbyte-Studios/CyberWorks-3/releases)
-        3. Navigate To C:\xampp\htdocs
-        4. Make a folder called Cyberworks
-        5. Extract cyberworks.zip in to the folder you just created.
-        6. Open the XAMPP Control Panel, go to config -> Apache(httpd-xampp.conf)
-        7. Add the Following to the config after /phpmyadmin block
-            Alias /cyberworks "C:/xampp/htdocs/cyberworks/"
-<Directory "C:/xampp/htdocs/cyberworks">
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-</Directory>
+* Windows: (Please note GUID conversion does not work on windows due to 32bit PHP):
+    - Download [XAMPP](https://www.apachefriends.org/xampp-files/7.1.9/xampp-win32-7.1.9-0-VC14-installer.exe)
+    - Download the latest release from [HERE](https://github.com/Cyberbyte-Studios/CyberWorks-3/releases)
+    - Navigate To C:\xampp\htdocs
+    - Make a folder called Cyberworks
+    - Extract cyberworks.zip in to the folder you just created.
+    - Open the XAMPP Control Panel, go to config -> Apache(httpd-xampp.conf)
+    - Add the Following to the config after /phpmyadmin block
+        ```Alias /cyberworks "C:/xampp/htdocs/cyberworks/"
+        <Directory "C:/xampp/htdocs/cyberworks">
+            Options Indexes FollowSymLinks
+            AllowOverride All
+            Require all granted
+        </Directory>
 
 ### Windows
 The platform should be compatible with IIS web server. We are looking to make a guide on how to use this and would like people who are interested in helping us get in contact though Discord.
