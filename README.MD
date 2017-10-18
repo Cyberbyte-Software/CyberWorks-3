@@ -64,6 +64,32 @@ A guide will be written shortly. Basicly you want to install PHP 7 and Nginx in 
             AllowOverride All
             Require all granted
         </Directory>
+* Linux:
+    - Follow This Guide To Setup a LEMP stack [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-in-ubuntu-16-04)
+    - Also install php-mbstring 
+    - Follow This Guide To Setup a Nginx Server Block [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04) 
+    - Download the latest release from [HERE](https://github.com/Cyberbyte-Studios/CyberWorks-3/releases) in to the folder you made for the site during the server block guide.
+        ```
+        wget https://github.com/Cyberbyte-Studios/CyberWorks-3/releases cyberworks.zip
+        unzip cyberworks.zip
+    - Now replace the location section in your site config you made with the following
+        ```  
+            location / {
+                try_files $uri /index.php$is_args$args;
+            }
+            
+            location ~ \.php$ {
+               try_files $uri =404;
+               fastcgi_split_path_info ^(.+\.php)(/.+)$;
+               fastcgi_pass php:9000;
+               fastcgi_index index.php;
+               include fastcgi_params;
+               fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+               fastcgi_param PATH_INFO $fastcgi_path_info;
+            }
+    - Still in the config you will need to ensure the root ends with /public as this is where the requests need to land. Example:
+        ```
+        root /var/www/html/public;
 
 ### Windows
 The platform should be compatible with IIS web server. We are looking to make a guide on how to use this and would like people who are interested in helping us get in contact though Discord.
