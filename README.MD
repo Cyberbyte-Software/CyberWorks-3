@@ -58,7 +58,8 @@ A guide will be written shortly. Basicly you want to install PHP 7 and Nginx in 
     - Extract cyberworks.zip in to the folder you just created.
     - Open the XAMPP Control Panel, go to config -> Apache(httpd-xampp.conf)
     - Add the Following to the config after /phpmyadmin block
-        ```Alias /cyberworks "C:/xampp/htdocs/cyberworks/"
+        ```
+        Alias /cyberworks "C:/xampp/htdocs/cyberworks/"
         <Directory "C:/xampp/htdocs/cyberworks">
             Options Indexes FollowSymLinks
             AllowOverride All
