@@ -16,7 +16,7 @@ class LifeLogController extends Controller
 {
     public function playerIndex($request, $response)
     {
-        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'Player', 'col' => 'Player', 'api' => 'player']);
+        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'life.player.title', 'col' => 'life.player.title', 'api' => 'player']);
     }
 
     public function playerTable($request, $response)
@@ -57,7 +57,7 @@ class LifeLogController extends Controller
 
     public function vehicleIndex($request, $response)
     {
-        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'Vehicle', 'col' => 'Vehicle ID', 'api' => 'vehicle']);
+        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'life.vehicles.titleSingle', 'col' => 'life.vehicles.id', 'api' => 'vehicle']);
     }
 
     public function vehicleTable($request, $response)
@@ -79,7 +79,7 @@ class LifeLogController extends Controller
 
     public function gangIndex($request, $response)
     {
-        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'Gang', 'col' => 'Gang', 'api' => 'gang']);
+        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'life.gangs.titleSingle', 'col' => 'life.gangs.titleSingle', 'api' => 'gang']);
     }
 
     public function gangTable($request, $response)
@@ -101,7 +101,7 @@ class LifeLogController extends Controller
 
     public function containerIndex($request, $response)
     {
-        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'Container', 'col' => 'Container ID', 'api' => 'container']);
+        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'life.containers.titleSingle', 'col' => 'life.containers.id', 'api' => 'container']);
     }
 
     public function containerTable($request, $response)
@@ -124,7 +124,7 @@ class LifeLogController extends Controller
 
     public function houseIndex($request, $response)
     {
-        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'House', 'col' => 'House ID', 'api' => 'house']);
+        return $this->view->render($response, 'logs/logTable.twig', ['title' => 'life.houses.titleSingle', 'col' => 'life.houses.id', 'api' => 'house']);
     }
 
     public function houseTable($request, $response)

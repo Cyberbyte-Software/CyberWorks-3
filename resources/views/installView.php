@@ -49,6 +49,15 @@
                         `   </div>
 
                             <div class="separator">
+                                <h1>Language</h1>
+                                <div class="form-group">
+                                    <select class="form-control" name="panel_lang" id="panel_lang">
+                                        <option value="en">English</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="separator">
                                 <h1>Email Settings</h1>
                                 <p>
                                     In order for password resets to work you need to setup an email address for the password reset email to be sent from.<br/>

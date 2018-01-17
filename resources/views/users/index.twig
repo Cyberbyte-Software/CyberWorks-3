@@ -3,7 +3,7 @@
 {% block content %}
     <div class="page-title">
         <div class="title_left">
-            <h3>Users</h3>
+            <h3>{{ translate('core.perms.generic.users.title') }}</h3>
         </div>
     </div>
 
@@ -13,10 +13,10 @@
         <table id="datatable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Group</th>
-                <th>Actions</th>
+                <th>{{ translate('core.perms.generic.name') }}</th>
+                <th>{{ translate('core.perms.generic.email') }}</th>
+                <th>{{ translate('core.perms.generic.group') }}</th>
+                <th>{{ translate('core.perms.generic.action') }}</th>
             </tr>
             </thead>
         </table>
@@ -29,13 +29,13 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel2">Update User</h4>
+                        <h4 class="modal-title" id="myModalLabel2">{{ translate('core.perms.generic.users.updateUser') }}</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal form-label-left">
                             <input type="hidden" class="form-control" id="id">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Name</label>
+                                <label class="col-sm-3 control-label">{{ translate('core.perms.generic.name') }}</label>
                                 <div class="col-sm-9">
                                     <div class="input-group" style="width: 100%">
                                         <input type="text" class="form-control" id="name">
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Email</label>
+                                <label class="col-sm-3 control-label">{{ translate('core.perms.generic.email') }}</label>
                                 <div class="col-sm-9">
                                     <div class="input-group" style="width: 100%">
                                         <input type="text" class="form-control" id="email">
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Group</label>
+                                <label class="col-sm-3 control-label">{{ translate('core.perms.generic.group') }}</label>
                                 <div class="col-sm-9">
                                     <div class="input-group" style="width: 100%">
                                         <select id="group" class="form-control">
@@ -65,8 +65,8 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="updateUser">Save changes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ translate('core.admin.generic.close') }}</button>
+                        <button type="button" class="btn btn-primary" id="updateUser">{{ translate('core.admin.generic.save') }}</button>
                     </div>
                 </div>
             </div>
@@ -79,13 +79,13 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel2">Change User Password</h4>
+                            <h4 class="modal-title" id="myModalLabel2">{{ translate('core.perms.user.changeUPass') }}:/h4>
                         </div>
                         <div class="modal-body">
                             <form class="form-horizontal form-label-left">
                                 <input type="hidden" class="form-control" id="id_password">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">User: </label>
+                                    <label class="col-sm-3 control-label">{{ translate('core.perms.user.title') }}: </label>
                                     <div class="col-sm-9">
                                         <div class="input-group" style="width: 100%">
                                             <input type="text" class="form-control" id="name_password" disabled>
@@ -93,7 +93,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">New Password:</label>
+                                    <label class="col-sm-3 control-label">{{ translate('core.perms.user.newPass') }}:</label>
                                     <div class="col-sm-9">
                                         <div class="input-group" style="width: 100%">
                                             <input type="text" class="form-control" id="password" {% if not auth.isSuperUser %} disabled {% endif %}>
@@ -103,8 +103,8 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="updateUserPassword">Save changes</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{{ translate('core.admin.generic.close') }}</button>
+                            <button type="button" class="btn btn-primary" id="updateUserPassword">{{ translate('core.admin.generic.save') }}</button>
                         </div>
                     </div>
                 </div>

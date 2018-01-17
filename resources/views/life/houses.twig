@@ -3,7 +3,7 @@
 {% block content %}
     <div class="page-title">
         <div class="title_left">
-            <h3>Houses</h3>
+            <h3>{{ translate('life.houses.title') }}</h3>
         </div>
     </div>
 
@@ -13,9 +13,9 @@
         <table id="datatable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
             <thead>
             <tr>
-                <th>Owner</th>
-                <th>Position</th>
-                <th>Actions</th>
+                <th>{{ translate('life.generic.owner') }}</th>
+                <th>{{ translate('life.generic.pos') }}</th>
+                <th>{{ translate('life.players.actions') }}</th>
             </tr>
             </thead>
         </table>
@@ -28,13 +28,13 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel2">Update House</h4>
+                        <h4 class="modal-title" id="myModalLabel2">{{ translate('life.houses.update') }}</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal form-label-left">
                             <input type="hidden" class="form-control" id="house_id">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Owner</label>
+                                <label class="col-sm-3 control-label">{{ translate('life.generic.owner') }}</label>
                                 <div class="col-sm-9">
                                     <div class="input-group" style="width: 100%">
                                         <input type="text" class="form-control" id="house_owner">
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Position</label>
+                                <label class="col-sm-3 control-label">{{ translate('life.generic.pos') }}</label>
                                 <div class="col-sm-9">
                                     <div class="input-group" style="width: 100%">
                                         <input type="text" class="form-control" id="house_pos">
@@ -52,8 +52,8 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="updateHouse">Save changes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ translate('core.admin.generic.close') }}</button>
+                        <button type="button" class="btn btn-primary" id="updateHouse">{{ translate('core.admin.generic.save') }}</button>
                     </div>
                 </div>
             </div>

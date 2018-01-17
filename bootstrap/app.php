@@ -6,6 +6,9 @@
  * Time: 09:14
  */
 use Respect\Validation\Validator as v;
+use Illuminate\Translation\Translator;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Translation\FileLoader;
 
 session_start();
 
@@ -21,9 +24,10 @@ if (!file_exists(__DIR__. '/../config/config.php')) {
     die('You need to run <a href="installer.php">installer.php</a> first');
 }
 
-if (file_exists(__DIR__. '/../public/installer.php')) {
-    die('You need to delete installer.php first');
-}
+//if (file_exists(__DIR__. '/../public/installer.php')) {
+//    die('You need to delete installer.php first');
+//}
+
 $config = Config::load(__DIR__. '/../config/config.php');
 
 $app = new \Slim\App($config->get('slim'));
@@ -50,6 +54,14 @@ $container['alerts'] = function ($container) {
 $container['config'] = function ($container) {
     return Noodlehaus\Config::load(__DIR__. '/../config/config.php');
 };
+
+$container['translator'] = function ($container) {
+    $translator = new Translator(new FileLoader(new Filesystem(), __DIR__ . '/../resources/lang'), 'en');
+    $translator->setLocale('en');
+
+    return $translator;
+};
+
 $container['view'] = function ($container) {
   $view = new \Slim\Views\Twig(
       __DIR__ . '/../resources/views',
@@ -63,6 +75,10 @@ $container['view'] = function ($container) {
       $container->request->getUri()
   ));
 
+  $view->addExtension(new \CyberWorks\Extension\TranslationExtension(
+      $container->translator
+  ));
+
   $view->getEnvironment()->addGlobal('auth', [
       'authenticated' => $container->auth->isAuthed(),
       'user' => $container->auth->user(),
@@ -72,6 +88,7 @@ $container['view'] = function ($container) {
   ]);
 
   $view->getEnvironment()->addGlobal('alerts', $container->alerts);
+
 
   return $view;
 };

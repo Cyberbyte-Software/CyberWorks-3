@@ -12,7 +12,8 @@
         "phpmailer/phpmailer": "^5.2",
         "hassankhan/config": "^0.10.0",
         "monolog/monolog": "^1.22",
-        "livecontrol/eloquent-datatable": "^0.1.5"
+        "livecontrol/eloquent-datatable": "^0.1.5",
+        "illuminate/translation": "^5.5"
     },
     "authors": [
         {
@@ -23,7 +24,8 @@
     "autoload": {
         "psr-4": {
             "CyberWorks\\Core\\":"app/Core/",
-            "CyberWorks\\Life\\":"app/Life/"
+            "CyberWorks\\Life\\":"app/Life/",
+            "CyberWorks\\Extension\\":"app/Extension/"
         }
     }
 }

@@ -3,7 +3,7 @@
 {% block content %}
     <div class="page-title">
         <div class="title_left">
-            <h3>Players</h3>
+            <h3>{{ translate('life.players.title') }}</h3>
         </div>
     </div>
 
@@ -13,14 +13,14 @@
         <table id="datatable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Player ID</th>
-                <th>Bank</th>
-                <th>Cash</th>
-                <th>Cop Rank</th>
-                <th>Medic Rank</th>
-                <th>Admin Rank</th>
-                <th>Actions</th>
+                <th>{{ translate('life.generic.name') }}</th>
+                <th>{{ translate('life.generic.pid') }}</th>
+                <th>{{ translate('life.generic.bank') }}</th>
+                <th>{{ translate('life.generic.cash') }}</th>
+                <th>{{ translate('life.generic.cRank') }}</th>
+                <th>{{ translate('life.generic.mRank') }}</th>
+                <th>{{ translate('life.generic.aRank') }}</th>
+                <th>{{ translate('life.players.actions') }}</th>
             </tr>
             </thead>
         </table>

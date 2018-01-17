@@ -12,7 +12,7 @@
                 <img src="{{ auth.user.profilePicture }}" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-                <span>Welcome,</span>
+                <span>{{ translate('core.generic.welcome') }},</span>
                 <h2>{{ auth.user.name }}</h2>
                 {{ auth.group.formattedName|raw }}
             </div>
@@ -25,50 +25,50 @@
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
-                <h3>General</h3>
+                <h3>{{ translate('core.nav.general') }}</h3>
                 <ul class="nav side-menu">
                     <li>
                         <a href="{{ base_url() }}/">
-                            <i class="fa fa-home"></i> Home
+                            <i class="fa fa-home"></i> {{ translate('core.nav.home') }}
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="menu_section">
-                <h3>Life</h3>
+                <h3>{{ translate('life.title') }}</h3>
                 <ul class="nav side-menu">
                     {% if auth.permissions.can_view_players %}
                         <li>
                             <a href="{{ base_url() }}/players">
-                                <i class="fa fa-users"></i> Players
+                                <i class="fa fa-users"></i> {{ translate('life.players.title') }}
                             </a>
                         </li>
                     {% endif %}
                     {% if auth.permissions.can_view_vehicles %}
                         <li>
                             <a href="{{ base_url() }}/vehicles">
-                                <i class="fa fa-car"></i> Vehicles
+                                <i class="fa fa-car"></i> {{ translate('life.vehicles.title') }}
                             </a>
                         </li>
                     {% endif %}
                     {% if auth.permissions.can_view_gangs %}
                         <li>
                             <a href="{{ base_url() }}/gangs">
-                                <i class="fa fa-users"></i> Gangs
+                                <i class="fa fa-users"></i> {{ translate('life.gangs.title') }}
                             </a>
                         </li>
                     {% endif %}
                     {% if auth.permissions.can_view_houses %}
                         <li>
                             <a href="{{ base_url() }}/houses">
-                                <i class="fa fa-home"></i> Houses
+                                <i class="fa fa-home"></i> {{ translate('life.houses.title') }}
                             </a>
                         </li>
                     {% endif %}
                     {% if auth.permissions.can_view_containers %}
                         <li>
                             <a href="{{ base_url() }}/containers">
-                                <i class="fa fa-briefcase"></i> Containers
+                                <i class="fa fa-briefcase"></i> {{ translate('life.containers.title') }}
                             </a>
                         </li>
                     {% endif %}
@@ -76,40 +76,40 @@
             </div>
             {% if auth.isSuperUser %}
                 <div class="menu_section">
-                    <h3>Admin</h3>
+                    <h3>{{ translate('core.nav.admin.title') }}</h3>
                     <ul class="nav side-menu">
                         <li>
                             <a href="{{ base_url() }}/metrics">
-                                <i class="fa fa-bar-chart"></i> Metrics
+                                <i class="fa fa-bar-chart"></i> {{ translate('core.nav.admin.metrics') }}
                             </a>
                         </li>
                         {% if auth.permissions.can_view_logs %}
                             <li>
-                                <a><i class="fa fa-folder-open"></i> Logs <span class="fa fa-chevron-down"></span></a>
+                                <a><i class="fa fa-folder-open"></i> {{ translate('core.nav.admin.logs.title') }} <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li>
                                         <a href="{{ base_url() }}/logs/player">
-                                            <i class="fa fa-file-text-o"></i> Player Logs
+                                            <i class="fa fa-file-text-o"></i> {{ translate('core.nav.admin.logs.player') }}
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ base_url() }}/logs/vehicle">
-                                            <i class="fa fa-file-text-o"></i> Vehicle Logs
+                                            <i class="fa fa-file-text-o"></i> {{ translate('core.nav.admin.logs.vehicle') }}
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ base_url() }}/logs/gang">
-                                            <i class="fa fa-file-text-o"></i> Gang Logs
+                                            <i class="fa fa-file-text-o"></i> {{ translate('core.nav.admin.logs.gang') }}
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ base_url() }}/logs/house">
-                                            <i class="fa fa-file-text-o"></i> House Logs
+                                            <i class="fa fa-file-text-o"></i> {{ translate('core.nav.admin.logs.house') }}
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ base_url() }}/logs/container">
-                                            <i class="fa fa-file-text-o"></i> Container Logs
+                                            <i class="fa fa-file-text-o"></i> {{ translate('core.nav.admin.logs.container') }}
                                         </a>
                                     </li>
                                 </ul>
@@ -117,17 +117,17 @@
                         {% endif %}
                         {% if auth.permissions.can_edit_group_perms %}
                             <li>
-                                <a><i class="fa fa-folder-open"></i> Groups <span class="fa fa-chevron-down"></span></a>
+                                <a><i class="fa fa-folder-open"></i> {{ translate('core.nav.admin.groups') }} <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li>
                                         <a href="{{ base_url() }}/groups">
-                                            <i class="fa fa-list"></i> List
+                                            <i class="fa fa-list"></i> {{ translate('core.generic.list') }}
                                         </a>
                                     </li>
                                     {% if auth.permissions.can_make_groups %}
                                         <li>
                                             <a href="{{ base_url() }}/group/new">
-                                                <i class="fa fa-pencil"></i> New
+                                                <i class="fa fa-pencil"></i> {{ translate('core.generic.new') }}
                                             </a>
                                         </li>
                                     {% endif %}
@@ -136,17 +136,17 @@
                         {% endif %}
                         {% if auth.permissions.can_edit_users %}
                             <li>
-                                <a><i class="fa fa-users"></i> Users <span class="fa fa-chevron-down"></span></a>
+                                <a><i class="fa fa-users"></i> {{ translate('core.nav.admin.users') }} <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li>
                                         <a href="{{ base_url() }}/users">
-                                            <i class="fa fa-list"></i> List
+                                            <i class="fa fa-list"></i> {{ translate('core.generic.list') }}
                                         </a>
                                     </li>
                                     {% if auth.permissions.can_add_user %}
                                         <li>
                                             <a href="{{ base_url() }}/user/new">
-                                                <i class="fa fa-pencil"></i> Add
+                                                <i class="fa fa-pencil"></i> {{ translate('core.generic.add') }}
                                             </a>
                                         </li>
                                     {% endif %}
