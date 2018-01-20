@@ -33,7 +33,7 @@
                     </div>
                     {% if useIps %}
                     <div class="form-group">
-                        <label class="col-sm-3 control-label"> IPS ID</label>
+                        <label class="col-sm-3 control-label">{{ translate('core.perms.group.ipsID') }}</label>
                         <div class="col-sm-9">
                             <div class="input-group">
                                 {% if auth.permissions.can_edit_group_ips_id %}
@@ -46,7 +46,7 @@
                     </div>
                     {% endif %}
 
-                    <button type="submit" class="btn btn-warning" style="display: block; width:100%;"  data-toggle="modal" data-target=".compensate">Save</button>
+                    <button type="submit" class="btn btn-warning" style="display: block; width:100%;"  data-toggle="modal" data-target=".compensate">{{ translate('core.perms.group.save') }}</button>
 
                     <div class="clearfix"></div>
                 </div>
@@ -54,48 +54,48 @@
         </div>
         <div class="col-md-9 col-sm-9 col-xs-9">
             <div class="row">
-                <h1 class="text-center">Group Permissions</h1>
+                <h1 class="text-center">{{ translate('core.perms.group.gPerms') }}</h1>
                 <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                         {% if auth.permissions.can_edit_group_perms_player %}
                             <li role="presentation" class="active">
-                                <a href="#player_perms" id="player_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">Player</a>
+                                <a href="#player_perms" id="player_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">{{ translate('life.player.title') }}</a>
                             </li>
                         {% endif %}
                         {% if auth.permissions.can_edit_group_perms_vehicle %}
                             <li role="presentation">
-                                <a href="#vehicle_perms" id="vehicle_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">Vehicle</a>
+                                <a href="#vehicle_perms" id="vehicle_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">{{ translate('life.vehicles.titleSingle') }}</a>
                             </li>
                         {% endif %}
                         {% if auth.permissions.can_edit_group_perms_gang %}
                             <li role="presentation">
-                                <a href="#gang_perms" id="gang_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">Gang</a>
+                                <a href="#gang_perms" id="gang_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">{{ translate('life.gangs.titleSingle') }}</a>
                             </li>
                         {% endif %}
                         {% if auth.permissions.can_edit_group_perms_house %}
                             <li role="presentation">
-                                <a href="#house_perms" id="house_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">House</a>
+                                <a href="#house_perms" id="house_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">{{ translate('life.houses.titleSingle') }}</a>
                             </li>
                         {% endif %}
                         {% if auth.permissions.can_edit_group_perms_container %}
                             <li role="presentation">
-                                <a href="#container_perms" id="container_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">Container</a>
+                                <a href="#container_perms" id="container_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">{{ translate('life.containers.titleSingle') }}</a>
                             </li>
                         {% endif %}
                         {% if auth.permissions.can_edit_group_perms_settings %}
                             <li role="presentation">
-                                <a href="#admin_perms" id="admin_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">Admin</a>
+                                <a href="#admin_perms" id="admin_perms-tab" role="tab" data-toggle="tab" aria-expanded="true">{{ translate('life.generic.admin') }}</a>
                             </li>
                         {% endif %}
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         {% if auth.permissions.can_edit_group_perms_player %}
                             <div role="tabpanel" class="tab-pane fade active in" id="player_perms" aria-labelledby="home-tab">
-                                <h2>View:</h2>
+                                <h2>{{ translate('life.perms.view') }}</h2>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Players</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.view.players') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_view_players" {% if group.can_view_players %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -103,7 +103,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Player</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.view.player') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_view_player" {% if group.can_view_player %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -111,7 +111,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Player Civ Lic</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.view.civLic') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_view_player_civ_lic" {% if group.can_view_player_civ_lic %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -119,7 +119,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Player Cop Lic</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.view.copLic') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_view_player_cop_lic" {% if group.can_view_player_cop_lic %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -127,7 +127,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Player Med Lic</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.view.medLic') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_view_player_ems_lic" {% if group.can_view_player_ems_lic %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -139,7 +139,7 @@
 
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Player Notes</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.view.notes') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_view_player_notes" {% if group.can_view_player_notes %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -147,7 +147,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Player Edit Log</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.view.editLog') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_view_player_edit_log" {% if group.can_view_player_edit_log %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -155,22 +155,21 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Player Vehicles</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.view.veh') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_view_player_vehicles" {% if group.can_view_player_vehicles %} checked="" {% endif %} style="display: none;" data-switchery="true">
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                                 <hr>
-                                <h2>Edit:</h2>
+                                <h2>{{ translate('life.perms.edit') }}</h2>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Cash</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.edit.cash') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_cash" {% if group.can_edit_cash %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -178,7 +177,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Bank</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.edit.bank') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_bank" {% if group.can_edit_bank %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -186,7 +185,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Donator</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.edit.donator') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_donator" {% if group.can_edit_donator %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -194,7 +193,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Jailed</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.edit.jailed') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_jailed" {% if group.can_edit_jailed %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -205,7 +204,7 @@
 
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Civ lic</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.edit.civLic') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_civ_lic" {% if group.can_edit_civ_lic %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -213,7 +212,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Cop Rank</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.edit.cRank') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_cop_rank" {% if group.can_edit_cop_rank %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -221,7 +220,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Cop Lic</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.edit.copLic') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_cop_lic" {% if group.can_edit_cop_lic %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -229,7 +228,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Medic Rank</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.edit.mRank') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_ems_rank" {% if group.can_edit_ems_rank %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -237,7 +236,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Medic lic</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.edit.medLic') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_ems_lic" {% if group.can_edit_ems_lic %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -248,11 +247,11 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <h2>Admin:</h2>
+                                <h2>{{ translate('life.perms.admin') }}</h2>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Admin Rank</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.admin.aRank') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_admin_rank" {% if group.can_edit_admin_rank %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -260,7 +259,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Blacklist</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.admin.blacklist') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_blacklist" {% if group.can_blacklist %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -268,7 +267,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Compensate</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.admin.comp') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_compensate" {% if group.can_compensate %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -279,7 +278,7 @@
 
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Add Note</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.admin.addNote') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_add_note" {% if group.can_add_note %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -287,7 +286,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Delete Note</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.player.admin.delNote') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_delete_note" {% if group.can_delete_note %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -304,9 +303,9 @@
                                 <div class="row">
 
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h2>View:</h2>
+                                        <h2>{{ translate('life.perms.view') }}</h2>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Vehicles</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.veh.view.vehicles') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_view_vehicles" {% if group.can_view_vehicles %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -314,7 +313,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Vehicle</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.veh.view.vehicle') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_view_vehicle" {% if group.can_view_vehicle %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -325,9 +324,9 @@
 
 
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h2>Edit:</h2>
+                                        <h2>{{ translate('life.perms.edit') }}</h2>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Vehicle</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.veh.edit') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_vehicle" {% if group.can_edit_vehicle %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -344,9 +343,9 @@
                                 <div class="row">
 
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h2>View:</h2>
+                                        <h2>{{ translate('life.perms.view') }}</h2>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Gangs</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.gang.view') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_view_gangs" {% if group.can_view_gangs %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -357,9 +356,9 @@
 
 
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h2>Edit:</h2>
+                                        <h2>{{ translate('life.perms.edit') }}</h2>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Gangs</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.gang.edit') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_gang" {% if group.can_edit_gang %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -376,9 +375,9 @@
                                 <div class="row">
 
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h2>View:</h2>
+                                        <h2>{{ translate('life.perms.view') }}</h2>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Houses</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.house.view') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_view_houses" {% if group.can_view_houses %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -387,9 +386,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h2>Edit:</h2>
+                                        <h2>{{ translate('life.perms.edit') }}</h2>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit House</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.house.edit') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_house" {% if group.can_edit_house %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -406,9 +405,9 @@
                                 <div class="row">
 
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h2>View:</h2>
+                                        <h2>{{ translate('life.perms.view') }}</h2>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Containers</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.container.view') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_view_containers" {% if group.can_view_containers %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -417,9 +416,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h2>Edit:</h2>
+                                        <h2>{{ translate('life.perms.edit') }}</h2>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Container</label>
+                                            <label class="col-sm-3 control-label">{{ translate('life.perms.container.edit') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_container" {% if group.can_edit_container %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -433,11 +432,11 @@
 
                         {% if auth.permissions.can_edit_group_perms_settings %}
                             <div role="tabpanel" class="tab-pane fade" id="admin_perms" aria-labelledby="home-tab">
-                                <h2>Edit:</h2>
+                                <h2>{{ translate('life.perms.edit') }}</h2>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Player Permission Group</label>
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.admin.ePPG') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_group_perms_player" {% if group.can_edit_group_perms_player %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -445,7 +444,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Vehicle Permission Group</label>
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.admin.eVPG') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_group_perms_vehicle" {% if group.can_edit_group_perms_vehicle %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -453,7 +452,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Gang Permission Group</label>
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.admin.eGPG') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_group_perms_gang" {% if group.can_edit_group_perms_gang %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -461,7 +460,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Groups Permissions</label>
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.admin.eGP') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_group_perms" {% if group.can_edit_group_perms %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -469,7 +468,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit House Permissions</label>
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.admin.eHPG') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_group_perms_house" {% if group.can_edit_group_perms_house %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -477,7 +476,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Container Permissions</label>
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.admin.eCPG') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_group_perms_container" {% if group.can_edit_group_perms_container %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -485,7 +484,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Admin Permissions</label>
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.admin.eAP') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_group_perms_settings" {% if group.can_edit_group_perms_settings %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -493,7 +492,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Permission Group Name</label>
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.admin.ePGN') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_group_name" {% if group.can_edit_group_name %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -504,7 +503,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Is Super User</label>
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.admin.isSuper') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="is_superUser" {% if group.is_superUser %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -512,7 +511,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> View Logs</label>
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.admin.vLogs') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_view_logs" {% if group.can_view_logs %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -520,7 +519,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Make Permission Groups</label>
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.admin.newPG') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_make_groups" {% if group.can_make_groups %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -528,7 +527,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Edit Users</label>
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.admin.eUsers') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_edit_users" {% if group.can_edit_users %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -536,7 +535,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Add User</label>
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.admin.addUser') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_add_user" {% if group.can_add_user %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -544,7 +543,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label"> Delete User</label>
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.admin.delUser') }}</label>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
                                                     <input type="checkbox" class="js-switch" name="can_del_user" {% if group.can_del_user %} checked="" {% endif %} style="display: none;" data-switchery="true">
@@ -554,7 +553,7 @@
 
                                         {% if useIps %}
                                             <div class="form-group">
-                                                <label class="col-sm-3 control-label"> Edit Ips Connect ID</label>
+                                                <label class="col-sm-3 control-label">{{ translate('core.perms.admin.editIpsID') }}</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
                                                         <input type="checkbox" class="js-switch" name="can_edit_group_ips_id" {% if group.can_edit_group_ips_id %} checked="" {% endif %} style="display: none;" data-switchery="true">

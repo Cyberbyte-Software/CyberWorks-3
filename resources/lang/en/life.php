@@ -108,4 +108,58 @@ return array (
         'dir' => 'Dir',
         'update' => 'Update Container',
     ),
+    'perms' => array(
+        'view' => 'View',
+        'edit' => 'Edit',
+        'admin' => 'Admin',
+        'player' => array(
+            'view' => array(
+                'player' => 'View Player',
+                'players' => 'View Players',
+                'notes' => 'View Player Notes',
+                'civLic' => 'View Player Civ Lic',
+                'copLic' => 'View Player Cop Lic',
+                'medLic' => 'View Player Med Lic',
+                'editLog' => 'View Player Edit Log',
+                'veh' => 'View Player Vehicles',
+            ),
+            'edit' => array(
+                'cash' => 'Edit Cash',
+                'bank' => 'Edit Bank',
+                'donator' => 'Edit Donator',
+                'jailed' => 'Edit Jailed',
+                'civLic' => 'Edit Civ Lic',
+                'copLic' => 'Edit Cop Lic',
+                'medLic' => 'Edit Med Lic',
+                'cRank' => 'Edit Cop Rank',
+                'mRank' => 'Edit Medic Rank'
+            ),
+            'admin' => array(
+                'aRank' => 'Edit Admin Rank',
+                'blacklist' => 'Blacklist',
+                'comp' => 'Compensate',
+                'addNote' => 'Add Note',
+                'delNote' => 'Delete Note',
+            ),
+        ),
+        'veh' => array(
+            'view' => array(
+                'vehicle' => 'View Vehicle',
+                'vehicles' => 'View Vehicles',
+            ),
+            'edit' => 'Edit Vehicle',
+        ),
+        'gang' => array(
+            'view' => 'View Gangs',
+            'edit' => 'Edit Gangs',
+        ),
+        'house' => array(
+            'view' => 'View Houses',
+            'edit' => 'Edit Houses'
+        ),
+        'container' => array(
+            'view' => 'View Containers',
+            'edit' => 'Edit Containers',
+        ),
+    ),
 );

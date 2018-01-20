@@ -7,7 +7,8 @@ return array (
         'list' => 'List',
         'profile' => 'Profile',
         'logOut' => 'Log Out',
-        'logs' => 'Logs'
+        'logs' => 'Logs',
+        'title' => 'Title',
     ),
     'nav' => array (
         'general' => 'General',
@@ -85,7 +86,9 @@ return array (
             'name' => 'Name',
             'email' => 'Email',
             'group' => 'Group',
+            'groups' => 'Groups',
             'actions' => 'Actions',
+            'sUser' => 'Super User',
         ),
         'users' => array (
             'title' => 'Users',
@@ -98,6 +101,31 @@ return array (
                 'create' => 'Create Account',
             ),
         ),
+        'group' => array (
+            'gPerms' => 'Group Permissions',
+            'new' => array (
+               'title' => 'New Group',
 
+            ),
+            'ipsID' => 'IPS ID',
+            'save' => 'Save',
+        ),
+        'admin' => array (
+            'ePPG' => 'Edit Player Permission Group',
+            'eVPG' => 'Edit Vehicle Permission Group',
+            'eHPG' => 'Edit House Permission Group',
+            'eGPG' => 'Edit Gang Permission Group',
+            'eCPG' => 'Edit Container Permission Group',
+            'eGP' => 'Edit Group Permissions',
+            'eAP' => 'Edit Admin Permissions',
+            'ePGN' => 'Edit Permission Group Name',
+            'isSuper' => 'Is Super User',
+            'vLogs' => 'View Logs',
+            'newPG' => 'Make Permission Groups',
+            'eUsers' => 'Edit Users',
+            'addUser' => 'Add User',
+            'delUser' => 'Delete User',
+            'editIpsID' => 'Edit IPS Connect ID',
+        ),
     ),
 );
