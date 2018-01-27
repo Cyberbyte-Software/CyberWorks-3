@@ -35,7 +35,14 @@ class GangController extends Controller
             $players = Player::whereIn('pid', $members)->get();
 
             foreach ($players as $player) {
-                $membersString = $membersString . '<a href="player/' . $player->uid . '"target="_blank">' . $player->name . '</a>, ';
+
+                if ($membersString == "") {
+                    $appendString = '<a href="player/' . $player->uid . '"target="_blank">' . $player->name . '</a>';
+                } else {
+                    $appendString = ', <a href="player/' . $player->uid . '"target="_blank">' . $player->name . '</a> ';
+                }
+
+                $membersString = $membersString . $appendString;
             }
 
             return [
