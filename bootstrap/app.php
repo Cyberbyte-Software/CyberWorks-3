@@ -24,9 +24,9 @@ if (!file_exists(__DIR__. '/../config/config.php')) {
     die('You need to run <a href="installer.php">installer.php</a> first');
 }
 
-//if (file_exists(__DIR__. '/../public/installer.php')) {
-//    die('You need to delete installer.php first');
-//}
+if (file_exists(__DIR__. '/../public/installer.php')) {
+    die('You need to delete installer.php first');
+}
 
 $config = Config::load(__DIR__. '/../config/config.php');
 
