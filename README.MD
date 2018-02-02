@@ -2,7 +2,7 @@
 
 [![discord](https://img.shields.io/badge/Discord-Join-7289DA.svg)](https://discord.gg/qHsTEhY)
 
-CyberWorks 3 is one of our many rewrites of CyberWorks to make it more usable. It was originally designed for [Critical Gaming](https://criticalgaming.org/) and we have since decided to open source it after removing the custom content. We __highly__ recommend you use this version and not our original CyberWorks as we intent to maintain this version.
+CyberWorks 3 is one of our many rewrites of CyberWorks to make it more usable. It was originally designed for [Critical Gaming](https://criticalgaming.org/) and we have since decided to open source it after removing the custom content. We __highly__ recommend you use this version and not our original CyberWorks as we intend to maintain this version.
 
 ## Features
 CyberWorks 3 was designed to have all the features as our original but be much more maintainable and secure. You can view all screenshots on [imgur](https://imgur.com/a/wq9Ue). A small list is below:
@@ -59,8 +59,8 @@ A guide will be written shortly. Basicly you want to install PHP 7 and Nginx in 
     - Open the XAMPP Control Panel, go to config -> Apache(httpd-xampp.conf)
     - Add the Following to the config after /phpmyadmin block
         ```
-        Alias /cyberworks "C:/xampp/htdocs/cyberworks/"
-        <Directory "C:/xampp/htdocs/cyberworks">
+        Alias /cyberworks "C:/xampp/htdocs/cyberworks/public/"
+        <Directory "C:/xampp/htdocs/cyberworks/public">
             Options Indexes FollowSymLinks
             AllowOverride All
             Require all granted
