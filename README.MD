@@ -4,6 +4,8 @@
 
 CyberWorks 3 is one of our many rewrites of CyberWorks to make it more usable. It was originally designed for [Critical Gaming](https://criticalgaming.org/) and we have since decided to open source it after removing the custom content. We __highly__ recommend you use this version and not our original CyberWorks as we intent to maintain this version.
 
+If you are not using composer download it from [GitHub Releases](https://github.com/Cyberbyte-Studios/CyberWorks-3/releases/latest).
+
 ## Features
 CyberWorks 3 was designed to have all the features as our original but be much more maintainable and secure. You can view all screenshots on [imgur](https://imgur.com/a/wq9Ue). A small list is below:
 
