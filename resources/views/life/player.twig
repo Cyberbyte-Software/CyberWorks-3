@@ -27,26 +27,26 @@
                 <div class="x_content">
                     <form class="form-horizontal form-label-left">
 
-                        <a target="_blank" href="http://steamcommunity.com/profiles/{{ player.playerid }}" class="btn btn-warning" style="display: block; width:100%;">Steam Profile</a>
+                        <a target="_blank" href="http://steamcommunity.com/profiles/{{ player.playerid }}" class="btn btn-warning" style="display: block; width:100%;">{{ translate('life.player.steam.profile') }}</a>
 
                         {% if auth.permissions.can_compensate %}
-                            <button type="button" class="btn btn-success" style="display: block; width:100%;"  data-toggle="modal" data-target=".compensate">Compensate</button>
+                            <button type="button" class="btn btn-success" style="display: block; width:100%;"  data-toggle="modal" data-target=".compensate">{{ translate('life.player.buttons.compensate') }}</button>
                         {% endif %}
                         {% if auth.permissions.can_add_note %}
-                            <button type="button" class="btn btn-info" style="display: block; width:100%;"  data-toggle="modal" data-target=".addNote">Add Note</button>
+                            <button type="button" class="btn btn-info" style="display: block; width:100%;"  data-toggle="modal" data-target=".addNote">{{ translate('life.player.buttons.addNote') }}</button>
                         {% endif %}
 
                         <div class="divider-dashed"></div>
 
                         <div class="form-group">
-                            <label class="col-sm-12 control-label" style="text-align: center;"><i class="fa fa-steam"></i> SteamID: {{ player.pid }}</label>
-                            <label class="col-sm-12 control-label" style="text-align: center;"><i class="fa fa-steam"></i> GUID: {{ player.guid }}</label>
+                            <label class="col-sm-12 control-label" style="text-align: center;"><i class="fa fa-steam"></i> {{ translate('life.player.steam.id') }}: {{ player.pid }}</label>
+                            <label class="col-sm-12 control-label" style="text-align: center;"><i class="fa fa-steam"></i> {{ translate('life.player.guid') }}: {{ player.guid }}</label>
                         </div>
 
                         <div class="divider-dashed"></div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><i class="fa fa-bank"></i> Bank</label>
+                            <label class="col-sm-3 control-label"><i class="fa fa-bank"></i> {{ translate('life.generic.bank') }}</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     {% if auth.permissions.can_edit_bank %}
@@ -65,7 +65,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><i class="fa fa-dollar"></i> Cash</label>
+                            <label class="col-sm-3 control-label"><i class="fa fa-dollar"></i> {{ translate('life.generic.cash') }}</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     {% if auth.permissions.can_edit_cash %}
@@ -86,7 +86,7 @@
                         <div class="divider-dashed"></div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Donator</label>
+                            <label class="col-sm-3 control-label">{{ translate('life.player.donator') }}</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     {% if auth.permissions.can_edit_donator %}
@@ -109,7 +109,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><i class="fa fa-bars"></i> Jailed</label>
+                            <label class="col-sm-3 control-label"><i class="fa fa-bars"></i> {{ translate('life.player.jailed') }}</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     {% if auth.permissions.can_edit_jailed %}
@@ -133,7 +133,7 @@
                         <div class="divider-dashed"></div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><i class="fa fa-taxi"></i> Cop</label>
+                            <label class="col-sm-3 control-label"><i class="fa fa-taxi"></i> {{ translate('life.generic.cop') }}</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     {% if auth.permissions.can_edit_cop_rank %}
@@ -156,7 +156,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><i class="fa fa-ambulance"></i> Medic</label>
+                            <label class="col-sm-3 control-label"><i class="fa fa-ambulance"></i> {{ translate('life.generic.med') }}</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     {% if auth.permissions.can_edit_ems_rank %}
@@ -179,7 +179,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"><i class="fa fa-user"></i> Admin</label>
+                            <label class="col-sm-3 control-label"><i class="fa fa-user"></i> {{ translate('life.generic.admin') }}</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     {% if auth.permissions.can_edit_admin_rank %}
@@ -212,24 +212,24 @@
                     <div class="tile-stats">
                         <div class="icon"><i class="fa fa-bank"></i></div>
                         <div class="count">${{ player.bankacc }}</div>
-                        <h3>Bank Account</h3>
-                        <p>Total Funds In Bank.</p>
+                        <h3>{{ translate('life.player.tiles.bank.title') }}</h3>
+                        <p>{{ translate('life.player.tiles.bank.desc') }}.</p>
                     </div>
                 </div>
                 <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="tile-stats">
                         <div class="icon"><i class="fa fa-dollar"></i></div>
                         <div class="count">${{ player.cash }}</div>
-                        <h3>Cash</h3>
-                        <p>Total Funds In Hand.</p>
+                        <h3>{{ translate('life.generic.cash') }}</h3>
+                        <p>{{ translate('life.player.tiles.cash.desc') }}.</p>
                     </div>
                 </div>
                 <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="tile-stats">
                         <div class="icon"><i class="fa fa-user-secret"></i></div>
                         <div class="count">{{ player.adminlevel }}</div>
-                        <h3>Admin Level</h3>
-                        <p>Admin Level In Game.</p>
+                        <h3>{{ translate('life.generic.aRank') }}</h3>
+                        <p>{{ translate('life.player.tiles.admin.desc') }}.</p>
                     </div>
                 </div>
                 {% if auth.permissions.can_edit_cop_rank %}
@@ -237,8 +237,8 @@
                         <div class="tile-stats">
                             <div class="icon"><i class="fa fa-taxi"></i></div>
                             <div class="count">{{ player.coplevel }}</div>
-                            <h3>Cop Level</h3>
-                            <p>Rank In The Police Force.</p>
+                            <h3>{{ translate('life.generic.cRank') }}</h3>
+                            <p>{{ translate('life.player.tiles.cop.desc') }}.</p>
                         </div>
                     </div>
                 {% else %}
@@ -246,8 +246,8 @@
                         <div class="tile-stats">
                             <div class="icon"><i class="fa fa-ambulance"></i></div>
                             <div class="count">{{ player.mediclevel }}</div>
-                            <h3>Medic Level</h3>
-                            <p>Rank In The Fire Department.</p>
+                            <h3>{{ translate('life.generic.mRank') }}</h3>
+                            <p>{{ translate('life.player.tiles.medic.desc') }}.</p>
                         </div>
                     </div>
                 {% endif %}
@@ -258,32 +258,32 @@
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                         {% if auth.permissions.can_view_player_civ_lic %}
                             <li role="presentation" class="active">
-                                <a href="#civLic" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Civ Licenses</a>
+                                <a href="#civLic" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">{{ translate('life.player.tabs.lic.civ') }}</a>
                             </li>
                         {% endif %}
                         {% if auth.permissions.can_view_player_cop_lic %}
                             <li role="presentation" class="">
-                                <a href="#copLic" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Cop Licenses</a>
+                                <a href="#copLic" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">{{ translate('life.player.tabs.lic.cop') }}</a>
                             </li>
                         {% endif %}
                         {% if auth.permissions.can_view_player_ems_lic %}
                             <li role="presentation" class="">
-                                <a href="#medLic" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Medic Licenses</a>
+                                <a href="#medLic" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">{{ translate('life.player.tabs.lic.med') }}</a>
                             </li>
                         {% endif %}
                         {% if auth.permissions.can_view_player_vehicles %}
                         <li role="presentation" class="">
-                            <a href="#vehicles" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Vehicles</a>
+                            <a href="#vehicles" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">{{ translate('life.vehicles.title') }}</a>
                         </li>
                         {% endif %}
                         {% if auth.permissions.can_view_player_notes %}
                         <li role="presentation" class="">
-                            <a href="#notes" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Notes</a>
+                            <a href="#notes" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">{{ translate('life.player.tabs.notes') }}</a>
                         </li>
                         {% endif %}
                         {% if auth.permissions.can_view_player_edit_log %}
                             <li role="presentation" class="">
-                                <a href="#editLog" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Edit Log</a>
+                                <a href="#editLog" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">{{ translate('life.player.tabs.eLog') }}</a>
                             </li>
                         {% endif %}
                     </ul>
@@ -292,7 +292,7 @@
                             <div role="tabpanel" class="tab-pane fade active in" id="civLic" aria-labelledby="home-tab">
                                 {% for license in player.civ_licenses %}
                                     {% if license.value %}
-                                        <button type="button" id="{{ license.name }}" class="license btn btn-sm btn-success" style="margin-bottom: 3px;">{{ license.name }}</button>
+                                        <button type="button" id="{{ sudo.name }}" class="license btn btn-sm btn-success" style="margin-bottom: 3px;">{{ license.name }}</button>
                                     {% else %}
                                         <button type="button" id="{{ license.name }}" class="license btn btn-sm btn-danger" style="margin-bottom: 3px;">{{ license.name }}</button>
                                     {% endif %}
@@ -326,14 +326,14 @@
                             <table id="datatable" class="table table-striped table-bordered dataTable no-footer col-lg-12" role="grid" aria-describedby="datatable_info" style="width:100%;">
                                 <thead>
                                 <tr>
-                                    <th>Vehicle Class</th>
-                                    <th>Side</th>
-                                    <th>Type</th>
-                                    <th>Alive</th>
-                                    <th>Active</th>
-                                    <th>Plate</th>
-                                    <th>Color</th>
-                                    <th>Inventory</th>
+                                    <th>{{ translate('life.vehicles.class') }}</th>
+                                    <th>{{ translate('life.vehicles.side') }}</th>
+                                    <th>{{ translate('life.generic.type') }}</th>
+                                    <th>{{ translate('life.vehicles.alive') }}</th>
+                                    <th>{{ translate('life.vehicles.active') }}</th>
+                                    <th>{{ translate('life.vehicles.plate') }}</th>
+                                    <th>{{ translate('life.vehicles.color') }}</th>
+                                    <th>{{ translate('life.generic.inventory') }}</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -344,11 +344,11 @@
                                 <table id="notesTable" class="table table-striped table-bordered dataTable no-footer col-lg-12" role="grid" aria-describedby="datatable_info" style="width:100%;">
                                     <thead>
                                     <tr>
-                                        <th>Author</th>
+                                        <th>{{ translate('core.admin.generic.author') }}</th>
                                         <th>Type</th>
-                                        <th>Message</th>
-                                        <th>Created</th>
-                                        <th>Actions</th>
+                                        <th>{{ translate('core.admin.generic.message') }}</th>
+                                        <th>{{ translate('core.admin.generic.created') }}</th>
+                                        <th>{{ translate('core.admin.generic.actions') }}</th>
                                     </tr>
                                     </thead>
                                 </table>
@@ -359,9 +359,9 @@
                                 <table id="editLogs" class="table table-striped table-bordered dataTable no-footer col-lg-12" role="grid" aria-describedby="datatable_info" style="width:100%;">
                                     <thead>
                                         <tr>
-                                            <th>Author</th>
-                                            <th>Message</th>
-                                            <th>Created</th>
+                                            <th>{{ translate('core.admin.generic.author') }}</th>
+                                            <th>{{ translate('core.admin.generic.message') }}</th>
+                                            <th>{{ translate('core.admin.generic.created') }}</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -380,15 +380,15 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel2">Compensate</h4>
+                        <h4 class="modal-title" id="myModalLabel2">{{ translate('life.player.buttons.compensate') }}</h4>
                     </div>
                     <div class="modal-body">
-                        <h4>Ammount To Compensate</h4>
+                        <h4>{{ translate('life.player.modals.compensate.title') }}</h4>
                         <input type="number" class="form-control" id="compensateValue" value="0">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="compensateSave">Save changes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ translate('core.admin.generic.close') }}</button>
+                        <button type="button" class="btn btn-primary" id="compensateSave">{{ translate('core.admin.generic.save') }}</button>
                     </div>
 
                 </div>
@@ -403,24 +403,24 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel2">Add Note</h4>
+                        <h4 class="modal-title" id="myModalLabel2">{{ translate('life.player.buttons.addNote') }}</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal form-label-left">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Type</label>
+                                <label class="col-sm-3 control-label">{{ translate('life.generic.type') }}</label>
                                 <div class="col-sm-9">
                                     <div class="input-group" style="width: 100%">
                                         <select id="types" class="form-control">
-                                            <option value="0">Info</option>
-                                            <option value="1">Warning</option>
-                                            <option value="2">Other</option>
+                                            <option value="0">{{ translate('core.admin.notes.types.info') }}</option>
+                                            <option value="1">{{ translate('core.admin.notes.types.warn') }}</option>
+                                            <option value="2">{{ translate('core.admin.notes.types.other') }}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Message</label>
+                                <label class="col-sm-3 control-label">{{ translate('core.admin.generic.message') }}</label>
                                 <div class="col-sm-9">
                                     <div class="input-group" style="width: 100%">
                                         <textarea id="msg" cols="40" rows="5" style="width: 100%"></textarea>
@@ -430,8 +430,8 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="noteSave">Save changes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ translate('core.admin.generic.close') }}</button>
+                        <button type="button" class="btn btn-primary" id="noteSave">{{ translate('core.admin.generic.save') }}</button>
                     </div>
 
                 </div>
@@ -446,15 +446,15 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel2">DELTE NOTE</h4>
+                        <h4 class="modal-title" id="myModalLabel2">{{ translate('core.admin.notes.deleteTitle') }}</h4>
                     </div>
                     <div class="modal-body">
-                        <h4>Are You Sure?</h4>
+                        <h4>{{ translate('core.admin.generic.sure') }}?</h4>
                         <input type="hidden" class="form-control" id="noteID">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" id="delteNoteSave">Yes</button>
-                        <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" id="delteNoteSave">{{ translate('core.admin.generic.yes') }}</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">{{ translate('core.admin.generic.no') }}</button>
                     </div>
                 </div>
             </div>

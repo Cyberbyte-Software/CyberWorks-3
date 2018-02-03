@@ -63,6 +63,8 @@ if (isset($_POST['db_host']) && isset($_POST['db_port']) && isset($_POST['db_use
     $config['email']['username'] = $_POST['email_user'];
     $config['email']['password'] = $_POST['email_password'];
 
+    $config['lang'] = 'en';
+
     $config['useIps'] = false;
     $config['ips'] = [
         'base_url' => $_POST['ipb_baseURL'],
