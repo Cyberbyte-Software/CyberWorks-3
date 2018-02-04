@@ -108,7 +108,7 @@
         {% if auth.permissions.can_edit_house %}
         function showHouseEdit(id, owner, pos) {
             $("#house_id").val(id);
-            $("#house_owner").val(owner);
+            $("#house_owner").val(owner.valueOf());
             $("#house_pos").val(pos);
             $(".editHouseModal").modal({
                 show: 'true'

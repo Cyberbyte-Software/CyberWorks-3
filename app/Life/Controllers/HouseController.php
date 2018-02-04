@@ -30,7 +30,7 @@ class HouseController extends Controller
             return [
                 '<a href="player/' . $house->owner_id . '"target="_blank">' . $house->owner . '</a>',
                 $house->pos,
-                '<a onclick=\'showHouseEdit('. $house->id .','. $house->pid .',"'. str_replace('"', '\"', $house->pos) .'")\'><i class="fa fa-pencil"></i></a>',
+                '<a onclick=\'showHouseEdit('. $house->id .',"'. $house->pid .'","'. str_replace('"', '\"', $house->pos) .'")\'><i class="fa fa-pencil"></i></a>',
             ];
         });
 
