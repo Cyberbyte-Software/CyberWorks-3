@@ -51,7 +51,7 @@ class GangController extends Controller
                 $gang->bank,
                 $gang->maxmembers,
                 $membersString,
-                '<a onclick=\'showEditGangBox(' . $gang->id . ',' . $gang->owner . ',"' . str_replace('"', '\"', $gang->members) . '",' . $gang->bank . ',"' . $gang->name .'",'. $gang->maxmembers .')\'><i class="fa fa-pencil"></i></a>',
+                '<a onclick=\'showEditGangBox(' . $gang->id . ',"' . $gang->owner . '","' . str_replace('"', '\"', $gang->members) . '",' . $gang->bank . ',"' . $gang->name .'",'. $gang->maxmembers .')\'><i class="fa fa-pencil"></i></a>',
             ];
         });
 

@@ -135,7 +135,8 @@
         {% if auth.permissions.can_edit_gang %}
         function showEditGangBox(id, owner, members, bank, name, maxmembers) {
             $("#gangID").val(id);
-            $("#owner").val(owner);
+            $("#owner").val(owner.valueOf());
+            console.log("OWNER:" + owner);
             $("#members").val(members);
             $("#funds").val(bank);
             $("#gangName").val(name);
