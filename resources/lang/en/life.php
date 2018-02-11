@@ -40,7 +40,6 @@ return array (
         'license_civ_cement' => 'Cement Mixing License',
         'license_civ_home' => 'Home Owners License',
         'license_civ_truck' => 'Truck License',
-        'license_civ_pilot' => 'Medical Pilot',
         'license_cop_cAir' => 'Pilots License',
         'license_cop_coastguard' => 'Coast Guard License',
         'license_cop_swat' => 'SWAT License',
