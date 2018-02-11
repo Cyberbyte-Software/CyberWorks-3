@@ -292,9 +292,9 @@
                             <div role="tabpanel" class="tab-pane fade active in" id="civLic" aria-labelledby="home-tab">
                                 {% for license in player.civ_licenses %}
                                     {% if license.value %}
-                                        <button type="button" id="{{ sudo.name }}" class="license btn btn-sm btn-success" style="margin-bottom: 3px;">{{ license.name }}</button>
+                                        <button type="button" id="{{ license.name }}" class="license btn btn-sm btn-success" style="margin-bottom: 3px;">{{ translate('life.lic.' ~ license.name ) }}</button>
                                     {% else %}
-                                        <button type="button" id="{{ license.name }}" class="license btn btn-sm btn-danger" style="margin-bottom: 3px;">{{ license.name }}</button>
+                                        <button type="button" id="{{ license.name }}" class="license btn btn-sm btn-danger" style="margin-bottom: 3px;">{{ translate('life.lic.' ~ license.name ) }}</button>
                                     {% endif %}
                                 {% endfor %}
                             </div>
@@ -303,9 +303,9 @@
                             <div role="tabpanel" class="tab-pane fade {% if not auth.permissions.can_edit_civ_lic %} active in {% endif %}" id="copLic" aria-labelledby="profile-tab">
                                 {% for license in player.cop_licenses %}
                                     {% if license.value %}
-                                        <button type="button" id="{{ license.name }}" class="copLicense btn btn-sm btn-success" style="margin-bottom: 3px;">{{ license.name }}</button>
+                                        <button type="button" id="{{ license.name }}" class="copLicense btn btn-sm btn-success" style="margin-bottom: 3px;">{{ translate('life.lic.' ~ license.name ) }}</button>
                                     {% else %}
-                                        <button type="button" id="{{ license.name }}" class="copLicense btn btn-sm btn-danger" style="margin-bottom: 3px;">{{ license.name }}</button>
+                                        <button type="button" id="{{ license.name }}" class="copLicense btn btn-sm btn-danger" style="margin-bottom: 3px;">{{ translate('life.lic.' ~ license.name ) }}</button>
                                     {% endif %}
                                 {% endfor %}
                             </div>
@@ -314,9 +314,9 @@
                             <div role="tabpanel" class="tab-pane fade {% if not auth.permissions.can_edit_cop_lic %} active in {% endif %}" id="medLic" aria-labelledby="profile-tab">
                                 {% for license in player.med_licenses %}
                                     {% if license.value %}
-                                        <button type="button" id="{{ license.name }}" class="emsLicense btn btn-sm btn-success" style="margin-bottom: 3px;">{{ license.name }}</button>
+                                        <button type="button" id="{{ license.name }}" class="emsLicense btn btn-sm btn-success" style="margin-bottom: 3px;">{{ translate('life.lic.' ~ license.name ) }}</button>
                                     {% else %}
-                                        <button type="button" id="{{ license.name }}" class="emsLicense btn btn-sm btn-danger" style="margin-bottom: 3px;">{{ license.name }}</button>
+                                        <button type="button" id="{{ license.name }}" class="emsLicense btn btn-sm btn-danger" style="margin-bottom: 3px;">{{ translate('life.lic.' ~ license.name ) }}</button>
                                     {% endif %}
                                 {% endfor %}
                             </div>
