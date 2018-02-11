@@ -56,8 +56,11 @@ $container['config'] = function ($container) {
 };
 
 $container['translator'] = function ($container) {
-    $translator = new Translator(new FileLoader(new Filesystem(), __DIR__ . '/../resources/lang'), 'en');
-    $translator->setLocale('en');
+    $locale = $container->config->get('lang');
+
+    $translator = new Translator(new FileLoader(new Filesystem(), __DIR__ . '/../resources/lang'), $locale);
+    $translator->setLocale($locale);
+    $translator->setFallback('en');
 
     return $translator;
 };
