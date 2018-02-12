@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `cw_notes` (
 CREATE TABLE IF NOT EXISTS `cw_permissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `group_name` varchar(64) NOT NULL DEFAULT '0',
-  `group_id` int(11) NOT NULL,
+  `group_id` int(11) NULL DEFAULT NULL,
   `is_superUser` tinyint(1) NOT NULL DEFAULT 0,
   `can_view_players` tinyint(1) NOT NULL DEFAULT 0,
   `can_view_player` tinyint(1) NOT NULL DEFAULT 0,
@@ -91,6 +91,8 @@ CREATE TABLE IF NOT EXISTS `cw_permissions` (
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `group_id` (`group_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 
 -- Data exporting was unselected.
 -- Dumping structure for table life.cw_users

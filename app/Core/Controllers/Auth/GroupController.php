@@ -223,14 +223,13 @@ class GroupController extends Controller
         $group = new Group();
 
         $group->group_name = $request->getParam('group_name');
-        $group->group_id = -1; //Temp
+        $group->group_id = null; //Temp
         $group->save(); //Do this so we can get an id for the group.
 
         if ($this->container->config->get('useIps', false)) {
             $group->group_id = $request->getParam('group_id');
-        } else {
-            $group->group_id = $group->id;
         }
+
         $group->is_superUser = $this->convertCheckBox($request->getParam('is_superUser'));
 
         $group->can_view_players = $this->convertCheckBox($request->getParam('can_view_players'));
