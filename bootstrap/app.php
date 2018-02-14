@@ -84,7 +84,8 @@ $container['view'] = function ($container) {
       'user' => $container->auth->user(),
       'group' => $container->auth->primaryGroup(),
       'isSuperUser' => $container->auth->isSuperUser(),
-      'permissions' => $container->auth->permissions()
+      'permissions' => $container->auth->permissions(),
+      'useIps' => $container->config->get('useIps', false)
   ]);
 
   $view->getEnvironment()->addGlobal('alerts', $container->alerts);

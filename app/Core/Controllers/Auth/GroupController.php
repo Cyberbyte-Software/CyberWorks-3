@@ -35,7 +35,7 @@ class GroupController extends Controller
     public function group($request, $response, $args) {
         $group = Group::find($args['id']);
 
-        $data = ['group' => $group, 'useIps' => $this->container->config->get('useIps', false)];
+        $data = ['group' => $group];
         return $this->view->render($response, 'groups/group.twig', $data);
     }
 
