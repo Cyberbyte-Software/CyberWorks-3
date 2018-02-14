@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * Author: https://github.com/Siprah/IPSConnect-Client
- * Date: 25/06/2017
- * Time: 23:29
- */
 
 namespace CyberWorks\Core\Auth;
 

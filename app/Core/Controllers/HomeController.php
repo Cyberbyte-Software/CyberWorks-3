@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cameron Chilton
- * Date: 14/06/2017
- * Time: 09:39
- */
+
 
 namespace CyberWorks\Core\Controllers;
 

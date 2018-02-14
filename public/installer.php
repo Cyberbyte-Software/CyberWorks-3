@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cameron Chilton
- * Date: 15/06/2017
- * Time: 13:45
- */
+
 if (file_exists(__DIR__. '/../config/config.php')) {
     die('Config Already Exists');
 }

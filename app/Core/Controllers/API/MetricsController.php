@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cameron Chilton
- * Date: 17/07/2017
- * Time: 23:40
- */
 
 namespace CyberWorks\Core\Controllers\API;
 

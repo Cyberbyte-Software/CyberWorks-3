@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cameron Chilton
- * Date: 30/06/2017
- * Time: 11:54
- */
 
 namespace CyberWorks\Life\Controllers\Admin;
 

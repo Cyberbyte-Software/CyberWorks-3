@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cammygames
- * Date: 10/01/18
- * Time: 01:04
- */
 
 namespace CyberWorks\Extension;
 

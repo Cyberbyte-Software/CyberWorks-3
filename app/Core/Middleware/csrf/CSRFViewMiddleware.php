@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cameron Chilton
- * Date: 14/06/2017
- * Time: 14:49
- */
 
 namespace CyberWorks\Core\Middleware\csrf;
 

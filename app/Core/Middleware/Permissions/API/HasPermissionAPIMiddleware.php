@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cameron Chilton
- * Date: 02/07/2017
- * Time: 15:39
- */
 
 namespace CyberWorks\Core\Middleware\Permissions\API;
 

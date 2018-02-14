@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cameron Chilton
- * Date: 19/07/2017
- * Time: 03:24
- */
+
 use CyberWorks\Core\Middleware\GuestMiddleware;
 use CyberWorks\Core\Middleware\AuthenticatedMiddleware;
 use CyberWorks\Core\Middleware\Permissions\API\HasPermissionAPIMiddleware;

@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cameron Chilton
- * Date: 19/07/2017
- * Time: 03:47
- */
+
 $container['PlayerController'] = function ($container) {
     return new CyberWorks\Life\Controllers\PlayerController($container);
 };

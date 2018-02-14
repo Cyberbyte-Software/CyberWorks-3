@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cameron Chilton
- * Date: 29/06/2017
- * Time: 14:36
- */
 
 namespace CyberWorks\Life\Helper;
 

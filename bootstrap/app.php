@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cameron Chilton
- * Date: 14/06/2017
- * Time: 09:14
- */
+
 use Respect\Validation\Validator as v;
 use Illuminate\Translation\Translator;
 use Illuminate\Filesystem\Filesystem;
@@ -13,7 +8,9 @@ use Illuminate\Translation\FileLoader;
 session_start();
 
 if (!file_exists(__DIR__. '/../vendor/autoload.php')) {
-    die('You need to run composer install first. Or use a bundled release');
+    echo 'You need to run composer install first. Or use a bundled release. ';
+    echo 'See the <a href="https://github.com/Cyberbyte-Studios/CyberWorks-3/wiki/Installation#composer">install wiki</a> for more details' ;
+    die();
 }
 
 require __DIR__ . '/../vendor/autoload.php';
