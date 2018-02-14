@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Maurice Moss
- * Date: 06/09/2017
- * Time: 18:39
- */
 
 namespace CyberWorks\Life\Controllers;
 

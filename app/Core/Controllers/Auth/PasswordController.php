@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Maurice Moss
- * Date: 04/09/2017
- * Time: 18:37
- */
 
 namespace CyberWorks\Controllers\Auth;
+
 use CyberWorks\Controllers\Controller;
 use CyberWorks\Core\Models\User;
 use Respect\Validation\Validator as v;

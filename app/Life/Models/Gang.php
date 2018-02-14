@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Cameron Chilton
- * Date: 21/07/2017
- * Time: 13:06
- */
+
 
 namespace CyberWorks\Life\Models;
 
