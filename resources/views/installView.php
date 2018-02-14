@@ -53,6 +53,7 @@
                                 <div class="form-group">
                                     <select class="form-control" name="panel_lang" id="panel_lang">
                                         <option value="en">English</option>
+                                        <option value="de">German</option>
                                     </select>
                                 </div>
                             </div>
