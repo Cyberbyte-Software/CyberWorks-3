@@ -76,7 +76,7 @@ return array (
         ),
         'login' => array (
             'title' => 'Login',
-            'required' => 'Please Login before trying to perform that action',
+            'required' => 'Bitte einloggen um diese Aktion durchzuführen',
         ),
         'register' => array (
             'title' => 'Registrieren',
