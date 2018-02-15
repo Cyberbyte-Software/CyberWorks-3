@@ -21,11 +21,14 @@ if (!file_exists(__DIR__. '/../config/config.php')) {
     die('You need to run <a href="installer.php">installer.php</a> first');
 }
 
-if (file_exists(__DIR__. '/../public/installer.php')) {
-    die('You need to delete installer.php first');
-}
-
 $config = Config::load(__DIR__. '/../config/config.php');
+
+$isDev = $config->get('isDev', false);
+if (!$isDev) {
+    if (file_exists(__DIR__. '/../public/installer.php')) {
+        die('You need to delete installer.php first');
+    }
+}
 
 $app = new \Slim\App($config->get('slim'));
 
