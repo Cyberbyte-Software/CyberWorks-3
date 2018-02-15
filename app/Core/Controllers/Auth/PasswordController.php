@@ -1,8 +1,8 @@
 <?php
 
-namespace CyberWorks\Controllers\Auth;
+namespace CyberWorks\Core\Controllers\Auth;
 
-use CyberWorks\Controllers\Controller;
+use CyberWorks\Core\Controllers\Controller;
 use CyberWorks\Core\Models\User;
 use Respect\Validation\Validator as v;
 use PHPMailer;
