@@ -72,7 +72,8 @@ return array (
             'username' => 'Username',
             'password' => 'Passwort',
             'submit' => 'Absenden',
-            'lost' => 'Passwort vergessen'
+            'lost' => 'Passwort vergessen',
+            'email' => 'E-Mail'
         ),
         'login' => array (
             'title' => 'Login',
@@ -80,7 +81,11 @@ return array (
         ),
         'register' => array (
             'title' => 'Registrieren',
-            'login' => 'Login'
+            'login' => 'Login',
+            'new' => 'Neu hier'
+        ),
+        'password' => array (
+            'title' => 'Passwort zurücksetzen'
         ),
     ),
     'perms' => array (
