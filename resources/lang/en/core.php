@@ -70,6 +70,7 @@ return array (
         'generic' => array(
             'username' => 'Username',
             'password' => 'Password',
+            'email' => 'Email',
             'submit' => 'Submit',
             'lost' => 'Lost Password'
         ),
@@ -80,6 +81,10 @@ return array (
         'register' => array (
             'title' => 'Register',
             'login' => 'Login'
+        ),
+        'reset' => array (
+            'titleRequest' => 'Request Password Reset',
+            'title' => 'Reset Password',
         ),
     ),
     'perms' => array (

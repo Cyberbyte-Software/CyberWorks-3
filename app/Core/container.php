@@ -18,3 +18,6 @@ $container['GroupController'] = function ($container) {
 $container['UserController'] = function ($container) {
     return new CyberWorks\Core\Controllers\Auth\UserController($container);
 };
+$container['PasswordController'] = function ($container) {
+    return new CyberWorks\Core\Controllers\Auth\PasswordController($container);
+};
