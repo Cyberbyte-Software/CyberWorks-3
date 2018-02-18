@@ -82,6 +82,7 @@ return array (
         'register' => array (
             'title' => 'Registrieren',
             'login' => 'Login',
+        ),
         'reset' => array (
             'titleRequest' => 'Neues Passwort anfordern',
             'title' => 'Passwort zurücksetzen',
