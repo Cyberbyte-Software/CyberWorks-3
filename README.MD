@@ -22,8 +22,24 @@ CyberWorks 3 was designed to have all the features as our original but be much m
 
 
 ## Installation
-You can find links to our install guides on our [wiki](https://github.com/Cyberbyte-Studios/CyberWorks-3/wiki/Installation). If you have any problems feel free to reach out using our Discord.
+You can find links to our install guides on our [wiki](https://github.com/Cyberbyte-Studios/CyberWorks-3/wiki/Installation). If you have any problems feel free to reach out using our [Discord](https://discord.gg/e7kgYZv).
 
 [![Cyberbyte Studios](https://i.imgur.com/qeXU9CH.png)](https://cyberbyte.org.uk/)
 
 This project is maintained by [CyberByte Studios](https://cyberbyte.org.uk/). Follow us on [twitter](https://twitter.com/cyberbytestudio). Commercial support is available contact sam@cyberbyte.org.uk or cameron@cyberbyte.org.uk.
+
+## Copyright
+Copyright (C) 2018 Cyberbyte Studios
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+    
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
