@@ -32,7 +32,7 @@ if (isset($_POST['db_host']) && isset($_POST['db_port']) && isset($_POST['db_use
 
     $config = [];
 
-    $config['version'] = "1.1.2";
+    $config['version'] = "1.1.3";
 
     $config['slim'] = [
         'settings' => [
