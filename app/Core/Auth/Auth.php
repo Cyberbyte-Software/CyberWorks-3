@@ -29,6 +29,7 @@ class Auth
 
         if (password_verify($password, $user->password)) {
             $_SESSION['user_id'] = $user->id;
+            $_SESSION['isIPS'] = false;
             return true;
         }
 
@@ -63,6 +64,7 @@ class Auth
                 ]);
 
                 $_SESSION['user_id'] = $user->id;
+                $_SESSION['isIPS'] = true;
 
                 $this->container->logger->info($IPSConnectResponse->name . "(" . $IPSConnectResponse->connect_id . ") Signed in to CyberWorks For The First Time!");
 
@@ -86,6 +88,8 @@ class Auth
                 $this->container->logger->info($user->name . "(" . $user->connect_id . ") Logged In To CyberWorks!");
 
                 $_SESSION['user_id'] = $user->id;
+                $_SESSION['isIPS'] = true;
+
                 return true;
             }
         }
@@ -117,7 +121,11 @@ class Auth
         if ($this->isAuthed()) {
             $group = $this->primaryGroup();
 
-            $perms = Permissons::find($group->id);
+            if ($_SESSION['isIPS']) {
+                $perms = Permissons::where('group_id', $group->id);
+            } else {
+                $perms = Permissons::find($group->id);
+            }
 
             return $perms;
         }

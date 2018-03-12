@@ -288,7 +288,7 @@
                         {% endif %}
                     </ul>
                     <div id="myTabContent" class="tab-content">
-                        {% if auth.permissions.can_edit_civ_lic %}
+                        {% if auth.permissions.can_view_player_civ_lic %}
                             <div role="tabpanel" class="tab-pane fade active in" id="civLic" aria-labelledby="home-tab">
                                 {% for license in player.civ_licenses %}
                                     {% if license.value %}
@@ -299,8 +299,8 @@
                                 {% endfor %}
                             </div>
                         {% endif %}
-                        {% if auth.permissions.can_edit_cop_lic %}
-                            <div role="tabpanel" class="tab-pane fade {% if not auth.permissions.can_edit_civ_lic %} active in {% endif %}" id="copLic" aria-labelledby="profile-tab">
+                        {% if auth.permissions.can_view_player_cop_lic %}
+                            <div role="tabpanel" class="tab-pane fade" id="copLic" aria-labelledby="profile-tab">
                                 {% for license in player.cop_licenses %}
                                     {% if license.value %}
                                         <button type="button" id="{{ license.name }}" class="copLicense btn btn-sm btn-success" style="margin-bottom: 3px;">{{ translate('life.lic.' ~ license.name ) }}</button>
@@ -310,8 +310,8 @@
                                 {% endfor %}
                             </div>
                         {% endif %}
-                        {% if auth.permissions.can_edit_ems_lic %}
-                            <div role="tabpanel" class="tab-pane fade {% if not auth.permissions.can_edit_cop_lic %} active in {% endif %}" id="medLic" aria-labelledby="profile-tab">
+                        {% if auth.permissions.can_view_player_ems_lic %}
+                            <div role="tabpanel" class="tab-pane fade" id="medLic" aria-labelledby="profile-tab">
                                 {% for license in player.med_licenses %}
                                     {% if license.value %}
                                         <button type="button" id="{{ license.name }}" class="emsLicense btn btn-sm btn-success" style="margin-bottom: 3px;">{{ translate('life.lic.' ~ license.name ) }}</button>

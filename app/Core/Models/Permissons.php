@@ -8,5 +8,5 @@ class Permissons extends Model
 {
     protected $table = 'cw_permissions';
 
-    protected $primaryKey = 'group_id';
+    protected $primaryKey = 'id';
 }
