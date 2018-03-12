@@ -107,6 +107,7 @@
                             <label class="col-sm-12 control-label" style="text-align: center;" id="version-cur"></label>
                             <label class="col-sm-12 control-label" style="text-align: center;" id="version-latest"></label>
                             <label class="col-sm-12 control-label" style="text-align: center;" id="version-needed"></label>
+                            <label class="col-sm-12 control-label" style="text-align: center;"><a href="https://github.com/Cyberbyte-Studios/CyberWorks-3/releases/latest" >Link</a></label>
                         </div>
 
                         <div class="clearfix"></div>
@@ -145,13 +146,13 @@
             });
 
             $.get("{{ base_url() }}/api/internal/check/update", function (data) {
-                $('#version-cur').html("<i class='fa fa-info'></i> {{ translate('core.dashboard.updates.current') }} " + data.current_version);
-                $('#version-latest').html("<i class='fa fa-info'></i> {{ translate('core.dashboard.updates.latest') }} " + data.latest_version);
+                $('#version-cur').text("{{ translate('core.dashboard.updates.current') }} " + data.current_version);
+                $('#version-latest').text("{{ translate('core.dashboard.updates.latest') }} " + data.latest_version);
 
                 if (data.needs_update) {
-                    $('#version-needed').html("<i class='fa fa-info'></i> {{ translate('core.dashboard.updates.needsUpdate') }} {{ translate('core.dashboard.updates.yes') }}" );
+                    $('#version-needed').text("{{ translate('core.dashboard.updates.needsUpdate') }} {{ translate('core.dashboard.updates.yes') }}" );
                 } else {
-                    $('#version-needed').html("<i class='fa fa-info'></i> {{ translate('core.dashboard.updates.needsUpdate') }} {{ translate('core.dashboard.updates.no') }}" );
+                    $('#version-needed').text("{{ translate('core.dashboard.updates.needsUpdate') }} {{ translate('core.dashboard.updates.no') }}" );
                 }
             });
         });
