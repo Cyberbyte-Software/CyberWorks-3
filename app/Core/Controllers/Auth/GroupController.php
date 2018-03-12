@@ -151,7 +151,7 @@ class GroupController extends Controller
         if ($group->can_del_user != $this->convertCheckBox($request->getParam('can_del_user'))) $group->can_del_user = $this->convertCheckBox($request->getParam('can_del_user'));
 
         if ($group->isDirty()) {
-            //$this->container->logger->info("Group: " + $group->id + " Was updated By User:" + $_SESSION['user_id']);
+            $this->container->logger->info("Group: " + $group->id + " Was updated By User:" + $_SESSION['user_id']);
             $group->save();
         }
 
@@ -275,7 +275,7 @@ class GroupController extends Controller
         $group->can_add_user = $this->convertCheckBox($request->getParam('can_add_user'));
         $group->can_del_user = $this->convertCheckBox($request->getParam('can_del_user'));
 
-        //$this->container->logger->info("Group: " + $group->id + " Was Added By User:" + $_SESSION['user_id']);
+        $this->container->logger->info("Group: " + $group->id + " Was Added By User:" + $_SESSION['user_id']);
         $group->save();
 
         return $response->withRedirect($this->router->pathFor('groups'));
