@@ -178,9 +178,11 @@ if (isset($_POST['db_host']) && isset($_POST['db_port']) && isset($_POST['db_use
 
         $query = $connection->prepare("INSERT INTO `cw_users` (`name`, `password`, `email`, `profilePicture`, `primaryGroup`, `created_at`) VALUES (:username, :password, :email, :profilePicture, '{\"id\":\"1\"}', NOW())");
         $query->bindParam(':username', $_POST['admin_user']);
-        $query->bindParam(':email', $_POST['admin_email']);
-        $query->bindParam(':password', password_hash($_POST['admin_password'], PASSWORD_DEFAULT));
-        $query->bindParam(':profilePicture', get_gravatar($_POST['admin_email']));
+	$query->bindParam(':email', $_POST['admin_email']);
+	$password_hash = password_hash($_POST['admin_password'], PASSWORD_DEFAULT);
+	$query->bindParam(':password', $password_hash);
+	$gravatar = get_gravatar($_POST['admin_email']);
+        $query->bindParam(':profilePicture', $gravatar);
         $query->execute();
 
     } catch (PDOException $ex) {
