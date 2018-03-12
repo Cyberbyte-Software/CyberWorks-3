@@ -85,35 +85,73 @@
                 </tbody>
             </table>
         </div>
+
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <h3>{{ translate('core.dashboard.titles.factionMetrics') }}</h3>
             <canvas id="chartjs-4" class="chartjs" width="770" height="385" style="display: block; width: 770px; height: 385px;"></canvas>
         </div>
+    </div>
+
+    <div class="row">
+        {% if auth.permissions.is_superUser %}
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>{{ translate('core.dashboard.updates.title') }}</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="divider-dashed"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label" style="text-align: center;" id="version-cur"></label>
+                            <label class="col-sm-12 control-label" style="text-align: center;" id="version-latest"></label>
+                            <label class="col-sm-12 control-label" style="text-align: center;" id="version-needed"></label>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
 
 {% block script %}
     <script src="{{ base_url() }}/assets/vendors/Chart.js/dist/Chart.min.js"></script>
     <script>
-        $.get("{{ base_url() }}/api/internal/metrics/faction", function (data) {
-            var metrics = data;
-            var factions = new Chart(document.getElementById("chartjs-4"),{
-                "type":"doughnut",
-                "data":{
-                    "labels": metrics.labels,
-                    "datasets":[
-                        {
-                            "label":"Breakdown Of Factions",
-                            "data": metrics.metricdata,
-                            "fill":false,
-                            "backgroundColor":[
-                                "rgba(54, 162, 235, 0.2)",
-                                "rgba(255, 99, 132, 0.2)",
-                                "rgba(153, 102, 255, 0.2)"
-                            ],
-                            "borderColor": "rgb(247, 247, 247)"
-                        }
-                    ]
+        $(document).ready(function() {
+            $.get("{{ base_url() }}/api/internal/metrics/faction", function (data) {
+                var metrics = data;
+                var factions = new Chart(document.getElementById("chartjs-4"),{
+                    "type":"doughnut",
+                    "data":{
+                        "labels": metrics.labels,
+                        "datasets":[
+                            {
+                                "label":"Breakdown Of Factions",
+                                "data": metrics.metricdata,
+                                "fill":false,
+                                "backgroundColor":[
+                                    "rgba(54, 162, 235, 0.2)",
+                                    "rgba(255, 99, 132, 0.2)",
+                                    "rgba(153, 102, 255, 0.2)"
+                                ],
+                                "borderColor": "rgb(247, 247, 247)"
+                            }
+                        ]
+                    }
+                });
+            });
+
+            $.get("{{ base_url() }}/api/internal/check/update", function (data) {
+                $('#version-cur').html("<i class='fa fa-info'></i> {{ translate('core.dashboard.updates.current') }} " + data.current_version);
+                $('#version-latest').html("<i class='fa fa-info'></i> {{ translate('core.dashboard.updates.latest') }} " + data.latest_version);
+
+                if (data.needs_update) {
+                    $('#version-needed').html("<i class='fa fa-info'></i> {{ translate('core.dashboard.updates.needsUpdate') }} {{ translate('core.dashboard.updates.yes') }}" );
+                } else {
+                    $('#version-needed').html("<i class='fa fa-info'></i> {{ translate('core.dashboard.updates.needsUpdate') }} {{ translate('core.dashboard.updates.no') }}" );
                 }
             });
         });

@@ -93,7 +93,6 @@ $container['view'] = function ($container) {
 
   $view->getEnvironment()->addGlobal('alerts', $container->alerts);
 
-
   return $view;
 };
 

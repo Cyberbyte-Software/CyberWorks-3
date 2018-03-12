@@ -32,6 +32,8 @@ if (isset($_POST['db_host']) && isset($_POST['db_port']) && isset($_POST['db_use
 
     $config = [];
 
+    $config['version'] = "1.1.2";
+
     $config['slim'] = [
         'settings' => [
             'determineRouteBeforeAppMiddleware' => true,

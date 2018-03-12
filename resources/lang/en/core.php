@@ -65,6 +65,14 @@ return array (
             'tenRichestPlayersCash' => 'Top 10 Richest Players (Cash)',
             'factionMetrics' => 'Faction Metrics',
         ),
+        'updates' => array(
+            'title' => 'CyberWorks 3 Updates',
+            'yes' => 'Yes',
+            'no' => 'No',
+            'current' => 'Current Version',
+            'latest' => 'Latest Version',
+            'needsUpdate' => 'New Version Available',
+        ),
     ),
     'auth' => array (
         'generic' => array(
