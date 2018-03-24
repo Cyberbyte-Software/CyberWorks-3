@@ -18,6 +18,8 @@ Bug Report
     2. [Second Step]
     3. [and so on...]
 
+* **CyberWorks 3 Version:**
+
 * **Please tell us about your environment:**
 
 * **Checklist**
@@ -40,6 +42,8 @@ Support Request
 * **Details of your issue?**
 
 * **Please tell us about your environment:**
+
+* **CyberWorks 3 Version:**
 
 * **Checklist**
   - [ ] Attached Relevant Logs
