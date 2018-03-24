@@ -1,5 +1,5 @@
 
-* **I'm submitting a ... **
+* **I'm submitting a ...**
   - [ ] bug report
   - [ ] feature request
   - [ ] support request
@@ -17,6 +17,8 @@ Bug Report
     1. [First Step]
     2. [Second Step]
     3. [and so on...]
+
+* **CyberWorks 3 Version:**
 
 * **Please tell us about your environment:**
 
@@ -40,6 +42,8 @@ Support Request
 * **Details of your issue?**
 
 * **Please tell us about your environment:**
+
+* **CyberWorks 3 Version:**
 
 * **Checklist**
   - [ ] Attached Relevant Logs
