@@ -35,7 +35,7 @@ class UserController extends Controller
                 $user->name,
                 $user->email,
                 '<a href="group/' . $group->id . '"target="_blank">' . $group->group_name . '</a>',
-                '<a onclick=\'showUserEditBox('. $user->id .',"'. $user->name .'","'. $user->email .'",'. $group->id .')\'><i class="fa fa-pencil"></i></a> <a onclick=\'showUserEditPasswordBox('. $user->id .',"'. $user->name .'")\'><i class="fa fa-key"></i></a>'
+                '<a onclick=\'showUserEditBox('. $user->id .',"'. $user->name .'","'. $user->email .'",'. $group->id .')\'><i class="fa fa-pencil"></i></a> <a onclick=\'showUserEditPasswordBox('. $user->id .',"'. $user->name .'")\'><i class="fa fa-key"></i></a> <a onclick=\'deleteUserBox('. $user->id .',"'. $user->name .'")\'><i class="fa fa-trash"></i></a>'
             ];
         });
 
@@ -113,5 +113,21 @@ class UserController extends Controller
 
         $this->alerts->addMessage('success', 'Account Created');
         return $response->withRedirect($this->router->pathFor('dashboard'));
+    }
+
+    public function deleteUser($request, $response) {
+        $req_validation = $this->validator->validate($request, [
+            'id' => v::notEmpty()
+        ]);
+
+        if ($req_validation->failed()) {
+            return $response->withJson(['error' => 'Validation Failed', 'errors' => $req_validation->errors()], 400);
+        }
+
+        $user = User::find($request->getParam('id'));
+
+        $user->delete();
+
+        return $response->withStatus(200);
     }
 }

@@ -114,6 +114,8 @@ return array (
                 'title' => 'New User',
                 'create' => 'Create Account',
             ),
+            'sure' => 'Are you sure you want to do this?',
+            'delete' => 'Delete User',
         ),
         'group' => array (
             'gPerms' => 'Group Permissions',

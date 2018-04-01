@@ -110,6 +110,32 @@
                 </div>
             </div>
         {% endif %}
+
+        {% if auth.isSuperUser %}
+            <div class="modal fade deleteUser" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel2">{{ translate('core.perms.users.delete') }}: <b id="delete-name"></b></h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal form-label-left">
+                                <input type="hidden" class="form-control" id="id_del">
+                                <div class="form-group">
+                                    <h2 class="text-center"><b>{{ translate('core.perms.users.sure') }}</b></h2>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{{ translate('core.admin.generic.no') }}</button>
+                            <button type="button" class="btn btn-danger" id="deleteUser">{{ translate('core.admin.generic.yes') }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     {% endif %}
 {% endblock %}
 
@@ -169,50 +195,50 @@
                 });
             }
 
-        var group = document.getElementById("group");
+            var group = document.getElementById("group");
 
-        $("#updateUser").click(function() {
-                $.ajax({
-                    type: "POST",
-                    url: "{{ base_url() }}/api/internal/user/update",
-                    data: {
-                        "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
-                        "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
-                        "id":document.getElementById("id").value,
-                        "name":document.getElementById("name").value,
-                        {% if auth.isSuperUser %} "group":group.options[group.selectedIndex].value, {% endif %}
-                        "email":document.getElementById("email").value
-                    },
-                    complete: function (jqXHR, xhr) {
-                        var csrfToken = jqXHR.getResponseHeader('X-CSRF-Token');
+            $("#updateUser").click(function() {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ base_url() }}/api/internal/user/update",
+                        data: {
+                            "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
+                            "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
+                            "id":document.getElementById("id").value,
+                            "name":document.getElementById("name").value,
+                            {% if auth.isSuperUser %} "group":group.options[group.selectedIndex].value, {% endif %}
+                            "email":document.getElementById("email").value
+                        },
+                        complete: function (jqXHR, xhr) {
+                            var csrfToken = jqXHR.getResponseHeader('X-CSRF-Token');
 
-                        if (csrfToken) {
-                            var csrfTokenParsed = $.parseJSON(csrfToken);
+                            if (csrfToken) {
+                                var csrfTokenParsed = $.parseJSON(csrfToken);
 
-                            csrfTokenName = csrfTokenParsed.csrf_name;
-                            csrfTokenValue = csrfTokenParsed.csrf_value;
+                                csrfTokenName = csrfTokenParsed.csrf_name;
+                                csrfTokenValue = csrfTokenParsed.csrf_value;
+                            }
+
+                            if (jqXHR.status == 200) {
+                                new PNotify({
+                                    title: 'Success',
+                                    text: 'Edited User!',
+                                    type: 'success',
+                                    styling: 'bootstrap3'
+                                });
+                            } else {
+                                new PNotify({
+                                    title: 'Oh No!',
+                                    text: 'Unable To Edit User!',
+                                    type: 'error',
+                                    styling: 'bootstrap3'
+                                });
+                            }
+
+                            location.reload();
                         }
-
-                        if (jqXHR.status == 200) {
-                            new PNotify({
-                                title: 'Success',
-                                text: 'Edited User!',
-                                type: 'success',
-                                styling: 'bootstrap3'
-                            });
-                        } else {
-                            new PNotify({
-                                title: 'Oh No!',
-                                text: 'Unable To Edit User!',
-                                type: 'error',
-                                styling: 'bootstrap3'
-                            });
-                        }
-
-                        location.reload();
-                    }
+                    });
                 });
-            });
 
             {% if auth.isSuperUser %}
                 function showUserEditPasswordBox(id, name) {
@@ -255,6 +281,55 @@
                                 new PNotify({
                                     title: 'Oh No!',
                                     text: 'Unable To Edit User!',
+                                    type: 'error',
+                                    styling: 'bootstrap3'
+                                });
+                            }
+
+                            location.reload();
+                        }
+                    });
+                });
+
+                function deleteUserBox(id, name) {
+                    $("#id_del").val(id);
+                    $("#delete-name").text(name);
+
+                    $(".deleteUser").modal({
+                        show: 'true'
+                    });
+                }
+
+                $("#deleteUser").click(function() {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ base_url() }}/api/internal/user/delete",
+                        data: {
+                            "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
+                            "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
+                            "id":document.getElementById("id_del").value
+                        },
+                        complete: function (jqXHR, xhr) {
+                            var csrfToken = jqXHR.getResponseHeader('X-CSRF-Token');
+
+                            if (csrfToken) {
+                                var csrfTokenParsed = $.parseJSON(csrfToken);
+
+                                csrfTokenName = csrfTokenParsed.csrf_name;
+                                csrfTokenValue = csrfTokenParsed.csrf_value;
+                            }
+
+                            if (jqXHR.status == 200) {
+                                new PNotify({
+                                    title: 'Success',
+                                    text: 'Deleted User!',
+                                    type: 'success',
+                                    styling: 'bootstrap3'
+                                });
+                            } else {
+                                new PNotify({
+                                    title: 'Oh No!',
+                                    text: 'Unable To Delete User!',
                                     type: 'error',
                                     styling: 'bootstrap3'
                                 });
