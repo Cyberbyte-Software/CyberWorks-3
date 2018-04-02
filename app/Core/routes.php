@@ -42,6 +42,12 @@ $app->group("", function() {
     $this->get('/user/new', 'UserController:newUserView')->add(new HasPermissionMiddleware($this->getContainer(), "can_add_user"));
     $this->post('/user/new', 'UserController:newUser')->add(new HasPermissionMiddleware($this->getContainer(), "can_add_user"))->setName('user.new');
 
+    $this->group("/logs", function () {
+        $container = $this->getContainer();
+        $this->get('/user', 'LogController:userIndex')->add(new HasPermissionMiddleware($container, "can_view_logs"))->setName('logs.user');
+        $this->get('/group', 'LogController:groupIndex')->add(new HasPermissionMiddleware($container, "can_view_logs"))->setName('logs.group');
+    });
+
 })->add(new AuthenticatedMiddleware($app->getContainer()));
 
 $app->group("/api/internal", function() {
@@ -58,5 +64,10 @@ $app->group("/api/internal", function() {
 
     $this->get('/check/update', 'PatchController:checkForUpdate');
 
+    $this->group("/logs", function () {
+        $container = $this->getContainer();
+        $this->post('/user', 'LogController:userTable')->add(new HasPermissionAPIMiddleware($container, "can_view_logs"))->setName('api.logs.user');
+        $this->post('/group', 'LogController:groupTable')->add(new HasPermissionAPIMiddleware($container, "can_view_logs"))->setName('api.logs.group');
+    });
 })->add(new AuthenticatedMiddleware($app->getContainer()));
 

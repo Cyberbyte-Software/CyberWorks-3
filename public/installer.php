@@ -169,7 +169,7 @@ if (isset($_POST['db_host']) && isset($_POST['db_port']) && isset($_POST['db_use
         $connection->query('CREATE TABLE IF NOT EXISTS `cw_logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `type` enum(\'0\',\'1\',\'2\',\'3\',\'4\') NOT NULL DEFAULT \'0\',
+  `type` enum(\'0\',\'1\',\'2\',\'3\',\'4\',\'5\',\'6\') NOT NULL DEFAULT \'0\',
   `message` text NOT NULL,
   `player_id` int(11) DEFAULT NULL,
   `vehicle_id` int(11) DEFAULT NULL,

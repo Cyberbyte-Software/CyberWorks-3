@@ -550,6 +550,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">{{ translate('core.perms.group.delete') }}</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="checkbox" class="js-switch" name="can_del_group"  {% if group.can_del_group %} checked="" {% endif %} style="display: none;" data-switchery="true">
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         {% if useIps %}
                                             <div class="form-group">

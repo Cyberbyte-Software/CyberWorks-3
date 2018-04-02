@@ -21,7 +21,9 @@ return array (
                 'vehicle' => 'Vehicle Logs',
                 'gang' => 'Gang Logs',
                 'house' => 'House Logs',
-                'container' => 'Container Logs'
+                'container' => 'Container Logs',
+                'user' => 'User Edit Logs',
+                'group' => 'Group Edit Logs'
             ),
             'groups' => 'Groups',
             'users' => 'Users',
@@ -115,6 +117,7 @@ return array (
                 'title' => 'New User',
                 'create' => 'Create Account',
             ),
+            'log' => 'Users Edit',
         ),
         'group' => array (
             'gPerms' => 'Group Permissions',
@@ -125,6 +128,7 @@ return array (
             'ipsID' => 'IPS ID',
             'save' => 'Save',
             'delete' => 'Delete Group',
+            'log' => 'Group Edit',
         ),
         'admin' => array (
             'ePPG' => 'Edit Player Permission Group',

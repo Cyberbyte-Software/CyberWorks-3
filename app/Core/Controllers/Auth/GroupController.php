@@ -4,6 +4,7 @@ namespace CyberWorks\Core\Controllers\Auth;
 
 use CyberWorks\Core\Controllers\Controller;
 use CyberWorks\Core\Models\Group;
+use CyberWorks\Core\Helper\EditLogger;
 use LiveControl\EloquentDataTable\DataTable;
 use Respect\Validation\Validator as v;
 
@@ -157,6 +158,8 @@ class GroupController extends Controller
             $group->save();
         }
 
+        EditLogger::logEdit('6', "Updated Group ". $group->id ." ". $group->group_name);
+
         return $response->withRedirect($this->router->pathFor('groups'));
     }
 
@@ -282,6 +285,8 @@ class GroupController extends Controller
         $this->container->logger->info("Group: " + $group->id + " Was Added By User:" + $_SESSION['user_id']);
         $group->save();
 
+        EditLogger::logEdit('6', "Added Group ". $group->id ." ". $group->group_name);
+
         return $response->withRedirect($this->router->pathFor('groups'));
     }
 
@@ -303,6 +308,8 @@ class GroupController extends Controller
         }
 
         $group = Group::find($request->getParam('id'));
+
+        EditLogger::logEdit('6', "Deleted Group ". $group->group_name ." ". $request->getParam('id'));
 
         $group->delete();
 

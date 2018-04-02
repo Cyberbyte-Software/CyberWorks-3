@@ -6,6 +6,7 @@ use CyberWorks\Core\Auth\Auth;
 use CyberWorks\Core\Controllers\Controller;
 use CyberWorks\Core\Models\Group;
 use CyberWorks\Core\Models\User;
+use CyberWorks\Core\Helper\EditLogger;
 use LiveControl\EloquentDataTable\DataTable;
 use Respect\Validation\Validator as v;
 
@@ -66,6 +67,8 @@ class UserController extends Controller
             $user->save();
         }
 
+        EditLogger::logEdit('5', "Updated User ". $user->name);
+
         return $response->withStatus(200);
     }
 
@@ -83,6 +86,8 @@ class UserController extends Controller
 
         $user->password = password_hash($request->getParam('password'), PASSWORD_DEFAULT);
         $user->save();
+
+        EditLogger::logEdit('5', "Changed ". $user->name ." Password");
 
         return $response->withStatus(200);
     }
@@ -111,6 +116,8 @@ class UserController extends Controller
             'profilePicture' => $picture,
         ]);
 
+        EditLogger::logEdit('5', "Added User ". $request->getParam('username'));
+
         $this->alerts->addMessage('success', 'Account Created');
         return $response->withRedirect($this->router->pathFor('dashboard'));
     }
@@ -126,7 +133,10 @@ class UserController extends Controller
 
         $user = User::find($request->getParam('id'));
 
+        EditLogger::logEdit('5', "Deleted User ". $request->getParam('id') . " " . $user->name);
+
         $user->delete();
+
 
         return $response->withStatus(200);
     }
