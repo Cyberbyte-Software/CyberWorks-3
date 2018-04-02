@@ -29,6 +29,7 @@ return array (
             'users' => 'Users',
             'metrics' => 'Metrics'
         ),
+        'changePW' => 'Change Password',
     ),
     'admin' => array (
         'generic' => array (

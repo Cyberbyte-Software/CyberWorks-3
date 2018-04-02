@@ -92,6 +92,25 @@ class UserController extends Controller
         return $response->withStatus(200);
     }
 
+    public function changeOwnPassword($request, $response) {
+        $req_validation = $this->validator->validate($request, [
+            'password' =>  v::notEmpty()
+        ]);
+
+        if ($req_validation->failed()) {
+            return $response->withJson(['error' => 'Validation Failed', 'errors' => $req_validation->errors()], 400);
+        }
+
+        $user = User::find($_SESSION['user_id']);
+
+        $user->password = password_hash($request->getParam('password'), PASSWORD_DEFAULT);
+        $user->save();
+
+        EditLogger::logEdit('5', "Changed ". $user->name ." Their Password");
+
+        return $response->withStatus(200);
+    }
+
     public function newUser($request, $response) {
         $validation = $this->validator->validate($request, [
                 'username' => v::noWhitespace()->notEmpty()->usernameAvailable(),

@@ -16,6 +16,7 @@
                         {% if useIps %}
                             <li><a href="{{ auth.user.profileUrl }}"> {{ translate('core.generic.profile') }}</a></li>
                         {% endif %}
+                        <li><a id="changePassword"> {{ translate('core.nav.changePW') }}</a></li>
                         <li><a href="{{ path_for('auth.logout') }}"><i class="fa fa-sign-out pull-right"></i> {{ translate('core.generic.logOut') }}</a></li>
                     </ul>
                 </li>

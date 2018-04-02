@@ -42,6 +42,34 @@
                 </div>
                 <!-- /page content -->
 
+                <div class="modal fade changeMyPassword" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel2">{{ translate('core.perms.users.changeUPass') }}:</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal form-label-left">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">{{ translate('core.perms.users.newPass') }}:</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group" style="width: 100%">
+                                                <input type="password" class="form-control" id="own_password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">{{ translate('core.admin.generic.close') }}</button>
+                                <button type="button" class="btn btn-primary" id="updateOwnPassword">{{ translate('core.admin.generic.save') }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- footer content -->
                 <footer>
                     <div class="pull-left">
@@ -78,5 +106,53 @@
         </script>
 
         {% block script %} {% endblock %}
+
+        <script>
+            $("#changePassword").click(function() {
+                $(".changeMyPassword").modal({
+                    show: 'true'
+                });
+            });
+
+            $("#updateOwnPassword").click(function() {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ base_url() }}/api/internal/self/update/password",
+                    data: {
+                        "{{ csrf.javascript.tokenNameKey }}":window.csrfTokenName,
+                        "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
+                        "password":document.getElementById("own_password").value
+                    },
+                    complete: function (jqXHR, xhr) {
+                        var csrfToken = jqXHR.getResponseHeader('X-CSRF-Token');
+
+                        if (csrfToken) {
+                            var csrfTokenParsed = $.parseJSON(csrfToken);
+
+                            csrfTokenName = csrfTokenParsed.csrf_name;
+                            csrfTokenValue = csrfTokenParsed.csrf_value;
+                        }
+
+                        if (jqXHR.status == 200) {
+                            new PNotify({
+                                title: 'Success',
+                                text: 'Changed Password!',
+                                type: 'success',
+                                styling: 'bootstrap3'
+                            });
+                        } else {
+                            new PNotify({
+                                title: 'Oh No!',
+                                text: 'Unable To Change Password!',
+                                type: 'error',
+                                styling: 'bootstrap3'
+                            });
+                        }
+
+                        $(".changeMyPassword").modal('toggle');
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

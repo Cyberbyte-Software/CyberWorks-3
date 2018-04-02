@@ -69,5 +69,7 @@ $app->group("/api/internal", function() {
         $this->post('/user', 'LogController:userTable')->add(new HasPermissionAPIMiddleware($container, "can_view_logs"))->setName('api.logs.user');
         $this->post('/group', 'LogController:groupTable')->add(new HasPermissionAPIMiddleware($container, "can_view_logs"))->setName('api.logs.group');
     });
+
+    $this->post('/self/update/password', 'UserController:changeOwnPassword')->setName('self.update');
 })->add(new AuthenticatedMiddleware($app->getContainer()));
 
