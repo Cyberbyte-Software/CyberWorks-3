@@ -111,20 +111,20 @@
             </div>
         {% endif %}
 
-        {% if auth.isSuperUser %}
+        {% if auth.permissions.can_del_user %}
             <div class="modal fade deleteUser" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel2">{{ translate('core.perms.users.delete') }}: <b id="delete-name"></b></h4>
+                            <h4 class="modal-title" id="myModalLabel2">{{ translate('core.perms.admin.deluser') }}: <b id="delete-name"></b></h4>
                         </div>
                         <div class="modal-body">
                             <form class="form-horizontal form-label-left">
                                 <input type="hidden" class="form-control" id="id_del">
                                 <div class="form-group">
-                                    <h2 class="text-center"><b>{{ translate('core.perms.users.sure') }}</b></h2>
+                                    <h2 class="text-center"><b>{{ translate('core.perms.generic.sure') }}</b></h2>
                                 </div>
                             </form>
                         </div>

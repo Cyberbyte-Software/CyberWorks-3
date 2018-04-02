@@ -20,7 +20,7 @@ class PatchController extends Controller
     public function checkForUpdate($request, $response)
     {
         $latestVersion = $this->doGetRequest("https://api.github.com/repos/Cyberbyte-Studios/CyberWorks-3/releases/latest")->tag_name;
-        $currentVersion = $this->container->config->get('version','1.1.3');
+        $currentVersion = $this->container->config->get('version','1.1.4');
         $updatedNeeded = false;
 
         if ($latestVersion != $currentVersion) $updatedNeeded = true;

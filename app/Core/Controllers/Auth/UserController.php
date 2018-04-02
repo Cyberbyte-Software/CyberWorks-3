@@ -17,7 +17,7 @@ class UserController extends Controller
         return $this->view->render($response, 'users/index.twig', $data);
     }
 
-    public function new($request, $response) {
+    public function newUserView($request, $response) {
         $groups = Group::all();
         $data = ['groups' => $groups];
         return $this->view->render($response, 'users/new.twig', $data);

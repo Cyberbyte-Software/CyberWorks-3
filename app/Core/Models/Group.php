@@ -55,6 +55,7 @@ class Group extends Model
         'can_add_user',
         'can_del_user',
         'can_edit_container',
-        'can_view_containers'
+        'can_view_containers',
+        'can_del_group'
     ];
 }

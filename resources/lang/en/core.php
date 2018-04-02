@@ -103,6 +103,7 @@ return array (
             'groups' => 'Groups',
             'actions' => 'Actions',
             'sUser' => 'Super User',
+            'sure' => 'Are you sure you want to do this?',
         ),
         'users' => array (
             'title' => 'Users',
@@ -114,8 +115,6 @@ return array (
                 'title' => 'New User',
                 'create' => 'Create Account',
             ),
-            'sure' => 'Are you sure you want to do this?',
-            'delete' => 'Delete User',
         ),
         'group' => array (
             'gPerms' => 'Group Permissions',
@@ -125,6 +124,7 @@ return array (
             ),
             'ipsID' => 'IPS ID',
             'save' => 'Save',
+            'delete' => 'Delete Group',
         ),
         'admin' => array (
             'ePPG' => 'Edit Player Permission Group',
