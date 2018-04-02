@@ -51,7 +51,7 @@ $app->group("/api/internal", function() {
     $this->post('/users', 'UserController:table');
     $this->post('/user/update', 'UserController:updateUser')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_edit_users"))->add(new UserIsValidAPIMiddleware($this->getContainer()))->setName('user.update');
     $this->post('/user/update/password', 'UserController:changeUserPassword')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_edit_users"))->add(new UserIsValidAPIMiddleware($this->getContainer()))->setName('user.update');
-    $this->post('/user/delete', 'UserController:deleteUser')->add(new HasPermissionAPIMiddleware($this->getContainer(), "is_superUser"))->add(new UserIsValidAPIMiddleware($this->getContainer()))->setName('user.delete');
+    $this->post('/user/delete', 'UserController:deleteUser')->add(new HasPermissionAPIMiddleware($this->getContainer(), "can_del_user"))->add(new UserIsValidAPIMiddleware($this->getContainer()))->setName('user.delete');
 
     $this->get('/check/update', 'PatchController:checkForUpdate');
 

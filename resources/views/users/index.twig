@@ -290,6 +290,9 @@
                         }
                     });
                 });
+            {% endif %}
+
+            {% if auth.permissions.can_del_user %}
 
                 function deleteUserBox(id, name) {
                     $("#id_del").val(id);
