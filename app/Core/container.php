@@ -24,3 +24,6 @@ $container['PasswordController'] = function ($container) {
 $container['PatchController'] = function ($container) {
     return new CyberWorks\Core\Controllers\PatchController($container);
 };
+$container['LogController'] = function ($container) {
+    return new CyberWorks\Core\Controllers\Admin\LogController($container);
+};

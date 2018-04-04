@@ -4,6 +4,7 @@ namespace CyberWorks\Core\Controllers\Auth;
 
 use CyberWorks\Core\Controllers\Controller;
 use CyberWorks\Core\Models\Group;
+use CyberWorks\Core\Helper\EditLogger;
 use LiveControl\EloquentDataTable\DataTable;
 use Respect\Validation\Validator as v;
 
@@ -13,7 +14,7 @@ class GroupController extends Controller
         return $this->view->render($response, 'groups/index.twig');
     }
 
-    public function new($request, $response) {
+    public function newView($request, $response) {
         return $this->view->render($response, 'groups/new.twig');
     }
 
@@ -25,7 +26,7 @@ class GroupController extends Controller
             return [
                 '<a href="group/' . $group->id . '"target="_blank">' . $group->group_name . '</a>',
                 ($group->is_superUser == 1 ? "Yes" : "No"),
-                '<a href="group/' . $group->id . '"target="_blank"><i class="fa fa-pencil"></i></a>'
+                '<a href="group/' . $group->id . '"target="_blank"><i class="fa fa-pencil"></i></a> <a onclick=\'showDeleteGroupBox('. $group->id .',"'. $group->group_name .'")\'><i class="fa fa-trash"></i></a>'
             ];
         });
 
@@ -87,7 +88,8 @@ class GroupController extends Controller
             'can_edit_group_perms_container' => v::optional(v::notEmpty()),
             'can_edit_house' => v::optional(v::notEmpty()),
             'can_view_houses' => v::optional(v::notEmpty()),
-            'can_edit_group_perms_house' => v::optional(v::notEmpty())
+            'can_edit_group_perms_house' => v::optional(v::notEmpty()),
+            'can_del_group' => v::optional(v::notEmpty())
         ]);
 
         if ($req_validation->failed()) {
@@ -149,11 +151,14 @@ class GroupController extends Controller
         if ($group->can_edit_users != $this->convertCheckBox($request->getParam('can_edit_users'))) $group->can_edit_users = $this->convertCheckBox($request->getParam('can_edit_users'));
         if ($group->can_add_user != $this->convertCheckBox($request->getParam('can_add_user'))) $group->can_add_user = $this->convertCheckBox($request->getParam('can_add_user'));
         if ($group->can_del_user != $this->convertCheckBox($request->getParam('can_del_user'))) $group->can_del_user = $this->convertCheckBox($request->getParam('can_del_user'));
+        if ($group->can_del_group != $this->convertCheckBox($request->getParam('can_del_group'))) $group->can_del_group = $this->convertCheckBox($request->getParam('can_del_group'));
 
         if ($group->isDirty()) {
             $this->container->logger->info("Group: " + $group->id + " Was updated By User:" + $_SESSION['user_id']);
             $group->save();
         }
+
+        EditLogger::logEdit('6', "Updated Group ". $group->id ." ". $group->group_name);
 
         return $response->withRedirect($this->router->pathFor('groups'));
     }
@@ -206,7 +211,8 @@ class GroupController extends Controller
             'can_edit_group_perms_container' => v::optional(v::notEmpty()),
             'can_edit_house' => v::optional(v::notEmpty()),
             'can_view_houses' => v::optional(v::notEmpty()),
-            'can_edit_group_perms_house' => v::optional(v::notEmpty())
+            'can_edit_group_perms_house' => v::optional(v::notEmpty()),
+            'can_del_group' => v::optional(v::notEmpty())
         ]);
 
         if ($req_validation->failed()) {
@@ -274,14 +280,39 @@ class GroupController extends Controller
         $group->can_edit_users = $this->convertCheckBox($request->getParam('can_edit_users'));
         $group->can_add_user = $this->convertCheckBox($request->getParam('can_add_user'));
         $group->can_del_user = $this->convertCheckBox($request->getParam('can_del_user'));
+        $group->can_del_group = $this->convertCheckBox($request->getParam('can_del_group'));
 
         $this->container->logger->info("Group: " + $group->id + " Was Added By User:" + $_SESSION['user_id']);
         $group->save();
+
+        EditLogger::logEdit('6', "Added Group ". $group->id ." ". $group->group_name);
 
         return $response->withRedirect($this->router->pathFor('groups'));
     }
 
     public function convertCheckBox($input) {
         return ($input == 'on' ? 1 : 0);
+    }
+
+    public function deleteGroup($request, $response) {
+        $req_validation = $this->validator->validate($request, [
+            'id' => v::notEmpty()
+        ]);
+
+        if ($req_validation->failed()) {
+            return $response->withJson(['error' => 'Validation Failed', 'errors' => $req_validation->errors()], 400);
+        }
+
+        if ($request->getParam('id') == 1) {
+            return $response->withJson(['error' => 'Can Not Remove Default Group!'], 400);
+        }
+
+        $group = Group::find($request->getParam('id'));
+
+        EditLogger::logEdit('6', "Deleted Group ". $group->group_name ." ". $request->getParam('id'));
+
+        $group->delete();
+
+        return $response->withStatus(200);
     }
 }

@@ -6,6 +6,7 @@ use CyberWorks\Core\Auth\Auth;
 use CyberWorks\Core\Controllers\Controller;
 use CyberWorks\Core\Models\Group;
 use CyberWorks\Core\Models\User;
+use CyberWorks\Core\Helper\EditLogger;
 use LiveControl\EloquentDataTable\DataTable;
 use Respect\Validation\Validator as v;
 
@@ -17,7 +18,7 @@ class UserController extends Controller
         return $this->view->render($response, 'users/index.twig', $data);
     }
 
-    public function new($request, $response) {
+    public function newUserView($request, $response) {
         $groups = Group::all();
         $data = ['groups' => $groups];
         return $this->view->render($response, 'users/new.twig', $data);
@@ -35,7 +36,7 @@ class UserController extends Controller
                 $user->name,
                 $user->email,
                 '<a href="group/' . $group->id . '"target="_blank">' . $group->group_name . '</a>',
-                '<a onclick=\'showUserEditBox('. $user->id .',"'. $user->name .'","'. $user->email .'",'. $group->id .')\'><i class="fa fa-pencil"></i></a> <a onclick=\'showUserEditPasswordBox('. $user->id .',"'. $user->name .'")\'><i class="fa fa-key"></i></a>'
+                '<a onclick=\'showUserEditBox('. $user->id .',"'. $user->name .'","'. $user->email .'",'. $group->id .')\'><i class="fa fa-pencil"></i></a> <a onclick=\'showUserEditPasswordBox('. $user->id .',"'. $user->name .'")\'><i class="fa fa-key"></i></a> <a onclick=\'deleteUserBox('. $user->id .',"'. $user->name .'")\'><i class="fa fa-trash"></i></a>'
             ];
         });
 
@@ -66,6 +67,8 @@ class UserController extends Controller
             $user->save();
         }
 
+        EditLogger::logEdit('5', "Updated User ". $user->name);
+
         return $response->withStatus(200);
     }
 
@@ -83,6 +86,27 @@ class UserController extends Controller
 
         $user->password = password_hash($request->getParam('password'), PASSWORD_DEFAULT);
         $user->save();
+
+        EditLogger::logEdit('5', "Changed ". $user->name ." Password");
+
+        return $response->withStatus(200);
+    }
+
+    public function changeOwnPassword($request, $response) {
+        $req_validation = $this->validator->validate($request, [
+            'password' =>  v::notEmpty()
+        ]);
+
+        if ($req_validation->failed()) {
+            return $response->withJson(['error' => 'Validation Failed', 'errors' => $req_validation->errors()], 400);
+        }
+
+        $user = User::find($_SESSION['user_id']);
+
+        $user->password = password_hash($request->getParam('password'), PASSWORD_DEFAULT);
+        $user->save();
+
+        EditLogger::logEdit('5', "Changed ". $user->name ." Their Password");
 
         return $response->withStatus(200);
     }
@@ -111,7 +135,28 @@ class UserController extends Controller
             'profilePicture' => $picture,
         ]);
 
+        EditLogger::logEdit('5', "Added User ". $request->getParam('username'));
+
         $this->alerts->addMessage('success', 'Account Created');
         return $response->withRedirect($this->router->pathFor('dashboard'));
+    }
+
+    public function deleteUser($request, $response) {
+        $req_validation = $this->validator->validate($request, [
+            'id' => v::notEmpty()
+        ]);
+
+        if ($req_validation->failed()) {
+            return $response->withJson(['error' => 'Validation Failed', 'errors' => $req_validation->errors()], 400);
+        }
+
+        $user = User::find($request->getParam('id'));
+
+        EditLogger::logEdit('5', "Deleted User ". $request->getParam('id') . " " . $user->name);
+
+        $user->delete();
+
+
+        return $response->withStatus(200);
     }
 }

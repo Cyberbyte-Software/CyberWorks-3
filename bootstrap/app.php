@@ -66,30 +66,36 @@ $container['translator'] = function ($container) {
 };
 
 $container['view'] = function ($container) {
-  $view = new \Slim\Views\Twig(
+    $view = new \Slim\Views\Twig(
       __DIR__ . '/../resources/views',
       [
           'cache' => false,
       ]
-  );
+    );
 
-  $view->addExtension(new \Slim\Views\TwigExtension(
+    $view->addExtension(new \Slim\Views\TwigExtension(
       $container->router,
       $container->request->getUri()
-  ));
+    ));
 
-  $view->addExtension(new \CyberWorks\Extension\TranslationExtension(
+    $view->addExtension(new \CyberWorks\Extension\TranslationExtension(
       $container->translator
-  ));
+    ));
 
-  $view->getEnvironment()->addGlobal('auth', [
+    $view->getEnvironment()->addGlobal('auth', [
       'authenticated' => $container->auth->isAuthed(),
       'user' => $container->auth->user(),
       'group' => $container->auth->primaryGroup(),
       'isSuperUser' => $container->auth->isSuperUser(),
       'permissions' => $container->auth->permissions(),
       'useIps' => $container->config->get('useIps', false)
-  ]);
+    ]);
+
+    $view->getEnvironment()->addGlobal('life', [
+        'copRanks' => $container->config->get('life.copRanks', false),
+        'emsRanks' => $container->config->get('life.emsRanks', false),
+        'adminRanks' => $container->config->get('life.adminRanks', false)
+    ]);
 
   $view->getEnvironment()->addGlobal('alerts', $container->alerts);
 

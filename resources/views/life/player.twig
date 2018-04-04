@@ -1,8 +1,8 @@
 {% extends 'templates/template.twig' %}
 
-{% set copRanks = range(0,7) %}
-{% set emsRanks = range(0,5) %}
-{% set adminRanks = range(0,5) %}
+{% set copRanks = range(0,life.copRanks) %}
+{% set emsRanks = range(0,life.emsRanks) %}
+{% set adminRanks = range(0,life.adminRanks) %}
 
 {% block title %}
     | {{ player.name }}
