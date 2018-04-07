@@ -13,6 +13,7 @@ return array (
     'nav' => array (
         'general' => 'Allgemein',
         'home' => 'Dashboard',
+        'changePW' => 'Passwort ändern',
         'admin' => array (
             'title' => 'Admin',
             'logs' => array (
@@ -21,7 +22,9 @@ return array (
                 'vehicle' => 'Fahrzeug Logs',
                 'gang' => 'Gang Logs',
                 'house' => 'Häuser Logs',
-                'container' => 'Container Logs'
+                'container' => 'Lagerkisten Logs',
+                'user' => 'Benutzer Logs',
+                'group' => 'Gruppen Logs'
             ),
             'groups' => 'Gruppen',
             'users' => 'Benutzer',
@@ -47,7 +50,7 @@ return array (
                 'warn' => 'Warnung',
                 'other' => 'Andere'
             ),
-            'deleteTitle' => 'Delete Note'
+            'deleteTitle' => 'Notiz löschen'
         )
     ),
     'dashboard' => array (
@@ -65,6 +68,14 @@ return array (
             'tenRichestPlayersBank' => 'Die 10 reichsten Spieler (Konto)',
             'tenRichestPlayersCash' => 'Die 10 reichsten Spieler (Bar)',
             'factionMetrics' => 'Fraktionsverteilung',
+        ),
+		 'updates' => array(
+            'title' => 'Verfügbare Updates',
+            'yes' => 'Ja!',
+            'no' => 'Nein!',
+            'current' => 'Derzeitige Version',
+            'latest' => 'Aktuelle Version',
+            'needsUpdate' => 'Neue Version verfügbar?',
         ),
     ),
     'auth' => array (
@@ -97,6 +108,8 @@ return array (
             'actions' => 'Aktionen',
             'sUser' => 'Super Admin',
             'action' => 'Aktion',
+            'sure' => 'Du bist kurz davor einen Benutzer zu löschen, bist du sicher?',
+            'suregroup' => 'Du bist kurz davor eine Gruppe zu löschen, bist du sicher?'
         ),
         'users' => array (
             'title' => 'Benutzer',
@@ -111,6 +124,7 @@ return array (
         ),
         'group' => array (
             'gPerms' => 'Gruppen Berechtigungen',
+            'delete' => 'Gruppe löschen',
             'new' => array (
                'title' => 'Neue Gruppe',
 
@@ -123,7 +137,7 @@ return array (
             'eVPG' => 'Darf Fahrzeug Berechtigungen bearbeiten',
             'eHPG' => 'Darf Häuser Berechtigungen bearbeiten',
             'eGPG' => 'Darf Gang Berechtigungen bearbeiten',
-            'eCPG' => 'Darf Container Berechtigungen bearbeiten',
+            'eCPG' => 'Darf Lagerkisten Berechtigungen bearbeiten',
             'eGP' => 'Darf Gruppen Berechtigungen bearbeiten',
             'eAP' => 'Darf Admin Berechtigungen bearbeiten',
             'ePGN' => 'Darf Gruppenname bearbeiten',
@@ -134,6 +148,7 @@ return array (
             'addUser' => 'Benutzer hinzufügen',
             'delUser' => 'Benutzer löschen',
             'editIpsID' => 'Edit IPS Connect ID',
+            'deluser' => 'Benutzer löschen',
         ),
     ),
 );
