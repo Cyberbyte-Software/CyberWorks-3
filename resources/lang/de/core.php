@@ -2,7 +2,7 @@
 return array (
     'generic' => array (
         'welcome' => 'Willkommen',
-        'add' => 'Hinzufügen',
+        'add' => 'Add',
         'new' => 'Neu',
         'list' => 'Liste',
         'profile' => 'Profil',
@@ -11,7 +11,7 @@ return array (
         'title' => 'Titel',
     ),
     'nav' => array (
-        'general' => 'Allgemein',
+        'general' => 'General',
         'home' => 'Dashboard',
         'admin' => array (
             'title' => 'Admin',
@@ -21,67 +21,78 @@ return array (
                 'vehicle' => 'Fahrzeug Logs',
                 'gang' => 'Gang Logs',
                 'house' => 'Häuser Logs',
-                'container' => 'Container Logs'
+                'container' => 'Container Logs',
+                'user' => 'User Logs',
+                'group' => 'Gruppen Logs'
             ),
             'groups' => 'Gruppen',
-            'users' => 'Benutzer',
+            'users' => 'User',
             'metrics' => 'Graphen'
         ),
+        'changePW' => 'Passwort ändern',
     ),
     'admin' => array (
         'generic' => array (
             'author' => 'Author',
             'message' => 'Nachricht',
-            'logmessage' => 'Bearbeitung',
             'created' => 'Erstellt',
-            'actions' => 'Aktionen',
+            'actions' => 'Aktion',
             'close' => 'Schließen',
-            'save' => 'Speichern',
-            'sure' => 'Bist du sicher',
+            'save' => 'Änderungen speichern',
+			'savecomp' => 'Erstatten',
+            'sure' => 'Bist du sicher?',
             'yes' => 'Ja',
             'no' => 'Nein'
         ),
         'notes' => array(
             'types' => array (
-                'info' => 'Info',
+                'info' => 'Information',
                 'warn' => 'Warnung',
-                'other' => 'Andere'
+                'other' => 'Other'
             ),
-            'deleteTitle' => 'Delete Note'
+            'deleteTitle' => 'Notiz löschen'
         )
     ),
     'dashboard' => array (
         'tiles' => array (
             'players' => 'Spieler',
-            'totalPlayers' => 'Gesamte Spieleranzahl',
+            'totalPlayers' => 'Gesamte Spieler',
             'latestPlayer' => 'Neuster Spieler',
-            'latestPlayerDesc' => 'Neuster Spieler der den Server betreten hat',
+            'latestPlayerDesc' => 'Neuster Spieler des Servers.',
             'totalVehicles' => 'Fahrzeuge',
-            'totalVehiclesDesc' => 'Gesamtzahl an Fahrzeugen',
+            'totalVehiclesDesc' => 'Gesamte Anzahl an Fahrzeugen.',
             'totalHouses' => 'Häuser',
-            'totalHousesDesc' => 'Anzahl von Spieler gekaufter Häuser'
+            'totalHousesDesc' => 'Gesamte Anzahl an Häusern.'
         ),
         'titles' => array (
             'tenRichestPlayersBank' => 'Die 10 reichsten Spieler (Konto)',
             'tenRichestPlayersCash' => 'Die 10 reichsten Spieler (Bar)',
-            'factionMetrics' => 'Fraktionsverteilung',
+            'factionMetrics' => 'Fraktionverteilung',
+        ),
+        'updates' => array(
+            'title' => 'CyberWorks 3 Updates',
+            'yes' => 'Ja!',
+            'no' => 'Nein!',
+            'current' => 'Derzeitige Version',
+            'latest' => 'Aktuellste Version',
+            'needsUpdate' => 'Neue Version verfügbar?',
         ),
     ),
     'auth' => array (
         'generic' => array(
             'username' => 'Username',
             'password' => 'Passwort',
+            'email' => 'Email',
             'submit' => 'Absenden',
-            'lost' => 'Passwort vergessen',
-            'email' => 'E-Mail'
+            'lost' => 'Passwort vergessen'
         ),
         'login' => array (
             'title' => 'Login',
-            'required' => 'Bitte einloggen um diese Aktion durchzuführen',
+            'required' => 'Bitte einloggen um diese Aktion auszuführen!',
         ),
         'register' => array (
             'title' => 'Registrieren',
-            'login' => 'Login',
+            'login' => 'Login'
         ),
         'reset' => array (
             'titleRequest' => 'Neues Passwort anfordern',
@@ -95,44 +106,47 @@ return array (
             'group' => 'Gruppe',
             'groups' => 'Gruppen',
             'actions' => 'Aktionen',
-            'sUser' => 'Super Admin',
-            'action' => 'Aktion',
+            'sUser' => 'Superadmin',
+            'sure' => 'Bist du sicher?',
         ),
         'users' => array (
-            'title' => 'Benutzer',
-            'updateUser' => 'Benutzer bearbeiten',
+            'title' => 'User',
+            'updateUser' => 'User bearbeiten',
             'newPass' => 'Neues Passwort',
-            'changeUPass' => 'Passwort des Benutzers ändern',
+            'changeUPass' => 'Passwort ändern',
             'changePass' => 'Passwort ändern',
             'new' => array (
-                'title' => 'Neuer Benutzer',
-                'create' => 'Benutzer erstellen',
+                'title' => 'Neuer User',
+                'create' => 'User erstellen',
             ),
+            'log' => 'User bearbeiten',
         ),
         'group' => array (
-            'gPerms' => 'Gruppen Berechtigungen',
+            'gPerms' => 'Gruppenberechtigungen',
             'new' => array (
                'title' => 'Neue Gruppe',
 
             ),
             'ipsID' => 'IPS ID',
-            'save' => 'Save',
+            'save' => 'Erstellen',
+            'delete' => 'Gruppe löschen',
+            'log' => 'Gruppe bearbeiten',
         ),
         'admin' => array (
-            'ePPG' => 'Darf Spieler Berechtigungen bearbeiten',
-            'eVPG' => 'Darf Fahrzeug Berechtigungen bearbeiten',
-            'eHPG' => 'Darf Häuser Berechtigungen bearbeiten',
-            'eGPG' => 'Darf Gang Berechtigungen bearbeiten',
-            'eCPG' => 'Darf Container Berechtigungen bearbeiten',
-            'eGP' => 'Darf Gruppen Berechtigungen bearbeiten',
-            'eAP' => 'Darf Admin Berechtigungen bearbeiten',
-            'ePGN' => 'Darf Gruppenname bearbeiten',
-            'isSuper' => 'SUPER ADMIN',
+            'ePPG' => 'Spieler Berechtigungen',
+            'eVPG' => 'Fahrzeug Berechtigungen',
+            'eHPG' => 'Häuser Berechtigungen',
+            'eGPG' => 'Gang Berechtigungen',
+            'eCPG' => 'Container Berechtigungen',
+            'eGP' => 'Gruppen Berechtigungen',
+            'eAP' => 'Admin Berechtigungen',
+            'ePGN' => 'Gruppennanme',
+            'isSuper' => 'Superadmin?',
             'vLogs' => 'Logs sehen',
-            'newPG' => 'Berechtigungsgruppen erstellen',
-            'eUsers' => 'Benutzer bearbeiten',
-            'addUser' => 'Benutzer hinzufügen',
-            'delUser' => 'Benutzer löschen',
+            'newPG' => 'Gruppen erstellen',
+            'eUsers' => 'User bearbeiten',
+            'addUser' => 'User hinzufügen',
+            'delUser' => 'User löschen',
             'editIpsID' => 'Edit IPS Connect ID',
         ),
     ),
