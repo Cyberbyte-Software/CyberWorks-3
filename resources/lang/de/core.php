@@ -13,6 +13,7 @@ return array (
     'nav' => array (
         'general' => 'General',
         'home' => 'Dashboard',
+        'changePW' => 'Passwort ändern',
         'admin' => array (
             'title' => 'Admin',
             'logs' => array (
@@ -21,8 +22,8 @@ return array (
                 'vehicle' => 'Fahrzeug Logs',
                 'gang' => 'Gang Logs',
                 'house' => 'Häuser Logs',
-                'container' => 'Container Logs',
-                'user' => 'User Logs',
+                'container' => 'Lagerkisten Logs',
+                'user' => 'Benutzer Logs',
                 'group' => 'Gruppen Logs'
             ),
             'groups' => 'Gruppen',
@@ -77,6 +78,14 @@ return array (
             'latest' => 'Aktuellste Version',
             'needsUpdate' => 'Neue Version verfügbar?',
         ),
+		 'updates' => array(
+            'title' => 'Verfügbare Updates',
+            'yes' => 'Ja!',
+            'no' => 'Nein!',
+            'current' => 'Derzeitige Version',
+            'latest' => 'Aktuelle Version',
+            'needsUpdate' => 'Neue Version verfügbar?',
+        ),
     ),
     'auth' => array (
         'generic' => array(
@@ -106,8 +115,10 @@ return array (
             'group' => 'Gruppe',
             'groups' => 'Gruppen',
             'actions' => 'Aktionen',
-            'sUser' => 'Superadmin',
-            'sure' => 'Bist du sicher?',
+            'sUser' => 'Super Admin',
+            'action' => 'Aktion',
+            'sure' => 'Du bist kurz davor einen Benutzer zu löschen, bist du sicher?',
+            'suregroup' => 'Du bist kurz davor eine Gruppe zu löschen, bist du sicher?'
         ),
         'users' => array (
             'title' => 'User',
@@ -122,7 +133,8 @@ return array (
             'log' => 'User bearbeiten',
         ),
         'group' => array (
-            'gPerms' => 'Gruppenberechtigungen',
+            'gPerms' => 'Gruppen Berechtigungen',
+            'delete' => 'Gruppe löschen',
             'new' => array (
                'title' => 'Neue Gruppe',
 
@@ -148,6 +160,7 @@ return array (
             'addUser' => 'User hinzufügen',
             'delUser' => 'User löschen',
             'editIpsID' => 'Edit IPS Connect ID',
+            'deluser' => 'Benutzer löschen',
         ),
     ),
 );
