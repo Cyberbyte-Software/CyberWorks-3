@@ -46,7 +46,7 @@ return array (
         'license_med_mAir' => 'Pilots License',
     ),
     'player' => array (
-        'title' => 'Player',
+        'title' => 'Spieler',
         'tiles' => array (
             'bank' => array (
                 'title' => 'Kontostand',
