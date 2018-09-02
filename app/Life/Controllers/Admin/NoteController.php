@@ -50,6 +50,18 @@ class NoteController extends Controller
         if ($req_validation->failed()) {
             return $response->withJson(["error" => "Message Cant Be Blank!"], 400);
         }
+        
+        switch ($note->type) {
+            case 0:
+                $name = "Information";
+                break;
+            case 1:
+                $name = "Warning";
+                break;
+            case 2:
+                $name = "Other";
+                break;
+        }
 
         $type = $request->getParam('type');
         if ($type > 2) $type = 2;
