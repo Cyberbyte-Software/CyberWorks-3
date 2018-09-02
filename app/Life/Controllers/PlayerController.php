@@ -24,7 +24,7 @@ class PlayerController extends Controller
         $table->setFormatRowFunction(function ($player) {
             return [
                 '<a href="player/' . $player->uid . '"target="_blank">' . $player->name . '</a>',
-                '<a href="http://steamcommunity.com/profiles/' . $player->pid . '"target="_blank">' . $player->pid . '</a>',
+                '<a href="https://steamcommunity.com/profiles/' . $player->pid . '"target="_blank">' . $player->pid . '</a>',
                 $player->bankacc,
                 $player->cash,
                 $player->coplevel,
@@ -210,35 +210,27 @@ class PlayerController extends Controller
 
     public function updateLicense($request, $response, $args)
     {
+        $find_text = "`" . $args['name'] . "`";
+        $allowed_sides = ["civ", "med", "cop"];
         $exploded = explode("_", $args['name']);
         $side = $exploded[1];
-        $player = Player::find($args['id']);
-
-        switch ($side)
-        {
-            case "civ":
-                $position = strpos($player->civ_licenses, $exploded['2']) + strlen($exploded['2']) + 2;
-                $tmp = $player->civ_licenses;
-                $tmp[$position] = General::switchValue((int) $player->civ_licenses[$position]);
-                LifeEditLogger::logEdit($args['id'], 0, "Edited Players " . $args['name'] . " Before: " . $player->civ_licenses[$position] . " After: " . $tmp[$position]);
-                $player->civ_licenses = $tmp;
-                break;
-            case "cop":
-                $position = strpos($player->cop_licenses, $exploded['2']) + strlen($exploded['2']) + 2;
-                $tmp = $player->cop_licenses;
-                $tmp[$position] = General::switchValue((int) $player->cop_licenses[$position]);
-                LifeEditLogger::logEdit($args['id'], 0,"Edited Players " . $args['name'] . " Before: " . $player->cop_licenses[$position] . " After: " . $tmp[$position]);
-                $player->cop_licenses = $tmp;
-                break;
-            case "med":
-                $position = strpos($player->med_licenses, $exploded['2']) + strlen($exploded['2']) + 2;
-                $tmp = $player->med_licenses;
-                $tmp[$position] = General::switchValue((int) $player->med_licenses[$position]);
-                LifeEditLogger::logEdit($args['id'], 0,"Edited Players " . $args['name'] . " Before: " . $player->med_licenses[$position] . " After: " . $tmp[$position]);
-                $player->med_licenses = $tmp;
-                break;
+        if (!in_array($side, $allowed_sides)) {
+            return $response->withJson(['error' => 'Invalid side']);
         }
-
+        
+        $player = Player::find($args['id']);
+        $property = $side . "_licenses";
+                                        
+        $inital_position = strpos($player->$property, $find_text);
+        if ($inital_position === false) {
+            return $response->withJson(['error' => 'Invalid licence name']);
+        }
+        
+        $position = $inital_position + strlen($find_text) + 1;
+        $tmp = $player->$property;
+        $tmp[$position] = General::switchValue((int) $player->civ_licenses[$position]);
+        LifeEditLogger::logEdit($args['id'], 0, "Edited player licence " . $args['name'] . " Before: " . $player->$property[$position] . " After: " . $tmp[$position]);
+        $player->$property = $tmp;
         $player->save();
 
         return $response;
