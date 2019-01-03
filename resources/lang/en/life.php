@@ -70,7 +70,7 @@ return array (
             'id' => 'SteamID',
         ),
         'buttons' => array (
-            'compensate' => 'Compenstae',
+            'compensate' => 'Compensate',
             'addNote' => 'Add Note',
         ),
         'tabs' => array (
