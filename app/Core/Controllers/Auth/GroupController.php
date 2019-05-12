@@ -132,7 +132,7 @@ class GroupController extends Controller
         if ($group->can_edit_vehicle != $this->convertCheckBox($request->getParam('can_edit_vehicle'))) $group->can_edit_vehicle = $this->convertCheckBox($request->getParam('can_edit_vehicle'));
         if ($group->can_edit_gang != $this->convertCheckBox($request->getParam('can_edit_gang'))) $group->can_edit_gang = $this->convertCheckBox($request->getParam('can_edit_gang'));
         if ($group->can_edit_container != $this->convertCheckBox($request->getParam('can_edit_container'))) $group->can_edit_container = $this->convertCheckBox($request->getParam('can_edit_container'));
-        if ($group->can_view_containers != $this->convertCheckBox($request->getParam('can_view_containers'))) $group->can_del_user = $this->convertCheckBox($request->getParam('can_view_containers'));
+        if ($group->can_view_containers != $this->convertCheckBox($request->getParam('can_view_containers'))) $group->can_view_containers = $this->convertCheckBox($request->getParam('can_view_containers'));
         if ($group->can_edit_house != $this->convertCheckBox($request->getParam('can_edit_house'))) $group->can_edit_house = $this->convertCheckBox($request->getParam('can_edit_house'));
         if ($group->can_view_houses != $this->convertCheckBox($request->getParam('can_view_houses'))) $group->can_view_houses = $this->convertCheckBox($request->getParam('can_view_houses'));
 
