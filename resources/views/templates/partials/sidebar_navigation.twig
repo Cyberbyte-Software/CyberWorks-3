@@ -13,8 +13,8 @@
             </div>
             <div class="profile_info">
                 <span>{{ translate('core.generic.welcome') }},</span>
-                <h2>{{ auth.user.name }}</h2>
-                {{ auth.group.formattedName|raw }}
+                <h4 style = "color: #fff;">{{ auth.user.name }}</h4>
+                <p class="btn btn-primary">{{ auth.permissions.group_name|raw }}</p>
             </div>
             <div class="clearfix"></div>
         </div>
