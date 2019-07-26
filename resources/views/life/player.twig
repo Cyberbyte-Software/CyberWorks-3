@@ -873,6 +873,7 @@
                         "{{ csrf.javascript.tokenValueKey }}":window.csrfTokenValue,
                         "noteID":document.getElementById("noteID").value,
                     },
+                    render: $.fn.dataTable.render.text(),
                     complete: function (jqXHR) {
                         var csrfToken = jqXHR.getResponseHeader('X-CSRF-Token');
 
