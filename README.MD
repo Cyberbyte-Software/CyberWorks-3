@@ -6,6 +6,9 @@ CyberWorks 3 is one of our many rewrites of CyberWorks to make it more usable. I
 
 If you are not using composer download it from [GitHub Releases](https://github.com/Cyberbyte-Studios/CyberWorks-3/releases/latest).
 
+## New version coming soon
+For more details we reccomend you sign up to our closed alpha program at: https://forms.gle/oQehcy3ko3z7KRbv7.
+
 ## Features
 CyberWorks 3 was designed to have all the features as our original but be much more maintainable and secure. You can view all screenshots on [imgur](https://imgur.com/a/wq9Ue). A small list is below:
 
