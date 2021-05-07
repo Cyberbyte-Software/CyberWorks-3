@@ -2,12 +2,12 @@
 
 [![discord](https://img.shields.io/badge/Discord-Join-7289DA.svg)](https://discord.gg/qHsTEhY)
 
+## No longer maintained
+This project is no longer being activly maintained and we do not reccomend its use anymore.
+
 CyberWorks 3 is one of our many rewrites of CyberWorks to make it more usable. It was originally designed for [Critical Gaming](https://criticalgaming.org/) and we have since decided to open source it after removing the custom content. We __highly__ recommend you use this version and not our original CyberWorks as we intend to maintain this version.
 
 If you are not using composer download it from [GitHub Releases](https://github.com/Cyberbyte-Studios/CyberWorks-3/releases/latest).
-
-## New version coming soon
-For more details we reccomend you sign up to our closed alpha program at: https://forms.gle/oQehcy3ko3z7KRbv7.
 
 ## Features
 CyberWorks 3 was designed to have all the features as our original but be much more maintainable and secure. You can view all screenshots on [imgur](https://imgur.com/a/wq9Ue). A small list is below:
@@ -27,9 +27,9 @@ CyberWorks 3 was designed to have all the features as our original but be much m
 ## Installation
 You can find links to our install guides on our [wiki](https://github.com/Cyberbyte-Studios/CyberWorks-3/wiki/Installation). If you have any problems feel free to reach out using our [Discord](https://discord.gg/e7kgYZv).
 
-[![Cyberbyte Studios](https://i.imgur.com/qeXU9CH.png)](https://cyberbyte.org.uk/)
+[![Cyberbyte Software](https://cyberbyte.software/images/logo.png)](https://cyberbyte.software/)
 
-This project is maintained by [CyberByte Studios](https://cyberbyte.org.uk/). Follow us on [twitter](https://twitter.com/cyberbytestudio). Commercial support is available contact sam@cyberbyte.org.uk or cameron@cyberbyte.org.uk.
+This project is maintained by [CyberByte Software](https://cyberbyte.software/). Follow us on [twitter](https://twitter.com/cyberbytestudio). Commercial support is available contact contact@cyberbyte.software.
 
 ## Copyright
 Copyright (C) 2018 Cyberbyte Studios
